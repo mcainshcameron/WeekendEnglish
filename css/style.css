@@ -63,10 +63,10 @@ header a:hover {
 }
 .hero {
 	height: 500px;
-	background-image: url('https://image.ibb.co/jGWUL6/hero.png');
+	background-image: url('https://i.ibb.co/mBmKBsh/Hero.png');
 	background-repeat: no-repeat;
 	background-position: center;
-	background-size: cover;
+	background-size: 100%;
 }
 .slogan {
 	background-color: rgba(0, 0, 0, 0.4);
