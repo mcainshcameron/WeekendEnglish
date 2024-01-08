@@ -63,15 +63,16 @@ header a:hover {
 }
 .hero {
 	height: 500px;
-	background-image: url('https://i.ibb.co/mBmKBsh/Hero.png');
+	background-image: url('https://i.ibb.co/dJWZwxw/gif-website-2-1.gif');
 	background-repeat: no-repeat;
 	background-position: center;
 	background-size: 100%;
 }
 .slogan {
-	background-color: rgba(0, 0, 0, 0.4);
-	max-width: 800px;
-	float: right;
+	background-color: #000000;
+	max-width: 500px;
+	margin: 0 auto; /* Centering the element */
+	float: center;
 	position: relative;
 	top: 150px;
 	width: 40%;
@@ -134,37 +135,37 @@ section>.container {
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position: center;
-	height: 150px;
+	height: 250px;
 }
 .photo-1 {
-	background-image: url('https://images.pexels.com/photos/145399/pexels-photo-145399.jpeg?w=940&h=650&auto=compress&cs=tinysrgb');
+	background-image: url('https://i.ibb.co/wMYYzCx/pexels-ketut-subiyanto-4559555.jpg');
 }
 .photo-2 {
-	background-image: url('https://images.pexels.com/photos/165553/pexels-photo-165553.jpeg?w=940&h=650&auto=compress&cs=tinysrgb');
+	background-image: url('https://i.ibb.co/VBrSVgy/pexels-anna-shvets-4226262.jpg');
 }
 .photo-3 {
-	background-image: url('https://images.pexels.com/photos/167684/pexels-photo-167684.jpeg?w=940&h=650&auto=compress&cs=tinysrgb');
+	background-image: url('https://i.ibb.co/0Z59V67/pexels-julia-m-cameron-4145190.jpg');
 }
 .photo-4 {
-	background-image: url('https://images.pexels.com/photos/167698/pexels-photo-167698.jpeg?w=940&h=650&auto=compress&cs=tinysrgb');
+	background-image: url('https://i.ibb.co/Smsrmt3/pexels-vlada-karpovich-4050439.jpg');
 }
 .photo-5 {
-	background-image: url('https://images.pexels.com/photos/167696/pexels-photo-167696.jpeg?w=940&h=650&auto=compress&cs=tinysrgb');
+	background-image: url('https://i.ibb.co/mSzFggp/pexels-julia-m-cameron-4144222.jpg');
 }
 .photo-6 {
-	background-image: url('https://images.pexels.com/photos/167699/pexels-photo-167699.jpeg?w=940&h=650&auto=compress&cs=tinysrgb');
+	background-image: url('https://i.ibb.co/dg2nfwv/pexels-charlotte-may-5965705.jpg');
 }
 .photo-7 {
-	background-image: url('https://images.pexels.com/photos/171286/pexels-photo-171286.jpeg?w=940&h=650&auto=compress&cs=tinysrgb');
+	background-image: url('https://i.ibb.co/9vBNBgw/pexels-liza-summer-6347901.jpg');
 }
 .photo-8 {
-	background-image: url('https://images.pexels.com/photos/172033/pexels-photo-172033.jpeg?w=940&h=650&auto=compress&cs=tinysrgb');
+	background-image: url('https://i.ibb.co/19ZKZmX/pexels-sam-lion-6001367.jpg');
 }
 .photo-9 {
-	background-image: url('https://images.pexels.com/photos/175245/pexels-photo-175245.jpeg?w=940&h=650&auto=compress&cs=tinysrgb');
+	background-image: url('https://i.ibb.co/6PLqsGJ/pexels-teona-swift-6913726.jpg');
 }
 .photo-10 {
-	background-image: url('https://images.pexels.com/photos/175274/pexels-photo-175274.jpeg?w=940&h=650&auto=compress&cs=tinysrgb');
+	background-image: url('https://i.ibb.co/wYSMwhq/pexels-william-fortunato-6392978.jpg');
 }
 .photo {
 	transition: 0.5s ease;
