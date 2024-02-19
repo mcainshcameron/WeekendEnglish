@@ -59,7 +59,7 @@
                     </ul>
 
                     <ul class="nav navbar-nav navbar-right">
-                         <li><a href="#"><i class="fa fa-envelope"></i> Contattaci</a></li>
+                         <li><a href="contact.html"><i class="fa fa-envelope"></i> Contattaci</a></li>
                     </ul>
                </div>
 
@@ -258,7 +258,7 @@
                                              </div>
 
                                              <div class="courses-detail">
-                                                  <h3><a href="#">Preparazione colloquio</a></h3>
+                                                  <h3><a href="info.html#colloquio">Preparazione colloquio</a></h3>
                                                   <p>Ottimizza le tue abilità linguistiche per i colloqui in inglese.</p>
                                              </div>
 
@@ -268,7 +268,7 @@
                                                        <span>Per tutti</span>
                                                   </div>
                                                   <div class="courses-price free">
-                                                       <a href="#"><span>Più info</span></a>
+                                                       <a href="info.html#colloquio"><span>Più info</span></a>
                                                   </div>
                                              </div>
                                         </div>
@@ -287,7 +287,7 @@
                                              </div>
 
                                              <div class="courses-detail">
-                                                  <h3><a href="#">Lezione di conversazione</a></h3>
+                                                  <h3><a href="info.html#conversation">Lezione di conversazione</a></h3>
                                                   <p>Conversazioni mirate per migliorare la tua fluidità.</p>
                                              </div>
 
@@ -297,7 +297,7 @@
                                                        <span>Per tutti</span>
                                                   </div>
                                                   <div class="courses-price free">
-                                                       <a href="#"><span>Più info</span></a>
+                                                       <a href="info.html#conversation"><span>Più info</span></a>
                                                   </div>
                                              </div>
                                         </div>
@@ -316,7 +316,7 @@
                                              </div>
 
                                              <div class="courses-detail">
-                                                  <h3><a href="#">Certificazioni e Università</a></h3>
+                                                  <h3><a href="info.html#university">Certificazioni e Università</a></h3>
                                                   <p>Preparazione per esami e certificazioni linguistiche.</p>
                                              </div>
 
@@ -326,7 +326,7 @@
                                                        <span>Per studenti</span>
                                                   </div>
                                                   <div class="courses-price free">
-                                                       <a href="#"><span>Più info</span></a>
+                                                       <a href="info.html#university"><span>Più info</span></a>
                                                   </div>
                                              </div>
                                         </div>
@@ -345,7 +345,7 @@
                                              </div>
 
                                              <div class="courses-detail">
-                                                  <h3><a href="#">Holiday Prep</a></h3>
+                                                  <h3><a href="info.html#holidayprep">Holiday Prep</a></h3>
                                                   <p>Corso intensivo per prepararti alla tua prossima vacanza all'estero.</p>
                                              </div>
 
@@ -355,7 +355,7 @@
                                                        <span>Per tutti</span>
                                                   </div>
                                                   <div class="courses-price free">
-                                                       <a href="#"><span>Più info</span></a>
+                                                       <a href="info.html#holidayprep"><span>Più info</span></a>
                                                   </div>
                                              </div>
                                         </div>
@@ -374,7 +374,7 @@
                                              </div>
 
                                              <div class="courses-detail">
-                                                  <h3><a href="#">Business English</a></h3>
+                                                  <h3><a href="info.html#business">Business English</a></h3>
                                                   <p>Impara l'essenziale per navigare nel mondo del business internazionale.</p>
                                              </div>
 
@@ -384,7 +384,7 @@
                                                        <span>Per lavoratori</span>
                                                   </div>
                                                   <div class="courses-price free">
-                                                       <a href="<###>"><span>Più info</span></a>
+                                                       <a href="info.html#business"><span>Più info</span></a>
                                                   </div>
                                              </div>
                                         </div>
@@ -411,7 +411,6 @@
                                    <div class="item">
                                         <div class="tst-author">
                                              <h4>Quanti studenti insegni alla volta?</h4>
-                                             <span>Studente curioso</span>
                                         </div>
                                         <p>Insegno a un massimo di 3-4 studenti per garantire un'attenzione personalizzata. Insegno part-time, mantenendo un equilibrio con la mia carriera fuori da Weekend English.</p>
                                    </div>
@@ -420,8 +419,7 @@
                               <div class="col-md-4 col-sm-4">
                                    <div class="item">
                                         <div class="tst-author">
-                                             <h4>Quando si libera un posto, ti contatterò!</h4>
-                                             <span>Un mio amico</span>
+                                             <h4>Cosa succede se non hai disponibilità?</h4>
                                         </div>
                                         <p>Quando si libera un posto ti chiamo!
                                         </p>
@@ -434,7 +432,6 @@
                                    <div class="item">
                                         <div class="tst-author">
                                              <h4>Lezioni solo nel weekend?</h4>
-                                             <span>Un lavoratore</span>
                                         </div>
                                         <p>Principalmente sabato mattina (9-13) e lunedì sera (20-22), ma possiamo discutere di orari alternativi se necessario.
                                         </p>
@@ -465,30 +462,35 @@
 
      <!-- CONTACT -->
      <section id="contact">
+          <style>
+              @media (max-width: 768px) {
+                  .hide-on-mobile {
+                      display: none;
+                  }
+              }
+          </style>
           <div class="container">
-               <div class="row">
-
-                    <div class="col-md-6 col-sm-12">
-                         <form id="contact-form" role="form" action="" method="post">
-                              <div class="section-title">
-                                   <h2>Contattaci <small>Per ulteriori informazioni e disponibilità.</small></h2>
-                              </div>
-                              <div class="col-md-4 col-sm-12">
-                                   <input type="submit" class="form-control" name="send message" value="Scrivici">
-                              </div>
-
-                         </form>
-                    </div>
-
-                    <div class="col-md-6 col-sm-12">
-                         <div class="contact-image">
-                              <img src="images/Contact_form.png" class="img-responsive" alt="Smiling Two Girls">
-                         </div>
-                    </div>
-
-               </div>
+              <div class="row">
+                  <div class="col-md-6 col-sm-12">
+                      <div class="section-title">
+                          <h2>Contattaci <small>Per ulteriori informazioni e disponibilità.</small></h2>
+                      </div>
+                      <div class="col-md-4 col-sm-12" style="text-align: center;">
+                          <a href="contact.html" style="display: inline-block; background-color: white; color: black; padding: 10px 20px; text-align: center; border-radius: 30px; text-decoration: none; font-weight: bold; margin-top: 20px;">Scrivici</a>
+                      </div>
+                  </div>
+                  <div class="col-md-6 col-sm-12 hide-on-mobile">
+                      <div class="contact-image">
+                          <img src="images/Contact_form.png" class="img-responsive" alt="Smiling Two Girls">
+                      </div>
+                  </div>
+              </div>
           </div>
-     </section>       
+      </section>
+      
+      
+      
+           
 
 
      <!-- FOOTER -->
