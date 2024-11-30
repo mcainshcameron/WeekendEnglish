@@ -1,0 +1,150 @@
+/* Features Grid */
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Benefits Grid */
+.benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.benefit-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.benefit-card h3,
+.benefit-card p {
+    flex-shrink: 0;
+}
+
+.benefit-card .benefit-image {
+    margin-top: auto;
+    height: 200px;
+    width: 100%;
+    object-fit: cover;
+}
+
+/* Process Steps Grid */
+.steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* FAQ Questions Grid */
+.questions {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* About Section */
+.about {
+    max-width: 800px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    padding: 2rem;
+}
+
+.about-content {
+    flex: 1;
+}
+
+.about-image {
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+/* Booking Section */
+.booking {
+    background-color: var(--accent-color);
+    padding: 3rem 1rem;
+    border-radius: 12px;
+    margin-top: 4rem;
+}
+
+/* Calendly Widget */
+.calendly-inline-widget {
+    min-width: 320px;
+    height: 700px;
+    max-width: 1000px;
+    margin: 0 auto;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    background: white;
+}
+
+/* Section Spacing */
+section {
+    padding: 4rem 1rem;
+    margin-bottom: 2rem;
+}
+
+.intro {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.lead {
+    font-size: 1.2rem;
+    color: var(--secondary-color);
+    font-weight: 500;
+}
+
+/* Responsive Grids */
+@media (max-width: 768px) {
+    .features-grid,
+    .benefits-grid,
+    .steps,
+    .questions {
+        grid-template-columns: 1fr;
+        max-width: 500px;
+        margin: 0 auto;
+    }
+
+    .about {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .about-image {
+        width: 200px;
+        height: 200px;
+    }
+
+    section {
+        padding: 2rem 1rem;
+    }
+}
+
+/* Print Styles */
+@media print {
+    .calendly-inline-widget {
+        display: none;
+    }
+
+    section {
+        page-break-inside: avoid;
+    }
+}

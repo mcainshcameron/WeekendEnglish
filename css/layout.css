@@ -1,0 +1,149 @@
+/* Navigation */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem var(--spacing-unit);
+    background-color: rgba(255, 255, 255, 0.95);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    transition: transform var(--transition-speed) ease;
+}
+
+nav.nav-hidden {
+    transform: translateY(-100%);
+}
+
+.logo {
+    font-size: clamp(1.25rem, 2vw, 1.5rem);
+    font-weight: 700;
+    color: var(--primary-color);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.logo img {
+    height: 40px;
+    width: auto;
+    object-fit: contain;
+}
+
+/* Hero Section */
+.hero {
+    padding-top: 5rem;
+    text-align: center;
+    background: linear-gradient(to bottom, var(--accent-color), white);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.hero-content {
+    padding: 2rem var(--spacing-unit);
+    max-width: 800px;
+    margin: 0 auto;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.6s ease forwards;
+}
+
+.hero-image {
+    width: 100%;
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 0 var(--spacing-unit);
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.6s ease forwards 0.3s;
+}
+
+.hero-img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    transition: transform var(--transition-speed) ease;
+}
+
+.hero-img:hover {
+    transform: scale(1.02);
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Section Layout */
+section {
+    padding: 4rem var(--spacing-unit);
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+section.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.intro {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+/* Footer */
+footer {
+    background-color: var(--secondary-color);
+    color: white;
+    padding: 2rem var(--spacing-unit);
+    text-align: center;
+}
+
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+/* Responsive Layout */
+@media (max-width: 768px) {
+    :root {
+        --spacing-unit: 1rem;
+    }
+
+    .hero-content {
+        padding: 1rem var(--spacing-unit);
+    }
+
+    section {
+        padding: 3rem var(--spacing-unit);
+    }
+
+    .logo img {
+        height: 30px;
+    }
+}
+
+@media (max-width: 480px) {
+    nav {
+        padding: 0.75rem var(--spacing-unit);
+    }
+
+    section {
+        padding: 2rem var(--spacing-unit);
+    }
+}
