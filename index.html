@@ -53,6 +53,7 @@
     <link rel="stylesheet" href="css/components.css" media="print" onload="this.media='all'">
     <link rel="stylesheet" href="css/sections.css" media="print" onload="this.media='all'">
     <link rel="stylesheet" href="css/utilities.css" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="css/cookie-policy.css" media="print" onload="this.media='all'">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -88,6 +89,7 @@
         <link rel="stylesheet" href="css/components.css">
         <link rel="stylesheet" href="css/sections.css">
         <link rel="stylesheet" href="css/utilities.css">
+        <link rel="stylesheet" href="css/cookie-policy.css">
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     </noscript>
@@ -288,6 +290,15 @@
         </section>
     </main>
 
+    <!-- Cookie Banner -->
+    <div class="cookie-banner" id="cookieBanner">
+        <p>Questo sito utilizza cookie tecnici essenziali di terze parti (Calendly, Google Fonts) per garantire il corretto funzionamento del sito. Continuando a utilizzare questo sito, accetti l'uso dei cookie.</p>
+        <div class="cookie-buttons">
+            <button class="accept-cookies" id="acceptCookies">Accetta</button>
+            <button class="reject-cookies" id="rejectCookies">Rifiuta</button>
+        </div>
+    </div>
+
     <footer role="contentinfo">
         <div class="social-links">
             <a href="https://www.linkedin.com/in/cameron-mcainsh-56a4221b8/" 
@@ -298,12 +309,45 @@
                 <i class="fab fa-linkedin" aria-hidden="true"></i>
             </a>
         </div>
-        <p>&copy; 2024 WeekendEnglish.it. Tutti i diritti riservati.</p>
+        <p>2024 WeekendEnglish.it</p>
     </footer>
 
     <!-- Performance optimization script -->
     <script>
+        // Cookie consent handling
+        function setCookie(name, value, days) {
+            const d = new Date();
+            d.setTime(d.getTime() + (days * 24 * 60 * 60 * 1000));
+            const expires = "expires=" + d.toUTCString();
+            document.cookie = name + "=" + value + ";" + expires + ";path=/";
+        }
+
+        function getCookie(name) {
+            const value = `; ${document.cookie}`;
+            const parts = value.split(`; ${name}=`);
+            if (parts.length === 2) return parts.pop().split(';').shift();
+        }
+
+        function showCookieBanner() {
+            const banner = document.getElementById('cookieBanner');
+            if (!getCookie('cookieConsent')) {
+                banner.classList.add('visible');
+            }
+        }
+
+        document.getElementById('acceptCookies')?.addEventListener('click', () => {
+            setCookie('cookieConsent', 'accepted', 365);
+            document.getElementById('cookieBanner').classList.remove('visible');
+        });
+
+        document.getElementById('rejectCookies')?.addEventListener('click', () => {
+            setCookie('cookieConsent', 'rejected', 365);
+            document.getElementById('cookieBanner').classList.remove('visible');
+            // In a full implementation, you might want to disable non-essential services here
+        });
+
         window.addEventListener('load', () => {
+            showCookieBanner();
             document.getElementById('loading').style.display = 'none';
             
             // Intersection Observer for lazy loading
