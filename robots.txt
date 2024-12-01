@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Sitemap: https://weekendenglish.it/sitemap.xml
+
+# Allow all bots to access everything
+# Specify sitemap location for better indexing
