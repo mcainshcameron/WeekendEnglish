@@ -15,11 +15,13 @@
 .fas, .fa-solid {
     font-family: 'Font Awesome 6';
     font-weight: 900;
+    font-style: normal;
 }
 
 .fab, .fa-brands {
     font-family: 'Font Awesome 6 Brands';
     font-weight: 400;
+    font-style: normal;
 }
 
 /* Icons we use */
