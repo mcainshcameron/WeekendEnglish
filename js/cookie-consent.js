@@ -5,18 +5,38 @@ class CookieConsentManager {
         this.consentDuration = 365;
         this.calendlyWidgetSelector = '.calendly-inline-widget';
         this.alternativeMessageClass = 'consent-required-message';
+        this.isLocalFile = window.location.protocol === 'file:';
     }
 
     setCookie(name, value, days) {
+        if (this.isLocalFile) {
+            // Use localStorage for local file testing
+            localStorage.setItem(name, value);
+            return;
+        }
         const d = new Date();
         d.setTime(d.getTime() + (days * 24 * 60 * 60 * 1000));
-        document.cookie = `${name}=${value};expires=${d.toUTCString()};path=/;SameSite=Strict`;
+        document.cookie = `${name}=${value};expires=${d.toUTCString()};SameSite=Lax;secure`;
     }
 
     getCookie(name) {
+        if (this.isLocalFile) {
+            // Use localStorage for local file testing
+            const value = localStorage.getItem(name);
+            if (value === 'accepted' || value === 'rejected') {
+                return value;
+            }
+            return null;
+        }
+
         const value = `; ${document.cookie}`;
         const parts = value.split(`; ${name}=`);
-        if (parts.length === 2) return parts.pop().split(';').shift();
+        if (parts.length === 2) {
+            const cookieValue = parts.pop().split(';').shift();
+            if (cookieValue === 'accepted' || cookieValue === 'rejected') {
+                return cookieValue;
+            }
+        }
         return null;
     }
 
@@ -45,7 +65,6 @@ class CookieConsentManager {
     }
 
     toggleBannerText(event) {
-        // Only handle clicks on the paragraph element
         if (event.target.tagName.toLowerCase() === 'p') {
             event.target.classList.toggle('expanded');
         }
@@ -60,19 +79,74 @@ class CookieConsentManager {
         if (this.calendlyWidget) {
             this.calendlyWidget.style.display = 'block';
             
-            // Load Calendly assets only if not already loaded
-            if (!document.querySelector('script[src*="calendly.com"]')) {
-                await this.loadScript('https://assets.calendly.com/assets/external/widget.js');
-            }
+            try {
+                // Load Calendly script if not already loaded
+                if (!window.Calendly && !document.querySelector('script[src*="calendly.com"]')) {
+                    await this.loadScript('https://assets.calendly.com/assets/external/widget.js');
+                }
 
-            if (!document.querySelector('link[href*="calendly.com"]')) {
-                await this.loadStylesheet('https://assets.calendly.com/assets/external/widget.css');
-            }
+                // Load Calendly stylesheet if not already loaded
+                if (!document.querySelector('link[href*="calendly.com"]')) {
+                    await this.loadStylesheet('https://assets.calendly.com/assets/external/widget.css');
+                }
 
-            // Show widget with animation
-            requestAnimationFrame(() => {
-                this.calendlyWidget.style.opacity = '1';
-            });
+                // Force Calendly widget to reload
+                const widgetUrl = this.calendlyWidget.getAttribute('data-url');
+                if (widgetUrl) {
+                    // Clear any existing content
+                    this.calendlyWidget.innerHTML = '';
+                    
+                    // Wait for Calendly to be available
+                    const checkCalendly = setInterval(() => {
+                        if (window.Calendly) {
+                            clearInterval(checkCalendly);
+                            window.Calendly.initInlineWidget({
+                                url: widgetUrl,
+                                parentElement: this.calendlyWidget
+                            });
+                            // Show widget with animation
+                            requestAnimationFrame(() => {
+                                this.calendlyWidget.style.opacity = '1';
+                            });
+                        }
+                    }, 100);
+
+                    // Set a timeout to handle cases where Calendly doesn't load
+                    setTimeout(() => {
+                        clearInterval(checkCalendly);
+                        if (!window.Calendly) {
+                            this.showCalendlyError();
+                        }
+                    }, 10000); // 10 second timeout
+                }
+            } catch (error) {
+                console.error('Error loading Calendly:', error);
+                this.showCalendlyError();
+            }
+        }
+    }
+
+    showCalendlyError() {
+        if (this.calendlyWidget) {
+            const errorMessage = document.createElement('div');
+            errorMessage.className = this.alternativeMessageClass;
+            errorMessage.innerHTML = `
+                <p>Si è verificato un errore nel caricamento del calendario. Per favore, riprova o contattami su LinkedIn.</p>
+                <button class="accept-cookies">
+                    Riprova
+                </button>
+                <a href="https://www.linkedin.com/in/cameron-mcainsh-56a4221b8/" 
+                   class="social-icon" 
+                   target="_blank" 
+                   rel="noopener noreferrer">
+                    <i class="fab fa-linkedin"></i> Contattami su LinkedIn
+                </a>
+            `;
+
+            const retryButton = errorMessage.querySelector('.accept-cookies');
+            retryButton.addEventListener('click', () => this.acceptCookies());
+
+            this.calendlyWidget.parentNode.insertBefore(errorMessage, this.calendlyWidget.nextSibling);
         }
     }
 
@@ -137,7 +211,6 @@ class CookieConsentManager {
         this.banner = document.getElementById('cookieBanner');
         this.calendlyWidget = document.querySelector(this.calendlyWidgetSelector);
         
-        // Use event delegation for better performance
         if (this.banner) {
             this.banner.addEventListener('click', (e) => {
                 if (e.target.id === 'acceptCookies') {
@@ -147,7 +220,6 @@ class CookieConsentManager {
                 }
             });
 
-            // Add click handler for expanding text
             this.banner.addEventListener('click', (e) => this.toggleBannerText(e));
         }
 
@@ -164,8 +236,11 @@ class CookieConsentManager {
     }
 }
 
-// Initialize after DOM is loaded
-document.addEventListener('DOMContentLoaded', () => {
-    window.cookieManager = new CookieConsentManager();
-    window.cookieManager.init();
+// Initialize after all resources are loaded
+window.addEventListener('load', () => {
+    // Small delay to ensure DOM is fully ready
+    setTimeout(() => {
+        window.cookieManager = new CookieConsentManager();
+        window.cookieManager.init();
+    }, 100);
 });
