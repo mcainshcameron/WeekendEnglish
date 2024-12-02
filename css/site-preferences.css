@@ -1,4 +1,4 @@
-#cookie-banner {
+#preferences-dialog {
     position: fixed;
     bottom: 0;
     left: 0;
@@ -10,35 +10,35 @@
     font-size: 0.8rem;
 }
 
-.cookie-content {
+.preferences-content {
     max-width: 900px;
     margin: 0 auto;
 }
 
-.cookie-content h3 {
+.preferences-content h3 {
     margin: 0 0 0.5rem;
     color: #1e293b;
     font-size: 0.9rem;
 }
 
-.cookie-content p {
+.preferences-content p {
     margin: 0 0 0.75rem;
     color: #4a5568;
     line-height: 1.4;
 }
 
-.cookie-settings {
+.preferences-options {
     margin-bottom: 0.75rem;
 }
 
-.cookie-group {
+.preference-group {
     margin-bottom: 0.5rem;
     padding: 0.5rem;
     background: #f8fafc;
     border-radius: 0.25rem;
 }
 
-.cookie-group label {
+.preference-group label {
     display: flex;
     align-items: center;
     gap: 0.5rem;
@@ -47,20 +47,20 @@
     margin-bottom: 0.125rem;
 }
 
-.cookie-info {
+.preference-info {
     display: block;
     font-size: 0.75rem;
     color: #718096;
     margin-left: 1.5rem;
 }
 
-.cookie-actions {
+.preferences-actions {
     display: flex;
     gap: 0.5rem;
     justify-content: flex-end;
 }
 
-.cookie-button {
+.preference-button {
     padding: 0.5rem 1rem;
     border-radius: 0.25rem;
     font-weight: 500;
@@ -70,21 +70,21 @@
     font-size: 0.8rem;
 }
 
-.cookie-button.primary {
+.preference-button.primary {
     background: #2563eb;
     color: white;
 }
 
-.cookie-button.primary:hover {
+.preference-button.primary:hover {
     background: #1d4ed8;
 }
 
-.cookie-button.secondary {
+.preference-button.secondary {
     background: #e2e8f0;
     color: #1e293b;
 }
 
-.cookie-button.secondary:hover {
+.preference-button.secondary:hover {
     background: #cbd5e1;
 }
 
@@ -95,15 +95,15 @@ input[type="checkbox"] {
 }
 
 @media (max-width: 640px) {
-    #cookie-banner {
+    #preferences-dialog {
         padding: 0.75rem;
     }
 
-    .cookie-actions {
+    .preferences-actions {
         flex-direction: row;
     }
 
-    .cookie-button {
+    .preference-button {
         flex: 1;
         text-align: center;
     }

@@ -31,11 +31,8 @@
     
     <title>WeekendEnglish.it - Preparati al Colloquio di Lavoro in Inglese</title>
     
-    <!-- Cookie Consent CSS -->
-    <link rel="stylesheet" href="css/cookie-consent.css">
-    
-    <!-- Cookie Consent JS -->
-    <script src="js/cookie-consent.js"></script>
+    <!-- Site Preferences CSS -->
+    <link rel="stylesheet" href="css/site-preferences.css">
     
     <!-- Preload critical assets -->
     <link rel="preload" href="css/base.css" as="style">
@@ -88,7 +85,7 @@
         <link rel="stylesheet" href="css/components.css">
         <link rel="stylesheet" href="css/sections.css">
         <link rel="stylesheet" href="css/utilities.css">
-        <link rel="stylesheet" href="css/cookie-consent.css">
+        <link rel="stylesheet" href="css/site-preferences.css">
         <link rel="stylesheet" href="css/fontawesome.css">
     </noscript>
 </head>
@@ -338,5 +335,8 @@
 
         window.addEventListener('load', initPerformanceOptimizations);
     </script>
+
+    <!-- Site preferences script (moved to end of body) -->
+    <script src="js/site-preferences.js" defer></script>
 </body>
 </html>
