@@ -1,0 +1,40 @@
+/* 
+ * Local Project Fonts - Inter Font Family
+ * These fonts are served directly from our project's /fonts directory
+ * No external requests or third-party resources are used
+ */
+@font-face {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    /* Project local font file */
+    src: url('../fonts/inter/Inter-Regular.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-display: swap;
+    /* Project local font file */
+    src: url('../fonts/inter/Inter-Medium.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-display: swap;
+    /* Project local font file */
+    src: url('../fonts/inter/Inter-SemiBold.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    /* Project local font file */
+    src: url('../fonts/inter/Inter-Bold.woff2') format('woff2');
+}
