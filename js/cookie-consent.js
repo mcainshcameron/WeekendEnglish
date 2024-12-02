@@ -97,9 +97,8 @@ class CookieConsentManager {
                     this.calendlyWidget.innerHTML = '';
                     
                     // Wait for Calendly to be available
-                    const checkCalendly = setInterval(() => {
+                    const checkCalendlyInterval = () => {
                         if (window.Calendly) {
-                            clearInterval(checkCalendly);
                             window.Calendly.initInlineWidget({
                                 url: widgetUrl,
                                 parentElement: this.calendlyWidget
@@ -108,12 +107,20 @@ class CookieConsentManager {
                             requestAnimationFrame(() => {
                                 this.calendlyWidget.style.opacity = '1';
                             });
+                            return true;
+                        }
+                        return false;
+                    };
+
+                    const intervalId = setInterval(() => {
+                        if (checkCalendlyInterval()) {
+                            clearInterval(intervalId);
                         }
                     }, 100);
 
                     // Set a timeout to handle cases where Calendly doesn't load
-                    setTimeout(() => {
-                        clearInterval(checkCalendly);
+                    const timeoutId = setTimeout(() => {
+                        clearInterval(intervalId);
                         if (!window.Calendly) {
                             this.showCalendlyError();
                         }
@@ -237,10 +244,11 @@ class CookieConsentManager {
 }
 
 // Initialize after all resources are loaded
+const initCookieManager = () => {
+    window.cookieManager = new CookieConsentManager();
+    window.cookieManager.init();
+};
+
 window.addEventListener('load', () => {
-    // Small delay to ensure DOM is fully ready
-    setTimeout(() => {
-        window.cookieManager = new CookieConsentManager();
-        window.cookieManager.init();
-    }, 100);
+    setTimeout(initCookieManager, 100);
 });
