@@ -1,8 +1,7 @@
 class SitePreferences {
     constructor() {
         this.storageKey = 'site_preferences_v1';
-        this.necessaryFeatures = ['__cfruid', 'cf_clearance', '_cfuvid'];
-        this.optionalFeatures = ['m'];
+        this.necessaryFeatures = ['__cfruid', 'cf_clearance', '_cfuvid', 'm'];
         
         try {
             if (!this.hasValidPreferences()) {
@@ -13,7 +12,7 @@ class SitePreferences {
         } catch (e) {
             console.error('Preferences initialization error:', e);
             // Proceed with necessary features only
-            this.initializeFeatures({ necessary: true, optional: false });
+            this.initializeFeatures({ necessary: false });
         }
     }
 
@@ -70,7 +69,7 @@ class SitePreferences {
         dialog.innerHTML = `
             <div class="preferences-content">
                 <h3>Impostazioni del sito</h3>
-                <p>Utilizziamo impostazioni necessarie per il funzionamento del sito e impostazioni di performance opzionali.</p>
+                <p>Utilizziamo impostazioni necessarie per il funzionamento del sito.</p>
                 <div class="preferences-options">
                     <div class="preference-group">
                         <label>
@@ -79,30 +78,22 @@ class SitePreferences {
                         </label>
                         <span class="preference-info">(${this.necessaryFeatures.join(', ')})</span>
                     </div>
-                    <div class="preference-group">
-                        <label>
-                            <input type="checkbox" id="optional-features">
-                            Impostazioni di Performance
-                        </label>
-                        <span class="preference-info">(${this.optionalFeatures.join(', ')})</span>
-                    </div>
                 </div>
                 <div class="preferences-actions">
-                    <button id="accept-all" class="preference-button primary">Accetta Tutti</button>
-                    <button id="save-choices" class="preference-button secondary">Salva Scelte</button>
+                    <button id="accept-all" class="preference-button primary">Accetta</button>
+                    <button id="reject-all" class="preference-button secondary">Rifiuta</button>
                 </div>
             </div>
         `;
         document.body.appendChild(dialog);
 
         document.getElementById('accept-all')?.addEventListener('click', () => this.acceptAll());
-        document.getElementById('save-choices')?.addEventListener('click', () => this.saveChoices());
+        document.getElementById('reject-all')?.addEventListener('click', () => this.rejectAll());
     }
 
     acceptAll() {
         const prefs = {
             necessary: true,
-            optional: true,
             timestamp: new Date().toISOString()
         };
         this.savePreferences(prefs);
@@ -110,15 +101,34 @@ class SitePreferences {
         document.getElementById('preferences-dialog')?.remove();
     }
 
-    saveChoices() {
+    rejectAll() {
         const prefs = {
-            necessary: true,
-            optional: document.getElementById('optional-features')?.checked ?? false,
+            necessary: false,
             timestamp: new Date().toISOString()
         };
         this.savePreferences(prefs);
         this.initializeFeatures(prefs);
         document.getElementById('preferences-dialog')?.remove();
+    }
+
+    showConsentRequest() {
+        return `
+            <div id="calendly-consent" style="text-align: center; padding: 2rem; background: #f8fafc; border-radius: 0.5rem; box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);">
+                <h3 style="margin-bottom: 1rem;">Consenso Necessario</h3>
+                <p style="margin-bottom: 1.5rem;">Per prenotare una sessione, è necessario accettare le impostazioni necessarie del sito.</p>
+                <div style="margin-bottom: 1rem;">
+                    <button onclick="new SitePreferences().acceptAll()" class="cta-button" style="margin-right: 1rem;">
+                        Accetta Impostazioni
+                    </button>
+                    <a href="https://www.linkedin.com/in/cameron-mcainsh-56a4221b8/" 
+                       target="_blank" 
+                       rel="noopener noreferrer"
+                       style="color: #2563eb; text-decoration: underline;">
+                        Contattami su LinkedIn
+                    </a>
+                </div>
+            </div>
+        `;
     }
 
     initializeFeatures(prefs) {
@@ -148,11 +158,37 @@ class SitePreferences {
             }).catch(e => console.warn(`Failed to load ${url}:`, e));
         };
 
-        if (prefs.optional) {
-            Promise.all([
-                loadResource('https://assets.calendly.com/assets/external/widget.css', 'css'),
-                loadResource('https://assets.calendly.com/assets/external/widget.js', 'script')
-            ]).catch(e => console.warn('Optional feature loading error:', e));
+        // Initialize Calendly container
+        const calendlyContainer = document.querySelector('.calendly-inline-widget');
+        if (calendlyContainer) {
+            if (prefs.necessary) {
+                // Clear any existing content
+                calendlyContainer.innerHTML = '';
+                
+                // Load Calendly resources
+                Promise.all([
+                    loadResource('https://assets.calendly.com/assets/external/widget.css', 'css'),
+                    loadResource('https://assets.calendly.com/assets/external/widget.js', 'script')
+                ]).then(() => {
+                    // Wait for Calendly to be available
+                    const checkCalendly = setInterval(() => {
+                        if (window.Calendly) {
+                            clearInterval(checkCalendly);
+                            // Initialize Calendly widget
+                            window.Calendly.initInlineWidget({
+                                url: calendlyContainer.getAttribute('data-url'),
+                                parentElement: calendlyContainer,
+                                prefill: {},
+                                utm: {}
+                            });
+                        }
+                    }, 100);
+                    // Clear interval after 10 seconds if Calendly doesn't load
+                    setTimeout(() => clearInterval(checkCalendly), 10000);
+                }).catch(e => console.warn('Calendly loading error:', e));
+            } else {
+                calendlyContainer.innerHTML = this.showConsentRequest();
+            }
         }
     }
 }
