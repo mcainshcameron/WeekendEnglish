@@ -1,0 +1,41 @@
+@font-face {
+    font-family: 'Font Awesome 6';
+    font-style: normal;
+    font-weight: 900;
+    src: url('../fonts/fontawesome/fa-solid-900.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'Font Awesome 6 Brands';
+    font-style: normal;
+    font-weight: 400;
+    src: url('../fonts/fontawesome/fa-brands-400.woff2') format('woff2');
+}
+
+.fas, .fa-solid {
+    font-family: 'Font Awesome 6';
+    font-weight: 900;
+}
+
+.fab, .fa-brands {
+    font-family: 'Font Awesome 6 Brands';
+    font-weight: 400;
+}
+
+/* Icons we use */
+.fa-comments:before { content: "\f086"; }
+.fa-chart-line:before { content: "\f201"; }
+.fa-clock:before { content: "\f017"; }
+.fa-rocket:before { content: "\f135"; }
+.fa-brain:before { content: "\f5dc"; }
+.fa-handshake:before { content: "\f2b5"; }
+.fa-calendar-plus:before { content: "\f271"; }
+.fa-video:before { content: "\f03d"; }
+.fa-chart-bar:before { content: "\f080"; }
+.fa-user-tie:before { content: "\f508"; }
+.fa-building:before { content: "\f1ad"; }
+.fa-balance-scale:before { content: "\f24e"; }
+.fa-road:before { content: "\f018"; }
+.fa-users:before { content: "\f0c0"; }
+.fa-star:before { content: "\f005"; }
+.fa-linkedin:before { content: "\f08c"; }
