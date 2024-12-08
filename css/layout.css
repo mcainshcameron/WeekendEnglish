@@ -125,6 +125,10 @@ footer {
         --spacing-unit: 1rem;
     }
 
+    nav {
+        justify-content: center; /* Center the logo in mobile */
+    }
+
     .hero-content {
         padding: 1rem var(--spacing-unit);
     }
@@ -135,6 +139,11 @@ footer {
 
     .logo img {
         height: 30px;
+    }
+
+    /* Hide Prenota Ora button in header on mobile */
+    nav .cta-button {
+        display: none;
     }
 }
 
