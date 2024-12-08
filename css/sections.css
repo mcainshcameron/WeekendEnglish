@@ -82,16 +82,19 @@
     margin-top: 4rem;
 }
 
-/* Calendly Widget */
-.calendly-inline-widget {
-    min-width: 320px;
-    height: 700px;
-    max-width: 1000px;
+/* Contact Info */
+.contact-info {
+    max-width: 600px;
     margin: 0 auto;
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    padding: 2rem;
     background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.contact-info .cta-button {
+    font-size: 1.1rem;
+    padding: 1rem 2rem;
 }
 
 /* Section Spacing */
@@ -140,10 +143,6 @@ section {
 
 /* Print Styles */
 @media print {
-    .calendly-inline-widget {
-        display: none;
-    }
-
     section {
         page-break-inside: avoid;
     }
