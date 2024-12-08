@@ -41,6 +41,8 @@
     gap: 2rem;
     max-width: 1200px;
     margin: 0 auto;
+    list-style: none;
+    padding: 0;
 }
 
 /* FAQ Questions Grid */
