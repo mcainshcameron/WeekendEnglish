@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <!-- Content Security Policy -->
@@ -16,13 +16,10 @@
     
     <!-- SEO Meta Tags -->
     <meta name="description" content="Ottimizza la preparazione per il tuo colloquio in inglese con WeekendEnglish.it. Sessioni di pratica personalizzate con un madrelingua inglese per affinare le competenze linguistiche e acquisire maggiore sicurezza nel colloquio di lavoro.">
-    <meta name="keywords" content="colloquio inglese, preparazione colloquio, english interview, mock interview, colloquio lavoro inglese, lezioni inglese, madrelingua inglese, WeekendEnglish, simulazione colloquio inglese">
     <meta name="robots" content="index, follow">
     <meta name="author" content="Cameron McAinsh">
     <link rel="canonical" href="https://weekendenglish.it/">
     <meta name="theme-color" content="#2563eb">
-    <meta name="geo.region" content="IT">
-    <meta name="language" content="Italian">
     
     <!-- Open Graph Meta Tags -->
     <meta property="og:title" content="WeekendEnglish.it - Simulazioni di Colloquio di Lavoro in Inglese">
@@ -51,10 +48,18 @@
     
     <!-- Critical CSS inline -->
     <style>
-        :root{--primary-color:#2563eb;--secondary-color:#1e293b}
-        body{margin:0;font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;opacity:0;animation:fadeIn 0.3s ease-in forwards}
-        @keyframes fadeIn{to{opacity:1}}
-        .loading{position:fixed;top:0;left:0;right:0;bottom:0;background:#fff;display:flex;justify-content:center;align-items:center;z-index:9999}
+        :root { --primary-color: #2563eb; --secondary-color: #1e293b; }
+        body {
+            margin: 0;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            opacity: 0;
+            animation: fadeIn 0.3s ease-in forwards;
+        }
+        @keyframes fadeIn { to { opacity:1 } }
+        .loading {
+            position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+            background: #fff; display: flex; justify-content: center; align-items: center; z-index: 9999;
+        }
     </style>
     
     <!-- Modular CSS loading -->
@@ -147,13 +152,16 @@
     </noscript>
 </head>
 <body>
+    <!-- Skip to main content link for accessibility -->
+    <a href="#maincontent" class="skip-to-content" style="position:absolute;left:-999px;top:auto;width:1px;height:1px;overflow:hidden;">Salta al contenuto principale</a>
+
     <!-- Loading indicator -->
-    <div class="loading" id="loading">
+    <div class="loading" id="loading" aria-live="polite" role="status">
         <div class="loader"></div>
     </div>
 
     <header>
-        <nav role="navigation" aria-label="Main navigation">
+        <nav aria-label="Main navigation">
             <div class="logo" role="banner">
                 <span><strong>Weekend English</strong></span>
             </div>
@@ -161,7 +169,7 @@
         </nav>
     </header>
 
-    <main class="container">
+    <main class="container" id="maincontent">
         <article class="hero">
             <div class="hero-content animate-fade-up">
                 <h1>Perfeziona le tue capacità per il <span class="highlight">colloquio</span> di lavoro in inglese</h1>
@@ -189,7 +197,7 @@
             <div class="features-grid">
                 <div class="feature-card">
                     <div class="feature-icon">
-                        <i class="fas fa-comments"></i>
+                        <i class="fas fa-comments" aria-hidden="true"></i>
                     </div>
                     <div class="feature-content">
                         <h3>Simulazioni Realistiche</h3>
@@ -198,7 +206,7 @@
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">
-                        <i class="fas fa-chart-line"></i>
+                        <i class="fas fa-chart-line" aria-hidden="true"></i>
                     </div>
                     <div class="feature-content">
                         <h3>Feedback Mirato</h3>
@@ -207,7 +215,7 @@
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">
-                        <i class="fas fa-clock"></i>
+                        <i class="fas fa-clock" aria-hidden="true"></i>
                     </div>
                     <div class="feature-content">
                         <h3>Flessibilità</h3>
@@ -258,62 +266,62 @@
 
         <section class="process mb-4" aria-label="Processo">
             <h2>Come Funziona</h2>
-            <div class="steps" role="list">
-                <div class="step shadow-sm" role="listitem">
+            <ol class="steps">
+                <li class="step shadow-sm">
                     <span class="step-number">1</span>
                     <i class="fas fa-envelope step-icon" aria-hidden="true"></i>
                     <h3 class="mb-2">Contattami</h3>
                     <p>Inviami un’email per richiedere informazioni sulla sessione. Ci mettiamo d'accordo sul quando.</p>
-                </div>
-                <div class="step shadow-sm" role="listitem">
+                </li>
+                <li class="step shadow-sm">
                     <span class="step-number">2</span>
                     <i class="fas fa-video step-icon" aria-hidden="true"></i>
                     <h3 class="mb-2">Simulazione Online</h3>
                     <p>Svolgeremo la simulazione tramite Teams, Google Meet o Zoom, in base alla tua preferenza, lavorando su domande tipiche e vocaboli necessari.</p>
-                </div>
-                <div class="step shadow-sm" role="listitem">
+                </li>
+                <li class="step shadow-sm">
                     <span class="step-number">3</span>
                     <i class="fas fa-chart-bar step-icon" aria-hidden="true"></i>
                     <h3 class="mb-2">Feedback Finale</h3>
                     <p>Riceverai indicazioni utili per migliorare la performance e aumentare la tua sicurezza nel parlare inglese durante il colloquio.</p>
-                </div>
-            </div>
+                </li>
+            </ol>
         </section>
 
         <section class="faq mb-4" aria-label="Domande frequenti">
             <h2>Esempi di Domande Frequenti nei Colloqui in Inglese</h2>
             <p class="text-center mb-4">Alcune aziende in Italia possono proporre una o più domande in inglese, mentre altre conducono l’intero colloquio in questa lingua. Prepararsi in anticipo può fare la differenza.</p>
             <div class="questions">
-                <div class="question shadow-sm" role="article">
+                <article class="question shadow-sm">
                     <i class="fas fa-user-tie question-icon" aria-hidden="true"></i>
                     <p class="mb-1"><strong>"Tell me about yourself."</strong></p>
                     <p class="translation">Parlami di te.</p>
-                </div>
-                <div class="question shadow-sm" role="article">
+                </article>
+                <article class="question shadow-sm">
                     <i class="fas fa-building question-icon" aria-hidden="true"></i>
                     <p class="mb-1"><strong>"Why are you interested in this position?"</strong></p>
                     <p class="translation">Perché sei interessato a questa posizione?</p>
-                </div>
-                <div class="question shadow-sm" role="article">
+                </article>
+                <article class="question shadow-sm">
                     <i class="fas fa-balance-scale question-icon" aria-hidden="true"></i>
                     <p class="mb-1"><strong>"What are your strengths and weaknesses?"</strong></p>
                     <p class="translation">Quali sono i tuoi punti di forza e di debolezza?</p>
-                </div>
-                <div class="question shadow-sm" role="article">
+                </article>
+                <article class="question shadow-sm">
                     <i class="fas fa-road question-icon" aria-hidden="true"></i>
                     <p class="mb-1"><strong>"Where do you see yourself in five years?"</strong></p>
                     <p class="translation">Dove ti vedi tra cinque anni?</p>
-                </div>
-                <div class="question shadow-sm" role="article">
+                </article>
+                <article class="question shadow-sm">
                     <i class="fas fa-users question-icon" aria-hidden="true"></i>
                     <p class="mb-1"><strong>"Can you tell me about a time you worked in a team?"</strong></p>
                     <p class="translation">Puoi parlarmi di un'esperienza in cui hai lavorato in squadra?</p>
-                </div>
-                <div class="question shadow-sm" role="article">
+                </article>
+                <article class="question shadow-sm">
                     <i class="fas fa-star question-icon" aria-hidden="true"></i>
                     <p class="mb-1"><strong>"What makes you the best candidate for this role?"</strong></p>
                     <p class="translation">Cosa ti rende il candidato migliore per questo ruolo?</p>
-                </div>
+                </article>
             </div>
         </section>
 
@@ -335,13 +343,13 @@
             <p class="text-center mb-4">Contattami via email per avere maggiori informazioni, dettagli su modalità e disponibilità.</p>
             <div class="contact-info text-center">
                 <a href="mailto:info@weekendenglish.it" class="cta-button">
-                    <i class="fas fa-envelope"></i> info@weekendenglish.it
+                    <i class="fas fa-envelope" aria-hidden="true"></i> info@weekendenglish.it
                 </a>
             </div>
         </section>
     </main>
 
-    <footer role="contentinfo">
+    <footer>
         <div class="social-links">
             <a href="https://www.linkedin.com/in/cameron-mcainsh-56a4221b8/" 
                class="social-icon" 
@@ -359,7 +367,6 @@
         const initPerformanceOptimizations = () => {
             document.getElementById('loading').style.display = 'none';
             
-            // Intersection Observer per il lazy loading
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
@@ -369,12 +376,10 @@
                 });
             });
 
-            // Osserva tutte le sezioni per un’apparizione graduale
             document.querySelectorAll('section').forEach(section => {
                 observer.observe(section);
             });
 
-            // Nasconde la navbar durante lo scroll verso il basso, la mostra verso l’alto
             let lastScroll = 0;
             const handleScroll = () => {
                 const nav = document.querySelector('nav');
