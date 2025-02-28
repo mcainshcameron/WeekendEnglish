@@ -70,6 +70,7 @@
     <link rel="stylesheet" href="css/components.css" media="print" onload="this.media='all'">
     <link rel="stylesheet" href="css/sections.css" media="print" onload="this.media='all'">
     <link rel="stylesheet" href="css/utilities.css" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="css/enhancements.css" media="print" onload="this.media='all'">
     
     <!-- Enhanced Schema.org markup -->
     <script type="application/ld+json">
@@ -149,7 +150,11 @@
         <link rel="stylesheet" href="css/sections.css">
         <link rel="stylesheet" href="css/utilities.css">
         <link rel="stylesheet" href="css/fontawesome.css">
+        <link rel="stylesheet" href="css/enhancements.css">
     </noscript>
+    
+    <!-- Web App Manifest for PWA -->
+    <link rel="manifest" href="manifest.json">
 </head>
 <body>
     <!-- Skip to main content link for accessibility -->
@@ -171,12 +176,12 @@
 
     <main class="container" id="maincontent">
         <article class="hero">
-            <div class="hero-content animate-fade-up">
+            <div class="hero-content animate-on-scroll">
                 <h1>Perfeziona le tue capacità per il <span class="highlight">colloquio</span> di lavoro in inglese</h1>
                 <p class="subtitle">Partecipa a simulazioni realistiche e migliora le tue abilità comunicative in ambito professionale</p>
                 <a href="#book" class="cta-button shadow-lg" role="button">Prenota la Tua Simulazione</a>
             </div>
-            <div class="hero-image animate-fade-up">
+            <div class="hero-image animate-on-scroll">
                 <img src="images/hero-interview.jpeg" 
                      alt="Colloquio di lavoro online" 
                      class="hero-img shadow"
@@ -187,7 +192,7 @@
             </div>
         </article>
 
-        <section class="intro mb-4" aria-label="Introduzione">
+        <section class="intro mb-4 animate-on-scroll" aria-label="Introduzione">
             <p class="lead mb-2">Devi affrontare un colloquio di lavoro in inglese e desideri prepararti in modo più efficace?</p>
             <p>Sono Cameron, un madrelingua inglese che vive in Italia. Offro sessioni di preparazione dove identificheremo i termini e le espressioni chiave del tuo settore, e potrai richiedere chiarimenti e traduzioni. L'obiettivo è utilizzare l'inglese con maggiore sicurezza durante il colloquio.</p>
         </section>
@@ -195,7 +200,7 @@
         <section class="features mb-4" aria-label="WeekendEnglish">
             <h2>Come Posso Supportarti?</h2>
             <div class="features-grid">
-                <div class="feature-card">
+                <div class="feature-card animate-on-scroll">
                     <div class="feature-icon">
                         <i class="fas fa-comments" aria-hidden="true"></i>
                     </div>
@@ -204,7 +209,7 @@
                         <p>Ricreiamo situazioni di colloquio tipiche, con domande e contesti simili a quelli che potresti incontrare nella realtà.</p>
                     </div>
                 </div>
-                <div class="feature-card">
+                <div class="feature-card animate-on-scroll">
                     <div class="feature-icon">
                         <i class="fas fa-chart-line" aria-hidden="true"></i>
                     </div>
@@ -213,7 +218,7 @@
                         <p>Ricevi suggerimenti su pronuncia, lessico e struttura delle risposte, con indicazioni su come migliorare in modo concreto.</p>
                     </div>
                 </div>
-                <div class="feature-card">
+                <div class="feature-card animate-on-scroll">
                     <div class="feature-icon">
                         <i class="fas fa-clock" aria-hidden="true"></i>
                     </div>
@@ -228,7 +233,7 @@
         <section class="benefits mb-4" aria-label="Benefici">
             <h2>Quali Vantaggi Offre una Simulazione di Colloquio in Inglese?</h2>
             <div class="benefits-grid">
-                <div class="benefit-card shadow">
+                <div class="benefit-card shadow animate-on-scroll">
                     <i class="fas fa-rocket card-icon" aria-hidden="true"></i>
                     <h3 class="mb-2">Ampliamento delle Opzioni Professionali</h3>
                     <p class="mb-2">Acquisisci competenze linguistiche utili per ruoli che richiedono l'inglese, ampliando le possibilità di inserimento in contesti internazionali.</p>
@@ -239,7 +244,7 @@
                          height="300" 
                          loading="lazy">
                 </div>
-                <div class="benefit-card shadow">
+                <div class="benefit-card shadow animate-on-scroll">
                     <i class="fas fa-brain card-icon" aria-hidden="true"></i>
                     <h3 class="mb-2">Maggiore Consapevolezza delle Tue Capacità</h3>
                     <p class="mb-2">Allenati a presentare le tue competenze in inglese con maggiore sicurezza, riducendo l'ansia del momento del colloquio.</p>
@@ -250,7 +255,7 @@
                          height="300" 
                          loading="lazy">
                 </div>
-                <div class="benefit-card shadow">
+                <div class="benefit-card shadow animate-on-scroll">
                     <i class="fas fa-handshake card-icon" aria-hidden="true"></i>
                     <h3 class="mb-2">Approccio Strutturato al Colloquio</h3>
                     <p class="mb-2">Esercitati nella gestione di domande complesse e nella presentazione chiara e organizzata delle tue esperienze lavorative.</p>
@@ -264,22 +269,58 @@
             </div>
         </section>
 
+        <section class="testimonials mb-4" aria-label="Testimonianze">
+            <h2>Cosa Dicono i Partecipanti</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card shadow animate-on-scroll">
+                    <div class="testimonial-content">
+                        <i class="fas fa-quote-left testimonial-icon" aria-hidden="true"></i>
+                        <p class="mb-2">La simulazione mi ha aiutato a sentirmi più sicuro durante il colloquio reale. I consigli su come strutturare le risposte sono stati particolarmente utili.</p>
+                        <div class="testimonial-author">
+                            <strong>Marco T.</strong>
+                            <span>Sviluppatore Software</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card shadow animate-on-scroll">
+                    <div class="testimonial-content">
+                        <i class="fas fa-quote-left testimonial-icon" aria-hidden="true"></i>
+                        <p class="mb-2">Grazie alla preparazione con Cameron, ho superato il colloquio per una posizione in un'azienda internazionale. Il focus sulla terminologia tecnica è stato fondamentale.</p>
+                        <div class="testimonial-author">
+                            <strong>Laura B.</strong>
+                            <span>Project Manager</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card shadow animate-on-scroll">
+                    <div class="testimonial-content">
+                        <i class="fas fa-quote-left testimonial-icon" aria-hidden="true"></i>
+                        <p class="mb-2">Un'esperienza molto utile che mi ha permesso di affrontare con maggiore tranquillità il colloquio. Consiglio vivamente questo servizio a chi deve prepararsi.</p>
+                        <div class="testimonial-author">
+                            <strong>Giulia M.</strong>
+                            <span>Marketing Specialist</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <section class="process mb-4" aria-label="Processo">
             <h2>Come Funziona</h2>
             <ol class="steps">
-                <li class="step shadow-sm">
+                <li class="step shadow-sm animate-on-scroll">
                     <span class="step-number">1</span>
                     <i class="fas fa-envelope step-icon" aria-hidden="true"></i>
                     <h3 class="mb-2">Contattami</h3>
                     <p>Inviami un'email per richiedere informazioni sulla sessione. Ci mettiamo d'accordo sul quando.</p>
                 </li>
-                <li class="step shadow-sm">
+                <li class="step shadow-sm animate-on-scroll">
                     <span class="step-number">2</span>
                     <i class="fas fa-video step-icon" aria-hidden="true"></i>
                     <h3 class="mb-2">Simulazione Online</h3>
                     <p>Svolgeremo la simulazione tramite Teams, Google Meet o Zoom, in base alla tua preferenza, lavorando su domande tipiche e vocaboli necessari.</p>
                 </li>
-                <li class="step shadow-sm">
+                <li class="step shadow-sm animate-on-scroll">
                     <span class="step-number">3</span>
                     <i class="fas fa-chart-bar step-icon" aria-hidden="true"></i>
                     <h3 class="mb-2">Feedback Finale</h3>
@@ -292,32 +333,32 @@
             <h2>Esempi di Domande Frequenti nei Colloqui in Inglese</h2>
             <p class="text-center mb-4">Alcune aziende in Italia possono proporre una o più domande in inglese, mentre altre conducono l'intero colloquio in questa lingua. Prepararsi in anticipo può fare la differenza.</p>
             <div class="questions">
-                <article class="question shadow-sm">
+                <article class="question shadow-sm animate-on-scroll">
                     <i class="fas fa-user-tie question-icon" aria-hidden="true"></i>
                     <p class="mb-1"><strong>"Tell me about yourself."</strong></p>
                     <p class="translation">Parlami di te.</p>
                 </article>
-                <article class="question shadow-sm">
+                <article class="question shadow-sm animate-on-scroll">
                     <i class="fas fa-building question-icon" aria-hidden="true"></i>
                     <p class="mb-1"><strong>"Why are you interested in this position?"</strong></p>
                     <p class="translation">Perché sei interessato a questa posizione?</p>
                 </article>
-                <article class="question shadow-sm">
+                <article class="question shadow-sm animate-on-scroll">
                     <i class="fas fa-balance-scale question-icon" aria-hidden="true"></i>
                     <p class="mb-1"><strong>"What are your strengths and weaknesses?"</strong></p>
                     <p class="translation">Quali sono i tuoi punti di forza e di debolezza?</p>
                 </article>
-                <article class="question shadow-sm">
+                <article class="question shadow-sm animate-on-scroll">
                     <i class="fas fa-road question-icon" aria-hidden="true"></i>
                     <p class="mb-1"><strong>"Where do you see yourself in five years?"</strong></p>
                     <p class="translation">Dove ti vedi tra cinque anni?</p>
                 </article>
-                <article class="question shadow-sm">
+                <article class="question shadow-sm animate-on-scroll">
                     <i class="fas fa-users question-icon" aria-hidden="true"></i>
                     <p class="mb-1"><strong>"Can you tell me about a time you worked in a team?"</strong></p>
                     <p class="translation">Puoi parlarmi di un'esperienza in cui hai lavorato in squadra?</p>
                 </article>
-                <article class="question shadow-sm">
+                <article class="question shadow-sm animate-on-scroll">
                     <i class="fas fa-star question-icon" aria-hidden="true"></i>
                     <p class="mb-1"><strong>"What makes you the best candidate for this role?"</strong></p>
                     <p class="translation">Cosa ti rende il candidato migliore per questo ruolo?</p>
@@ -325,7 +366,7 @@
             </div>
         </section>
 
-        <section class="about mb-4" aria-label="Chi Sono">
+        <section class="about mb-4 animate-on-scroll" aria-label="Chi Sono">
             <h2>Informazioni su di Me</h2>
             <div class="about-content">
                 <p>Mi chiamo Cameron, sono madrelingua inglese e vivo in Italia da molti anni. Lavoro nel settore tecnologico e conosco le difficoltà legate ai colloqui in una lingua straniera. Offro sessioni di pratica per supportare chi desidera migliorare le proprie abilità linguistiche in vista di un colloquio.</p>
@@ -338,7 +379,7 @@
                  loading="lazy">
         </section>
 
-        <section id="book" class="booking mb-4" aria-label="Prenotazione">
+        <section id="book" class="booking mb-4 animate-on-scroll" aria-label="Prenotazione">
             <h2>Prenota la Tua Simulazione</h2>
             <p class="text-center mb-4">Contattami via email per avere maggiori informazioni, dettagli su modalità e disponibilità.</p>
             <div class="contact-info text-center">
@@ -359,44 +400,14 @@
                 <i class="fab fa-linkedin" aria-hidden="true"></i>
             </a>
         </div>
-        <p>2024 WeekendEnglish.it</p>
+        <p>&copy; 2024 WeekendEnglish.it</p>
+        <div class="offline-indicator" id="offline-indicator">
+            <i class="fas fa-wifi" aria-hidden="true"></i>
+            <span>Modalità offline disponibile</span>
+        </div>
     </footer>
 
-    <!-- Performance optimization script -->
-    <script>
-        const initPerformanceOptimizations = () => {
-            document.getElementById('loading').style.display = 'none';
-            
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                        observer.unobserve(entry.target);
-                    }
-                });
-            });
-
-            document.querySelectorAll('section').forEach(section => {
-                observer.observe(section);
-            });
-
-            let lastScroll = 0;
-            const handleScroll = () => {
-                const nav = document.querySelector('nav');
-                const currentScroll = window.pageYOffset;
-                
-                if (currentScroll > lastScroll && currentScroll > 100) {
-                    nav.classList.add('nav-hidden');
-                } else {
-                    nav.classList.remove('nav-hidden');
-                }
-                lastScroll = currentScroll;
-            };
-
-            window.addEventListener('scroll', handleScroll);
-        };
-
-        window.addEventListener('load', initPerformanceOptimizations);
-    </script>
+    <!-- Modern JavaScript -->
+    <script src="js/main.js" defer></script>
 </body>
 </html>

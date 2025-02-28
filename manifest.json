@@ -1,0 +1,42 @@
+{
+  "name": "WeekendEnglish.it - Simulazioni di Colloquio di Lavoro in Inglese",
+  "short_name": "WeekendEnglish",
+  "description": "Sessioni di simulazione colloquio con un madrelingua inglese per migliorare le tue competenze linguistiche",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#2563eb",
+  "icons": [
+    {
+      "src": "images/favicon-16x16.png",
+      "sizes": "16x16",
+      "type": "image/png"
+    },
+    {
+      "src": "logos/monogram-16px.png",
+      "sizes": "16x16",
+      "type": "image/png"
+    },
+    {
+      "src": "logos/monogram-hq.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "orientation": "portrait-primary",
+  "lang": "it-IT",
+  "dir": "ltr",
+  "categories": ["education", "business"],
+  "screenshots": [
+    {
+      "src": "images/hero-interview.jpeg",
+      "sizes": "600x400",
+      "type": "image/jpeg",
+      "platform": "wide",
+      "label": "Homepage di WeekendEnglish.it"
+    }
+  ],
+  "related_applications": [],
+  "prefer_related_applications": false
+}
