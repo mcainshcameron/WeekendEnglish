@@ -1,6 +1,37 @@
+# Robots.txt for WeekendEnglish.it
+# Ottimizzato per motori di ricerca italiani e internazionali
+
+# Permetti a tutti i crawler di accedere
 User-agent: *
 Allow: /
+
+# Specifica la posizione della sitemap per una migliore indicizzazione
 Sitemap: https://weekendenglish.it/sitemap.xml
 
-# Allow all bots to access everything
-# Specify sitemap location for better indexing
+# Istruzioni specifiche per Google
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 1
+
+# Istruzioni specifiche per Bing
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
+# Istruzioni specifiche per Yahoo
+User-agent: Slurp
+Allow: /
+Crawl-delay: 1
+
+# Istruzioni specifiche per motori di ricerca italiani
+User-agent: Arianna
+Allow: /
+
+# Istruzioni per Google Images
+User-agent: Googlebot-Image
+Allow: /images/
+Allow: /logos/
+
+# Istruzioni per Google Mobile
+User-agent: Googlebot-Mobile
+Allow: /
