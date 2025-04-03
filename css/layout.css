@@ -58,8 +58,8 @@ nav.nav-hidden {
 
 .hero-image {
     width: 100%;
-    max-width: 800px;
-    margin: 2rem auto;
+    max-width: 700px; /* Reduced max-width */
+    margin: 3rem auto 2rem auto; /* Increased top margin */
     padding: 0 var(--spacing-unit);
     opacity: 0;
     transform: translateY(20px);
@@ -87,7 +87,7 @@ nav.nav-hidden {
 
 /* Section Layout */
 section {
-    padding: 4rem var(--spacing-unit);
+    padding: 5rem var(--spacing-unit); /* Increased vertical padding */
     opacity: 0;
     transform: translateY(20px);
     transition: opacity 0.6s ease, transform 0.6s ease;

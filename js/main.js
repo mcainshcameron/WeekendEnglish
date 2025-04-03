@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initAnimations();
     initFaqAccordion();
     initScrollEffects();
-    initFloatingButton();
+    // initFloatingButton(); // Removed back to top button
     initProgressIndicator();
     initPerformanceOptimizations();
 });
@@ -41,7 +41,7 @@ function initAnimations() {
     const elementObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                entry.target.classList.add('animate');
+                entry.target.classList.add('visible');
                 // Unobserve after animation is triggered
                 elementObserver.unobserve(entry.target);
             }
@@ -161,34 +161,35 @@ function initScrollEffects() {
 
 /**
  * Initialize floating action button for navigation
+ * Function removed as per request to remove back to top button
  */
-function initFloatingButton() {
-    // Create floating button element
-    const floatingButton = document.createElement('button');
-    floatingButton.className = 'floating-button';
-    floatingButton.setAttribute('aria-label', 'Torna all\'inizio');
-    floatingButton.innerHTML = '<i class="fas fa-arrow-up" aria-hidden="true"></i>';
-    
-    // Add to the DOM
-    document.body.appendChild(floatingButton);
-    
-    // Show/hide based on scroll position
-    window.addEventListener('scroll', () => {
-        if (window.pageYOffset > 300) {
-            floatingButton.classList.add('visible');
-        } else {
-            floatingButton.classList.remove('visible');
-        }
-    });
-    
-    // Scroll to top on click
-    floatingButton.addEventListener('click', () => {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-        });
-    });
-}
+// function initFloatingButton() {
+//     // Create floating button element
+//     const floatingButton = document.createElement('button');
+//     floatingButton.className = 'floating-button';
+//     floatingButton.setAttribute('aria-label', 'Torna all\'inizio');
+//     floatingButton.innerHTML = '<i class="fas fa-arrow-up" aria-hidden="true"></i>';
+//     
+//     // Add to the DOM
+//     document.body.appendChild(floatingButton);
+//     
+//     // Show/hide based on scroll position
+//     window.addEventListener('scroll', () => {
+//         if (window.pageYOffset > 300) {
+//             floatingButton.classList.add('visible');
+//         } else {
+//             floatingButton.classList.remove('visible');
+//         }
+//     });
+//     
+//     // Scroll to top on click
+//     floatingButton.addEventListener('click', () => {
+//         window.scrollTo({
+//             top: 0,
+//             behavior: 'smooth'
+//         });
+//     });
+// }
 
 /**
  * Initialize progress indicator for long-form content

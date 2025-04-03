@@ -29,16 +29,18 @@
 /* Enhanced Card Styles */
 .feature-card, .benefit-card, .step, .question, .testimonial-card {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05), 
-                0 1px 3px rgba(0, 0, 0, 0.1);
-    border: none;
-    background: linear-gradient(to bottom, #ffffff, #f8fafc);
+    /* Softer shadow */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04),
+                0 3px 6px rgba(0, 0, 0, 0.06);
+    border: 1px solid rgba(0, 0, 0, 0.05); /* Subtle border */
+    background: linear-gradient(to bottom, #ffffff, #f9fafb); /* Slightly adjusted gradient */
 }
 
 .feature-card:hover, .benefit-card:hover, .step:hover, .question:hover, .testimonial-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1), 
-                0 5px 10px rgba(0, 0, 0, 0.05);
+    transform: translateY(-4px); /* Slightly less lift */
+    /* Slightly stronger hover shadow */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.07),
+                0 4px 8px rgba(0, 0, 0, 0.05);
 }
 
 /* Enhanced Button Styles */
@@ -101,43 +103,7 @@
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
 }
 
-/* Floating Action Button */
-.floating-button {
-    position: fixed;
-    bottom: 30px;
-    right: 30px;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    background-color: var(--primary-color);
-    color: white;
-    border: none;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 1000;
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.3s ease, transform 0.3s ease, background-color 0.3s ease;
-}
-
-.floating-button.visible {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-.floating-button:hover {
-    background-color: #1d4ed8;
-    transform: translateY(-3px);
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
-}
-
-.floating-button:focus {
-    outline: none;
-    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.5), 0 6px 15px rgba(0, 0, 0, 0.3);
-}
+/* Floating Action Button - Removed */
 
 /* Progress Indicator */
 .progress-bar {
@@ -239,21 +205,11 @@
 
 /* Responsive Adjustments */
 @media (max-width: 768px) {
-    .floating-button {
-        width: 45px;
-        height: 45px;
-        bottom: 20px;
-        right: 20px;
-    }
+    /* Floating button styles removed */
 }
 
 @media (max-width: 480px) {
-    .floating-button {
-        width: 40px;
-        height: 40px;
-        bottom: 15px;
-        right: 15px;
-    }
+    /* Floating button styles removed */
 }
 
 /* Offline Indicator */

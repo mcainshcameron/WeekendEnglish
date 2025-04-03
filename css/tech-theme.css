@@ -1,0 +1,350 @@
+/**
+ * WeekendEnglish.it - Modern Tech Theme
+ * A modern, tech-focused theme with a clean, professional look
+ */
+
+:root {
+  /* Primary color palette */
+  --tech-primary: #0ea5e9;        /* Bright blue */
+  --tech-primary-dark: #0284c7;   /* Darker blue for hover states */
+  --tech-primary-light: #38bdf8;  /* Lighter blue for accents */
+  
+  /* Secondary colors */
+  --tech-secondary: #0f172a;      /* Dark navy */
+  --tech-secondary-light: #1e293b; /* Lighter navy */
+  
+  /* Accent colors */
+  --tech-accent: #22d3ee;         /* Cyan for accents */
+  --tech-accent-dark: #06b6d4;    /* Darker cyan */
+  
+  /* Neutral colors */
+  --tech-gray-50: #f8fafc;
+  --tech-gray-100: #f1f5f9;
+  --tech-gray-200: #e2e8f0;
+  --tech-gray-300: #cbd5e1;
+  --tech-gray-400: #94a3b8;
+  --tech-gray-500: #64748b;
+  --tech-gray-600: #475569;
+  --tech-gray-700: #334155;
+  --tech-gray-800: #1e293b;
+  --tech-gray-900: #0f172a;
+  
+  /* Success/Error colors */
+  --tech-success: #10b981;
+  --tech-error: #ef4444;
+  --tech-warning: #f59e0b;
+  --tech-info: #3b82f6;
+  
+  /* Typography */
+  --tech-font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --tech-font-mono: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+  
+  /* Spacing */
+  --tech-spacing-1: 0.25rem;
+  --tech-spacing-2: 0.5rem;
+  --tech-spacing-3: 0.75rem;
+  --tech-spacing-4: 1rem;
+  --tech-spacing-6: 1.5rem;
+  --tech-spacing-8: 2rem;
+  --tech-spacing-12: 3rem;
+  --tech-spacing-16: 4rem;
+  
+  /* Shadows */
+  --tech-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --tech-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  --tech-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --tech-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --tech-shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  
+  /* Border radius */
+  --tech-radius-sm: 0.125rem;
+  --tech-radius: 0.25rem;
+  --tech-radius-md: 0.375rem;
+  --tech-radius-lg: 0.5rem;
+  --tech-radius-xl: 0.75rem;
+  --tech-radius-2xl: 1rem;
+  --tech-radius-full: 9999px;
+  
+  /* Transitions */
+  --tech-transition: all 0.2s ease;
+  --tech-transition-slow: all 0.3s ease;
+  --tech-transition-fast: all 0.1s ease;
+}
+
+/* Apply the tech theme to existing elements */
+
+/* Base elements */
+body {
+  font-family: var(--tech-font-sans);
+  color: var(--tech-gray-800);
+  background-color: var(--tech-gray-50);
+  line-height: 1.6;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--tech-secondary);
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+}
+
+h2 {
+  font-size: 2rem;
+  margin-bottom: 1.25rem;
+}
+
+h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+a {
+  color: var(--tech-primary);
+  text-decoration: none;
+  transition: var(--tech-transition);
+}
+
+a:hover {
+  color: var(--tech-primary-dark);
+}
+
+/* Buttons */
+.cta-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.5rem;
+  background-color: var(--tech-primary);
+  color: white;
+  font-weight: 600;
+  border-radius: var(--tech-radius-md);
+  transition: var(--tech-transition);
+  border: none;
+  cursor: pointer;
+  text-align: center;
+  box-shadow: var(--tech-shadow);
+}
+
+.cta-button:hover {
+  background-color: var(--tech-primary-dark);
+  transform: translateY(-2px);
+  box-shadow: var(--tech-shadow-md);
+}
+
+.cta-button.cta-large {
+  padding: 1rem 2rem;
+  font-size: 1.125rem;
+}
+
+.gradient-flow {
+  background: linear-gradient(90deg, var(--tech-primary), var(--tech-accent), var(--tech-primary));
+  background-size: 200% 200%;
+  animation: gradientFlow 3s ease infinite;
+  color: white;
+}
+
+/* Cards */
+.feature-card {
+  background-color: white;
+  border-radius: var(--tech-radius-lg);
+  padding: 1.5rem;
+  box-shadow: var(--tech-shadow);
+  transition: var(--tech-transition);
+  border: 1px solid var(--tech-gray-200);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.feature-card:hover {
+  box-shadow: var(--tech-shadow-lg);
+}
+
+.feature-icon {
+  color: var(--tech-primary);
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.feature-content h3 {
+  color: var(--tech-secondary);
+  margin-bottom: 0.75rem;
+}
+
+.feature-content p {
+  color: var(--tech-gray-600);
+  margin-bottom: 0;
+}
+
+/* Testimonial cards */
+.testimonial-card {
+  background-color: white;
+  border-radius: var(--tech-radius-lg);
+  padding: 1.5rem;
+  box-shadow: var(--tech-shadow);
+  transition: var(--tech-transition);
+  border: 1px solid var(--tech-gray-200);
+}
+
+.testimonial-card:hover {
+  box-shadow: var(--tech-shadow-lg);
+}
+
+.testimonial-icon {
+  color: var(--tech-primary);
+  font-size: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.testimonial-author {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.testimonial-author strong {
+  color: var(--tech-secondary);
+}
+
+.testimonial-author span {
+  color: var(--tech-gray-500);
+  font-size: 0.875rem;
+}
+
+/* Process steps */
+.step {
+  background-color: white;
+  border-radius: var(--tech-radius-lg);
+  padding: 1.5rem;
+  box-shadow: var(--tech-shadow);
+  transition: var(--tech-transition);
+  border: 1px solid var(--tech-gray-200);
+  position: relative;
+}
+
+.step:hover {
+  box-shadow: var(--tech-shadow-lg);
+}
+
+.step-number {
+  position: absolute;
+  top: -1rem;
+  left: -1rem;
+  background-color: var(--tech-primary);
+  color: white;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 1.25rem;
+  box-shadow: var(--tech-shadow);
+}
+
+.step-icon {
+  color: var(--tech-primary);
+  font-size: 1.5rem;
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Highlight */
+.highlight {
+  color: var(--tech-primary);
+  font-weight: 600;
+}
+
+/* Social links */
+.social-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  background-color: var(--tech-gray-100);
+  color: var(--tech-primary);
+  border-radius: 50%;
+  transition: var(--tech-transition);
+  margin: 0 0.5rem;
+}
+
+.social-icon:hover {
+  background-color: var(--tech-primary);
+  color: white;
+  transform: translateY(-3px);
+}
+
+/* Footer */
+footer {
+  background-color: var(--tech-gray-100);
+  padding: 2rem 0;
+  text-align: center;
+  color: var(--tech-gray-600);
+  border-top: 1px solid var(--tech-gray-200);
+}
+
+/* Offline indicator */
+.offline-indicator {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  background-color: var(--tech-gray-200);
+  border-radius: var(--tech-radius-full);
+  font-size: 0.875rem;
+  color: var(--tech-gray-700);
+  margin-top: 1rem;
+}
+
+/* Media queries for responsive design */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 2rem;
+  }
+  
+  h2 {
+    font-size: 1.75rem;
+  }
+  
+  h3 {
+    font-size: 1.25rem;
+  }
+  
+  .feature-card, .testimonial-card, .step {
+    padding: 1.25rem;
+  }
+}
+
+@media (max-width: 480px) {
+  h1 {
+    font-size: 1.75rem;
+  }
+  
+  h2 {
+    font-size: 1.5rem;
+  }
+  
+  h3 {
+    font-size: 1.125rem;
+  }
+  
+  .cta-button {
+    padding: 0.625rem 1.25rem;
+  }
+  
+  .cta-button.cta-large {
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+  }
+}

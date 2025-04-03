@@ -40,7 +40,7 @@
 /* Feature Cards */
 .feature-card {
     background: white;
-    padding: 2rem;
+    padding: 2.5rem; /* Increased padding */
     border-radius: 12px;
     border: 1px solid var(--accent-light);
     text-align: left;
@@ -111,7 +111,7 @@
 /* Process Steps */
 .step {
     text-align: center;
-    padding: 2rem;
+    padding: 2.5rem; /* Increased padding */
     background: white;
     border-radius: 12px;
     border: 1px solid var(--accent-light);
