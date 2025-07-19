@@ -230,68 +230,6 @@ function initPerformanceOptimizations() {
         });
     }
     
-    // Handle navigation hiding/showing on scroll
-    let lastScroll = 0;
-    const handleScroll = () => {
-        const nav = document.querySelector('nav');
-        const currentScroll = window.pageYOffset;
-        
-        if (currentScroll > lastScroll && currentScroll > 100) {
-            nav.classList.add('nav-hidden');
-        } else {
-            nav.classList.remove('nav-hidden');
-        }
-        lastScroll = currentScroll;
-    };
-    
-    window.addEventListener('scroll', handleScroll);
-    
-    // Register service worker for offline capabilities
-    if ('serviceWorker' in navigator) {
-        window.addEventListener('load', () => {
-            navigator.serviceWorker.register('/service-worker.js').then(registration => {
-                console.log('ServiceWorker registration successful');
-                
-                // Show offline indicator when service worker is active
-                const offlineIndicator = document.getElementById('offline-indicator');
-                if (offlineIndicator) {
-                    setTimeout(() => {
-                        offlineIndicator.classList.add('visible');
-                        
-                        // Hide after 5 seconds
-                        setTimeout(() => {
-                            offlineIndicator.classList.remove('visible');
-                        }, 5000);
-                    }, 2000);
-                }
-            }).catch(error => {
-                console.log('ServiceWorker registration failed: ', error);
-            });
-        });
-    }
-    
-    // Check for online/offline status
-    window.addEventListener('online', updateOnlineStatus);
-    window.addEventListener('offline', updateOnlineStatus);
-    
-    // Initial check
-    updateOnlineStatus();
-}
-
-/**
- * Update UI based on online/offline status
- */
-function updateOnlineStatus() {
-    const offlineIndicator = document.getElementById('offline-indicator');
-    if (!offlineIndicator) return;
-    
-    if (navigator.onLine) {
-        offlineIndicator.querySelector('span').textContent = 'Modalità offline disponibile';
-        offlineIndicator.classList.remove('offline');
-    } else {
-        offlineIndicator.querySelector('span').textContent = 'Sei offline - contenuti disponibili';
-        offlineIndicator.classList.add('offline', 'visible');
-    }
 }
 
 /**

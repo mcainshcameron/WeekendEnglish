@@ -16,10 +16,6 @@ nav {
     transition: transform var(--transition-speed) ease;
 }
 
-nav.nav-hidden {
-    transform: translateY(-100%);
-}
-
 .logo {
     font-size: clamp(1.25rem, 2vw, 1.5rem);
     font-weight: 700;
@@ -36,63 +32,6 @@ nav.nav-hidden {
     object-fit: contain;
 }
 
-/* Hero Section */
-.hero {
-    padding-top: 5rem;
-    text-align: center;
-    background: linear-gradient(135deg, var(--secondary-color) 0%, #1e293b 100%);
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    color: white;
-}
-
-.hero-content {
-    padding: 2rem var(--spacing-unit);
-    max-width: 800px;
-    margin: 0 auto;
-    opacity: 0;
-    transform: translateY(20px);
-    animation: fadeInUp 0.6s ease forwards;
-}
-
-.hero-content h1 {
-    color: white;
-}
-
-.hero-content .subtitle {
-    color: var(--tech-gray-300);
-}
-
-.hero-image {
-    width: 100%;
-    max-width: 700px; /* Reduced max-width */
-    margin: 3rem auto 2rem auto; /* Increased top margin */
-    padding: 0 var(--spacing-unit);
-    opacity: 0;
-    transform: translateY(20px);
-    animation: fadeInUp 0.6s ease forwards 0.3s;
-}
-
-.hero-img {
-    width: 100%;
-    height: auto;
-    border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-    transition: transform var(--transition-speed) ease;
-}
-
-.hero-img:hover {
-    transform: scale(1.02);
-}
-
-@keyframes fadeInUp {
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
 
 /* Section Layout */
 section {

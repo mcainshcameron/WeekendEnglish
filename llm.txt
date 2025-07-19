@@ -1,0 +1,44 @@
+# Riepilogo del Sito Weekend English
+
+Questo documento fornisce una panoramica strutturata di WeekendEnglish.it, un sito web che offre coaching personalizzato sulla performance orale in inglese per professionisti.
+
+## Riepilogo del Sito
+
+WeekendEnglish.it è il sito portfolio a pagina singola di Cameron McAinsh, un coach di lingua inglese che vive in Italia. Il servizio è pensato per professionisti che hanno una buona padronanza dell'inglese scritto (spesso con l'aiuto di strumenti di intelligenza artificiale) ma che mancano di sicurezza e fluidità nell'inglese parlato in contesti professionali come riunioni, presentazioni e colloqui. Il sito è costruito con HTML, CSS e JavaScript vanilla, con un focus su performance, accessibilità e un'esperienza utente pulita, senza tracker o cookie.
+
+## Sezioni
+
+- **Home**: [https://weekendenglish.it/](https://weekendenglish.it/)
+  - La pagina principale che introduce il servizio.
+
+- **Il Problema**: [https://weekendenglish.it/#problem-heading](https://weekendenglish.it/#problem-heading)
+  - Questa sezione descrive la sfida comune che i professionisti affrontano: un divario tra una solida competenza di scrittura assistita dall'AI e un'abilità orale esitante.
+
+- **La Soluzione**: [https://weekendenglish.it/#solution](https://weekendenglish.it/#solution)
+  - Introduce Weekend English come un servizio di coaching focalizzato esclusivamente sulla pratica di conversazioni reali e pratiche per l'ambiente di lavoro.
+
+- **Chi Sono (Perché Io?)**: [https://weekendenglish.it/#about](https://weekendenglish.it/#about)
+  - Un'introduzione personale del coach, Cameron, che spiega il suo background nel settore tecnologico e la sua motivazione nel creare il servizio.
+
+- **Il Servizio (Cosa Facciamo)**: [https://weekendenglish.it/#service](https://weekendenglish.it/#service)
+  - Dettaglia le caratteristiche principali delle sessioni di coaching:
+    - Simulazioni lavorative realistiche.
+    - Contenuti personalizzati basati sul ruolo del cliente.
+    - Un ambiente di pratica senza pressione.
+    - Feedback umano esperto su fluidità, chiarezza e persuasività.
+    - Analisi post-sessione con AI per identificare schemi ricorrenti e aree di miglioramento.
+    - Un report pratico e personalizzato con esercizi e un glossario su misura.
+
+- **Testimonianze (Cosa Dicono i Clienti)**: [https://weekendenglish.it/#testimonials](https://weekendenglish.it/#testimonials)
+  - Mostra le recensioni di clienti passati, evidenziando l'efficacia del coaching.
+
+- **Come Funziona**: [https://weekendenglish.it/#process](https://weekendenglish.it/#process)
+  - Descrive il processo in quattro passaggi: contatto iniziale, sessione di pratica online, analisi e creazione del report, e consegna del kit di miglioramento personalizzato.
+
+- **Contatti**: [https://weekendenglish.it/#contact](https://weekendenglish.it/#contact)
+  - L'invito finale all'azione, che incoraggia gli utenti a mettersi in contatto via email per prenotare una sessione.
+
+## Opzionale
+
+- **LinkedIn**: [https://www.linkedin.com/company/weekend-english-linkedin/](https://www.linkedin.com/company/weekend-english-linkedin/)
+  - Link al profilo LinkedIn dell'azienda per networking professionale e aggiornamenti.

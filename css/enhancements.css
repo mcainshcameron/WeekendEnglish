@@ -212,38 +212,6 @@
     /* Floating button styles removed */
 }
 
-/* Offline Indicator */
-.offline-indicator {
-    position: fixed;
-    bottom: 30px;
-    left: 30px;
-    padding: 10px 15px;
-    background-color: var(--secondary-color);
-    color: white;
-    border-radius: 8px;
-    font-size: 0.9rem;
-    z-index: 1000;
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.3s ease, transform 0.3s ease, background-color 0.3s ease;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-.offline-indicator.visible {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-.offline-indicator.offline {
-    background-color: #e53e3e;
-}
-
-.offline-indicator i {
-    font-size: 1rem;
-}
 
 /* Typing Effect Styles */
 .hero h1 {
