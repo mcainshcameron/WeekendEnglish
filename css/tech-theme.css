@@ -1,23 +1,23 @@
 /**
- * WeekendEnglish.it - Modern Tech Theme
- * A modern, tech-focused theme with a clean, professional look
+ * WeekendEnglish.it - Dark Tech Theme
+ * A modern, dark-themed design with excellent contrast
  */
 
 :root {
-  /* Primary color palette */
-  --tech-primary: #0ea5e9;        /* Bright blue */
-  --tech-primary-dark: #0284c7;   /* Darker blue for hover states */
-  --tech-primary-light: #38bdf8;  /* Lighter blue for accents */
+  /* Dark Theme Color Palette */
+  --tech-primary: #60a5fa;        /* Light blue for dark backgrounds */
+  --tech-primary-dark: #3b82f6;   /* Darker blue for hover states */
+  --tech-primary-light: #93c5fd;  /* Lighter blue for accents */
   
   /* Secondary colors */
-  --tech-secondary: #0f172a;      /* Dark navy */
-  --tech-secondary-light: #1e293b; /* Lighter navy */
+  --tech-secondary: #f3f4f6;      /* Light gray for headings */
+  --tech-secondary-light: #e5e7eb; /* Lighter gray */
   
   /* Accent colors */
   --tech-accent: #22d3ee;         /* Cyan for accents */
   --tech-accent-dark: #06b6d4;    /* Darker cyan */
   
-  /* Neutral colors */
+  /* Dark theme neutrals */
   --tech-gray-50: #f8fafc;
   --tech-gray-100: #f1f5f9;
   --tech-gray-200: #e2e8f0;
@@ -28,6 +28,14 @@
   --tech-gray-700: #334155;
   --tech-gray-800: #1e293b;
   --tech-gray-900: #0f172a;
+  
+  /* Dark theme specific */
+  --tech-background: #0f172a;
+  --tech-background-secondary: #1e293b;
+  --tech-card-bg: #1e293b;
+  --tech-card-border: #334155;
+  --tech-text-primary: #e2e8f0;
+  --tech-text-secondary: #cbd5e1;
   
   /* Success/Error colors */
   --tech-success: #10b981;
@@ -49,12 +57,12 @@
   --tech-spacing-12: 3rem;
   --tech-spacing-16: 4rem;
   
-  /* Shadows */
-  --tech-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-  --tech-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
-  --tech-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-  --tech-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-  --tech-shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  /* Dark theme shadows */
+  --tech-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+  --tech-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.4), 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+  --tech-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -1px rgba(0, 0, 0, 0.3);
+  --tech-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.4), 0 4px 6px -2px rgba(0, 0, 0, 0.3);
+  --tech-shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.4), 0 10px 10px -5px rgba(0, 0, 0, 0.3);
   
   /* Border radius */
   --tech-radius-sm: 0.125rem;
@@ -71,13 +79,13 @@
   --tech-transition-fast: all 0.1s ease;
 }
 
-/* Apply the tech theme to existing elements */
+/* Apply the dark theme to existing elements */
 
 /* Base elements */
 body {
   font-family: var(--tech-font-sans);
-  color: var(--tech-gray-800);
-  background-color: var(--tech-gray-50);
+  color: var(--tech-text-primary);
+  background-color: var(--tech-background);
   line-height: 1.6;
 }
 
@@ -109,7 +117,7 @@ a {
 }
 
 a:hover {
-  color: var(--tech-primary-dark);
+  color: var(--tech-primary-light);
 }
 
 /* Buttons */
@@ -119,7 +127,7 @@ a:hover {
   justify-content: center;
   padding: 0.75rem 1.5rem;
   background-color: var(--tech-primary);
-  color: white;
+  color: var(--tech-gray-900);
   font-weight: 600;
   border-radius: var(--tech-radius-md);
   transition: var(--tech-transition);
@@ -130,9 +138,10 @@ a:hover {
 }
 
 .cta-button:hover {
-  background-color: var(--tech-primary-dark);
+  background-color: var(--tech-primary-light);
   transform: translateY(-2px);
   box-shadow: var(--tech-shadow-md);
+  color: var(--tech-gray-900);
 }
 
 .cta-button.cta-large {
@@ -144,17 +153,17 @@ a:hover {
   background: linear-gradient(90deg, var(--tech-primary), var(--tech-accent), var(--tech-primary));
   background-size: 200% 200%;
   animation: gradientFlow 3s ease infinite;
-  color: white;
+  color: var(--tech-gray-900);
 }
 
 /* Cards */
 .feature-card {
-  background-color: white;
+  background-color: var(--tech-card-bg);
   border-radius: var(--tech-radius-lg);
   padding: 1.5rem;
   box-shadow: var(--tech-shadow);
   transition: var(--tech-transition);
-  border: 1px solid var(--tech-gray-200);
+  border: 1px solid var(--tech-card-border);
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -162,6 +171,8 @@ a:hover {
 
 .feature-card:hover {
   box-shadow: var(--tech-shadow-lg);
+  border-color: var(--tech-primary);
+  transform: translateY(-2px);
 }
 
 .feature-icon {
@@ -171,6 +182,9 @@ a:hover {
   display: flex;
   align-items: center;
   justify-content: center;
+  background: rgba(96, 165, 250, 0.1);
+  padding: 1rem;
+  border-radius: var(--tech-radius-lg);
 }
 
 .feature-content h3 {
@@ -179,34 +193,41 @@ a:hover {
 }
 
 .feature-content p {
-  color: var(--tech-gray-600);
+  color: var(--tech-text-secondary);
   margin-bottom: 0;
 }
 
 /* Testimonial cards */
 .testimonial-card {
-  background-color: white;
+  background-color: var(--tech-card-bg);
   border-radius: var(--tech-radius-lg);
   padding: 1.5rem;
   box-shadow: var(--tech-shadow);
   transition: var(--tech-transition);
-  border: 1px solid var(--tech-gray-200);
+  border: 1px solid var(--tech-card-border);
 }
 
 .testimonial-card:hover {
   box-shadow: var(--tech-shadow-lg);
+  border-color: var(--tech-primary);
+  transform: translateY(-2px);
 }
 
 .testimonial-icon {
   color: var(--tech-primary);
   font-size: 1.5rem;
   margin-bottom: 0.75rem;
+  opacity: 0.3;
+}
+
+.testimonial-content p {
+  color: var(--tech-text-secondary);
 }
 
 .testimonial-author {
   display: flex;
-  align-items: center;
-  gap: 0.5rem;
+  flex-direction: column;
+  gap: 0.25rem;
   margin-top: 1rem;
 }
 
@@ -221,17 +242,23 @@ a:hover {
 
 /* Process steps */
 .step {
-  background-color: white;
+  background-color: var(--tech-card-bg);
   border-radius: var(--tech-radius-lg);
   padding: 1.5rem;
   box-shadow: var(--tech-shadow);
   transition: var(--tech-transition);
-  border: 1px solid var(--tech-gray-200);
+  border: 1px solid var(--tech-card-border);
   position: relative;
 }
 
 .step:hover {
   box-shadow: var(--tech-shadow-lg);
+  border-color: var(--tech-primary);
+  transform: translateY(-2px);
+}
+
+.step p {
+  color: var(--tech-text-secondary);
 }
 
 .step-number {
@@ -239,7 +266,7 @@ a:hover {
   top: -1rem;
   left: -1rem;
   background-color: var(--tech-primary);
-  color: white;
+  color: var(--tech-gray-900);
   width: 2.5rem;
   height: 2.5rem;
   border-radius: 50%;
@@ -273,26 +300,32 @@ a:hover {
   justify-content: center;
   width: 2.5rem;
   height: 2.5rem;
-  background-color: var(--tech-gray-100);
+  background-color: var(--tech-card-bg);
   color: var(--tech-primary);
   border-radius: 50%;
   transition: var(--tech-transition);
   margin: 0 0.5rem;
+  border: 1px solid var(--tech-card-border);
 }
 
 .social-icon:hover {
   background-color: var(--tech-primary);
-  color: white;
+  color: var(--tech-gray-900);
   transform: translateY(-3px);
+  border-color: var(--tech-primary);
 }
 
 /* Footer */
 footer {
-  background-color: var(--tech-gray-100);
+  background-color: var(--tech-background-secondary);
   padding: 2rem 0;
   text-align: center;
-  color: var(--tech-gray-600);
-  border-top: 1px solid var(--tech-gray-200);
+  color: var(--tech-text-secondary);
+  border-top: 1px solid var(--tech-card-border);
+}
+
+footer p {
+  color: var(--tech-text-secondary);
 }
 
 /* Offline indicator */
@@ -300,11 +333,12 @@ footer {
   display: inline-flex;
   align-items: center;
   padding: 0.5rem 1rem;
-  background-color: var(--tech-gray-200);
+  background-color: var(--tech-card-bg);
   border-radius: var(--tech-radius-full);
   font-size: 0.875rem;
-  color: var(--tech-gray-700);
+  color: var(--tech-text-secondary);
   margin-top: 1rem;
+  border: 1px solid var(--tech-card-border);
 }
 
 /* Media queries for responsive design */

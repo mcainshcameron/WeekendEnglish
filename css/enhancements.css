@@ -5,7 +5,7 @@
 
 /* Modern Hero Section with Gradient */
 .hero {
-    background: linear-gradient(135deg, #f0f4ff 0%, #ffffff 100%);
+    background: linear-gradient(135deg, var(--background-color) 0%, var(--background-secondary) 100%);
     position: relative;
     overflow: hidden;
 }
@@ -17,7 +17,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%232563eb' fill-opacity='0.03' fill-rule='evenodd'/%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%2360a5fa' fill-opacity='0.03' fill-rule='evenodd'/%3E%3C/svg%3E");
     z-index: 0;
 }
 
@@ -29,18 +29,17 @@
 /* Enhanced Card Styles */
 .feature-card, .benefit-card, .step, .question, .testimonial-card {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    /* Softer shadow */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04),
-                0 3px 6px rgba(0, 0, 0, 0.06);
-    border: 1px solid rgba(0, 0, 0, 0.05); /* Subtle border */
-    background: linear-gradient(to bottom, #ffffff, #f9fafb); /* Slightly adjusted gradient */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2),
+                0 3px 6px rgba(0, 0, 0, 0.3);
+    border: 1px solid var(--card-border);
+    background: var(--card-background);
 }
 
 .feature-card:hover, .benefit-card:hover, .step:hover, .question:hover, .testimonial-card:hover {
-    transform: translateY(-4px); /* Slightly less lift */
-    /* Slightly stronger hover shadow */
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.07),
-                0 4px 8px rgba(0, 0, 0, 0.05);
+    transform: translateY(-4px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4),
+                0 4px 8px rgba(0, 0, 0, 0.3);
+    border-color: var(--primary-color);
 }
 
 /* Enhanced Button Styles */
@@ -48,7 +47,7 @@
     position: relative;
     overflow: hidden;
     transition: all 0.3s ease;
-    box-shadow: 0 4px 6px rgba(37, 99, 235, 0.2);
+    box-shadow: 0 4px 6px rgba(96, 165, 250, 0.3);
 }
 
 .cta-button::after {
@@ -67,7 +66,7 @@
 
 .cta-button:hover {
     transform: translateY(-3px);
-    box-shadow: 0 6px 15px rgba(37, 99, 235, 0.3);
+    box-shadow: 0 6px 15px rgba(96, 165, 250, 0.4);
 }
 
 .cta-button:active::after {
@@ -99,11 +98,10 @@
 }
 
 .question.active {
-    background: linear-gradient(to bottom, #f0f4ff, #ffffff);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    background: linear-gradient(to bottom, var(--card-background), var(--background-secondary));
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+    border-color: var(--primary-color);
 }
-
-/* Floating Action Button - Removed */
 
 /* Progress Indicator */
 .progress-bar {
@@ -172,6 +170,8 @@
     height: 100%;
     display: flex;
     flex-direction: column;
+    background: var(--card-background);
+    border: 1px solid var(--card-border);
 }
 
 .testimonial-content {
@@ -180,10 +180,14 @@
     flex-direction: column;
 }
 
+.testimonial-content p {
+    color: var(--text-secondary);
+}
+
 .testimonial-icon {
     font-size: 2rem;
     color: var(--primary-color);
-    opacity: 0.2;
+    opacity: 0.3;
     margin-bottom: 1rem;
 }
 
@@ -201,17 +205,8 @@
 .testimonial-author span {
     font-size: 0.9rem;
     opacity: 0.8;
+    color: var(--text-secondary);
 }
-
-/* Responsive Adjustments */
-@media (max-width: 768px) {
-    /* Floating button styles removed */
-}
-
-@media (max-width: 480px) {
-    /* Floating button styles removed */
-}
-
 
 /* Typing Effect Styles */
 .hero h1 {
@@ -223,6 +218,7 @@
     position: absolute;
     right: -0.1em;
     animation: blink 1s step-end infinite;
+    color: var(--primary-color);
 }
 
 .hero h1.typing-complete::after {
@@ -269,10 +265,19 @@ p {
 
 .benefit-card:hover .benefit-image {
     transform: scale(1.05);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
 }
 
 .hero-img:hover {
     transform: scale(1.03);
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    /* Removed floating button styles */
+}
+
+@media (max-width: 480px) {
+    /* Removed floating button styles */
 }

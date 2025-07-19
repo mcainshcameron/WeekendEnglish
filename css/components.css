@@ -1,6 +1,6 @@
 /* Loading Animation */
 .loading {
-    background: white;
+    background: var(--background-color);
     transition: opacity 0.5s, visibility 0.5s;
 }
 
@@ -12,7 +12,7 @@
 .loader {
     width: 48px;
     height: 48px;
-    border: 5px solid var(--accent-color);
+    border: 5px solid var(--accent-light);
     border-bottom-color: var(--primary-color);
     border-radius: 50%;
     animation: rotation 1s linear infinite;
@@ -28,7 +28,7 @@
     display: inline-block;
     padding: 0.75rem 1.5rem;
     background-color: var(--primary-color);
-    color: white;
+    color: var(--background-color);
     text-decoration: none;
     border-radius: 8px;
     font-weight: 600;
@@ -39,33 +39,35 @@
 
 .cta-button:hover {
     transform: translateY(-2px);
-    box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
-    background-color: #1d4ed8;
+    box-shadow: 0 4px 15px rgba(96, 165, 250, 0.3);
+    background-color: var(--primary-light);
+    color: var(--background-color);
 }
 
 /* Feature Cards */
 .feature-card {
-    background: white;
-    padding: 2.5rem; /* Increased padding */
+    background: var(--card-background);
+    padding: 2.5rem;
     border-radius: 12px;
-    border: 1px solid var(--accent-light);
+    border: 1px solid var(--card-border);
     text-align: left;
     transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
     display: flex;
     align-items: flex-start;
     gap: 1.5rem;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.3);
 }
 
 .feature-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+    border-color: var(--primary-color);
 }
 
 .feature-icon {
     font-size: 1.5rem;
     color: var(--primary-color);
-    background: var(--accent-color);
+    background: rgba(96, 165, 250, 0.1);
     padding: 1rem;
     border-radius: 12px;
 }
@@ -73,27 +75,37 @@
 .feature-content h3 {
     margin-bottom: 0.5rem;
     font-size: 1.25rem;
+    color: var(--secondary-color);
 }
 
 .feature-content p {
-    color: var(--text-color);
+    color: var(--text-secondary);
     opacity: 0.9;
     font-size: 0.95rem;
 }
 
 /* Benefit Cards */
 .benefit-card {
-    background: white;
+    background: var(--card-background);
     padding: 2rem;
     border-radius: 12px;
-    border: 1px solid var(--accent-light);
+    border: 1px solid var(--card-border);
     text-align: center;
     transition: transform var(--transition-speed) ease;
 }
 
 .benefit-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+    border-color: var(--primary-color);
+}
+
+.benefit-card h3 {
+    color: var(--secondary-color);
+}
+
+.benefit-card p {
+    color: var(--text-secondary);
 }
 
 .benefit-image {
@@ -103,10 +115,12 @@
     border-radius: 8px;
     margin-top: 1rem;
     transition: transform var(--transition-speed) ease;
+    opacity: 0.9;
 }
 
 .benefit-card:hover .benefit-image {
     transform: scale(1.05);
+    opacity: 1;
 }
 
 .card-icon {
@@ -118,16 +132,25 @@
 /* Process Steps */
 .step {
     text-align: center;
-    padding: 2.5rem; /* Increased padding */
-    background: white;
+    padding: 2.5rem;
+    background: var(--card-background);
     border-radius: 12px;
-    border: 1px solid var(--accent-light);
+    border: 1px solid var(--card-border);
     transition: transform var(--transition-speed) ease;
 }
 
 .step:hover {
     transform: translateY(-5px);
-    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+    border-color: var(--primary-color);
+}
+
+.step h3 {
+    color: var(--secondary-color);
+}
+
+.step p {
+    color: var(--text-secondary);
 }
 
 .step-number {
@@ -137,7 +160,7 @@
     width: 40px;
     height: 40px;
     background-color: var(--primary-color);
-    color: white;
+    color: var(--background-color);
     border-radius: 50%;
     margin-bottom: 1rem;
     font-weight: bold;
@@ -151,16 +174,26 @@
 
 /* Question Cards */
 .question {
-    background: white;
+    background: var(--card-background);
     padding: 2rem;
     border-radius: 12px;
-    border: 1px solid var(--accent-light);
+    border: 1px solid var(--card-border);
     transition: transform var(--transition-speed) ease;
+    cursor: pointer;
 }
 
 .question:hover {
     transform: translateY(-5px);
-    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+    border-color: var(--primary-color);
+}
+
+.question h3 {
+    color: var(--secondary-color);
+}
+
+.question p {
+    color: var(--text-secondary);
 }
 
 .question-icon {
@@ -170,7 +203,7 @@
 }
 
 .translation {
-    color: var(--text-color);
+    color: var(--text-secondary);
     font-style: italic;
     margin-top: 0.5rem;
     opacity: 0.8;
