@@ -1,10 +1,10 @@
 :root {
     /* New Techy Color Scheme */
-    --primary-color: #14b8a6; /* Teal */
-    --secondary-color: #1f2937; /* Dark Charcoal */
-    --background-color: #ffffff;
+    --primary-color: #4f46e5; /* Indigo */
+    --secondary-color: #111827; /* Darker Charcoal */
+    --background-color: #f9fafb; /* Lighter Gray */
     --text-color: #374151; /* Darker Gray */
-    --accent-color: #f3f4f6; /* Light Gray 1 */
+    --accent-color: #14b8a6; /* Teal */
     --accent-light: #e5e7eb; /* Light Gray 2 */
     --spacing-unit: clamp(1rem, 2vw, 2rem);
     --transition-speed: 0.3s;
@@ -28,13 +28,19 @@ body {
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
     line-height: 1.6;
     color: var(--text-color);
-    background-color: var(--background-color);
+    background: linear-gradient(135deg, var(--background-color) 0%, var(--accent-light) 100%);
+    background-size: 400% 400%;
+    animation: subtle-gradient 15s ease infinite;
     overflow-x: hidden;
 }
 
 /* Enhanced Typography */
+h1, h2, h3 {
+    font-family: 'Poppins', sans-serif;
+}
+
 h1 {
-    font-size: clamp(2rem, 5vw, 2.5rem);
+    font-size: clamp(2.5rem, 5vw, 3.5rem);
     margin-bottom: 1rem;
     color: var(--secondary-color);
     line-height: 1.2;
@@ -42,7 +48,7 @@ h1 {
 }
 
 h2 {
-    font-size: clamp(1.5rem, 4vw, 2rem);
+    font-size: clamp(2rem, 4vw, 2.5rem);
     margin-bottom: 3rem; /* Increased bottom margin */
     text-align: center;
     color: var(--secondary-color);
@@ -52,6 +58,7 @@ h2 {
 h3 {
     color: var(--secondary-color);
     font-weight: 600;
+    font-size: clamp(1.25rem, 2vw, 1.5rem);
 }
 
 .highlight {

@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Content Security Policy -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self';">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; connect-src 'self';">
 
     <!-- Security Headers -->
     <meta http-equiv="X-Content-Type-Options" content="nosniff">
@@ -69,8 +69,6 @@
         body {
             margin: 0;
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            opacity: 0;
-            animation: fadeIn 0.3s ease-in forwards;
         }
         @keyframes fadeIn { to { opacity:1 } }
         .loading {
@@ -501,7 +499,7 @@
             <!-- Placeholder for additional social links -->
             <!-- Add other social links if available -->
         </div>
-        <p>&copy; <time datetime="2025">2025</time> WeekendEnglish.it - Coaching di Cameron McAinsh</p>
+        <p>&copy; <time id="current-year"></time> WeekendEnglish.it - Coaching di Cameron McAinsh</p>
         <div class="offline-indicator" id="offline-indicator">
             <span class="tech-icon icon-wifi" style="margin-right: 8px;" aria-hidden="true"></span>
             <span>Modalità offline disponibile</span>

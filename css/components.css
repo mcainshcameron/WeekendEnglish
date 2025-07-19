@@ -1,6 +1,12 @@
 /* Loading Animation */
 .loading {
     background: white;
+    transition: opacity 0.5s, visibility 0.5s;
+}
+
+.loading.hidden {
+    opacity: 0;
+    visibility: hidden;
 }
 
 .loader {
@@ -44,15 +50,16 @@
     border-radius: 12px;
     border: 1px solid var(--accent-light);
     text-align: left;
-    transition: transform var(--transition-speed) ease;
+    transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
     display: flex;
     align-items: flex-start;
     gap: 1.5rem;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
 }
 
 .feature-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
 }
 
 .feature-icon {

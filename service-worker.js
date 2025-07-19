@@ -4,7 +4,7 @@
  */
 
 // Cache name - update version when content changes
-const CACHE_NAME = 'weekendenglish-cache-v1';
+const CACHE_NAME = 'weekendenglish-cache-v2';
 
 // Files to cache for offline use
 const urlsToCache = [
@@ -25,9 +25,6 @@ const urlsToCache = [
   '/fonts/fontawesome/fa-solid-900.woff2',
   '/fonts/fontawesome/fa-brands-400.woff2',
   '/images/hero-interview.jpeg',
-  '/images/collaboration.jpeg',
-  '/images/presentation.jpeg',
-  '/images/interview.jpeg',
   '/logos/weekend-english-high-resolution-logo-transparent.png',
   '/Cameron.jpeg'
 ];
@@ -59,25 +56,25 @@ self.addEventListener('fetch', event => {
         
         return fetch(fetchRequest).then(
           response => {
-            // Check if we received a valid response
-            if (!response || response.status !== 200 || response.type !== 'basic') {
-              return response;
-            }
-            
-            // Clone the response because it's a one-time use stream
-            const responseToCache = response.clone();
-            
-            caches.open(CACHE_NAME)
-              .then(cache => {
-                // Don't cache if it's an API request or similar
-                if (event.request.url.includes('/api/') || 
-                    event.request.method !== 'GET') {
-                  return;
-                }
-                
+            // We only want to cache valid, basic, GET requests for http/https resources.
+            if (
+              response &&
+              response.status === 200 &&
+              response.type === 'basic' &&
+              event.request.method === 'GET' &&
+              event.request.url.startsWith('http')
+            ) {
+              // IMPORTANT: Clone the response. A response is a stream
+              // and because we want the browser to consume the response
+              // as well as the cache consuming the response, we need
+              // to clone it so we have two streams.
+              const responseToCache = response.clone();
+
+              caches.open(CACHE_NAME).then(cache => {
                 cache.put(event.request, responseToCache);
               });
-              
+            }
+
             return response;
           }
         );

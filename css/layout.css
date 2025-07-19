@@ -40,11 +40,12 @@ nav.nav-hidden {
 .hero {
     padding-top: 5rem;
     text-align: center;
-    background: linear-gradient(to bottom, var(--accent-color), white);
+    background: linear-gradient(135deg, var(--secondary-color) 0%, #1e293b 100%);
     min-height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    color: white;
 }
 
 .hero-content {
@@ -54,6 +55,14 @@ nav.nav-hidden {
     opacity: 0;
     transform: translateY(20px);
     animation: fadeInUp 0.6s ease forwards;
+}
+
+.hero-content h1 {
+    color: white;
+}
+
+.hero-content .subtitle {
+    color: var(--tech-gray-300);
 }
 
 .hero-image {

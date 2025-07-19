@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // initFloatingButton(); // Removed back to top button
     initProgressIndicator();
     initPerformanceOptimizations();
+    initCopyrightYear();
 });
 
 /**
@@ -59,24 +60,11 @@ function initAnimations() {
     // Add typing effect to the hero headline - modified to preserve HTML structure
     const heroHeadline = document.querySelector('.hero h1');
     if (heroHeadline) {
-        // Store the original HTML
         const originalHTML = heroHeadline.innerHTML;
-        
-        // Create a temporary element to extract text content while preserving HTML structure
-        const tempElement = document.createElement('div');
-        tempElement.innerHTML = originalHTML;
-        
-        // Get the text content
-        const textContent = tempElement.textContent;
-        
-        // Clear the headline
-        heroHeadline.textContent = '';
-        
-        // Create a span for the typing effect
-        const typingSpan = document.createElement('span');
-        heroHeadline.appendChild(typingSpan);
-        
-        // Typing effect
+        const textContent = heroHeadline.textContent;
+        heroHeadline.innerHTML = '<span></span>';
+        const typingSpan = heroHeadline.querySelector('span');
+
         let i = 0;
         const typeWriter = () => {
             if (i < textContent.length) {
@@ -84,15 +72,10 @@ function initAnimations() {
                 i++;
                 setTimeout(typeWriter, 50);
             } else {
-                // When typing is complete, restore the original HTML with proper formatting
                 heroHeadline.innerHTML = originalHTML;
-                
-                // Add a class to indicate typing is complete
                 heroHeadline.classList.add('typing-complete');
             }
         };
-        
-        // Start typing effect after a short delay
         setTimeout(typeWriter, 500);
     }
 }
@@ -220,7 +203,7 @@ function initPerformanceOptimizations() {
     // Hide loading indicator
     const loadingElement = document.getElementById('loading');
     if (loadingElement) {
-        loadingElement.style.display = 'none';
+        loadingElement.classList.add('hidden');
     }
     
     // Lazy load images that are not already using loading="lazy"
@@ -308,5 +291,17 @@ function updateOnlineStatus() {
     } else {
         offlineIndicator.querySelector('span').textContent = 'Sei offline - contenuti disponibili';
         offlineIndicator.classList.add('offline', 'visible');
+    }
+}
+
+/**
+ * Set the current year in the footer
+ */
+function initCopyrightYear() {
+    const yearElement = document.getElementById('current-year');
+    if (yearElement) {
+        const currentYear = new Date().getFullYear();
+        yearElement.textContent = currentYear;
+        yearElement.setAttribute('datetime', currentYear);
     }
 }
