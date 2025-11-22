@@ -3,38 +3,32 @@
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
    <url>
       <loc>https://weekendenglish.it/</loc>
-      <lastmod>2025-07-19</lastmod>
+      <lastmod>2025-11-22</lastmod>
       <changefreq>weekly</changefreq>
       <priority>1.0</priority>
       <image:image>
-         <image:loc>https://weekendenglish.it/images/hero-interview.jpeg</image:loc>
-         <image:title>Simulazione di colloquio di lavoro in inglese</image:title>
-         <image:caption>Preparazione professionale per colloqui di lavoro in inglese</image:caption>
+         <image:loc>https://weekendenglish.it/images/hero-confidence.png</image:loc>
+         <image:title>Executive Confidence in English</image:title>
+         <image:caption>Professionista che conduce un meeting in inglese con sicurezza</image:caption>
       </image:image>
       <image:image>
-         <image:loc>https://weekendenglish.it/images/collaboration.jpeg</image:loc>
-         <image:title>Professionisti che collaborano in un ambiente internazionale</image:title>
-         <image:caption>Ampliamento delle opportunità professionali con l'inglese</image:caption>
+         <image:loc>https://weekendenglish.it/images/method-focus.png</image:loc>
+         <image:title>War Room Simulation</image:title>
+         <image:caption>Simulazione intensiva di colloquio e negoziazione</image:caption>
       </image:image>
       <image:image>
-         <image:loc>https://weekendenglish.it/images/presentation.jpeg</image:loc>
-         <image:title>Professionista che conduce una presentazione con sicurezza</image:title>
-         <image:caption>Maggiore consapevolezza delle proprie capacità in inglese</image:caption>
-      </image:image>
-      <image:image>
-         <image:loc>https://weekendenglish.it/images/interview.jpeg</image:loc>
-         <image:title>Colloquio di lavoro professionale in corso</image:title>
-         <image:caption>Approccio strutturato al colloquio di lavoro in inglese</image:caption>
+         <image:loc>https://weekendenglish.it/images/problem-trap.png</image:loc>
+         <image:title>Translation Trap Visualization</image:title>
+         <image:caption>Il problema della traduzione mentale dall'italiano all'inglese</image:caption>
       </image:image>
       <image:image>
          <image:loc>https://weekendenglish.it/Cameron.jpeg</image:loc>
          <image:title>Cameron - English Language Coach</image:title>
-         <image:caption>Madrelingua inglese specializzato in preparazione colloqui</image:caption>
+         <image:caption>Cameron McAinsh, Executive English Coach</image:caption>
       </image:image>
       <image:image>
          <image:loc>https://weekendenglish.it/logos/weekend-english-high-resolution-logo-transparent.png</image:loc>
          <image:title>WeekendEnglish.it Logo</image:title>
-         <image:caption>Logo di WeekendEnglish.it - Servizio di preparazione colloqui in inglese</image:caption>
       </image:image>
    </url>
 </urlset>
