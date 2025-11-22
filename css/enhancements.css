@@ -1,283 +1,559 @@
 /**
- * WeekendEnglish.it - Enhanced Styles
- * Modern, dynamic features with zero cookies and zero data collection
+ * WeekendEnglish.it - Supercharged Enhancements
+ * High-performance, conversion-focused styles without cookies
  */
 
-/* Modern Hero Section with Gradient */
+/* =========================================
+   1. Typography & Hierarchy
+   ========================================= */
+
+/* Gradient Text Effect */
+.text-gradient {
+    background: linear-gradient(135deg, var(--primary-light) 0%, var(--accent-color) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent;
+    font-weight: 800;
+}
+
+/* Fluid Typography */
+h1 {
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    letter-spacing: -0.02em;
+}
+
+h2 {
+    font-size: clamp(2rem, 4vw, 3rem);
+    letter-spacing: -0.01em;
+}
+
+.lead {
+    font-size: 1.25rem;
+    color: var(--text-secondary);
+    max-width: 700px;
+    margin: 0 auto 2rem auto;
+}
+
+/* =========================================
+   2. Hero Section Enhancements
+   ========================================= */
+
 .hero {
-    background: linear-gradient(135deg, var(--background-color) 0%, var(--background-secondary) 100%);
+    /* Deep "Midnight" Gradient - Clean */
+    background: radial-gradient(circle at top right, #1e293b 0%, #0f172a 100%);
     position: relative;
     overflow: hidden;
 }
 
-.hero::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%2360a5fa' fill-opacity='0.03' fill-rule='evenodd'/%3E%3C/svg%3E");
-    z-index: 0;
-}
-
-.hero-content, .hero-image {
+/* Glow behind hero image */
+.image-container-glow {
     position: relative;
-    z-index: 1;
+    z-index: 10;
 }
 
-/* Enhanced Card Styles */
-.feature-card, .benefit-card, .step, .question, .testimonial-card {
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2),
-                0 3px 6px rgba(0, 0, 0, 0.3);
+/* Removed the before element pattern/glow wrapper to just keep the clean image with shadow */
+.hero-img {
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+    border-radius: 12px;
+}
+
+@keyframes pulseGlow {
+    0% { opacity: 0.5; transform: translate(-50%, -50%) scale(0.95); }
+    100% { opacity: 1; transform: translate(-50%, -50%) scale(1.05); }
+}
+
+/* Hero Badge */
+.badge-pill {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background: rgba(96, 165, 250, 0.1);
+    border: 1px solid var(--primary-color);
+    border-radius: 50px;
+    color: var(--primary-light);
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+}
+
+/* Hero CTA Group */
+.cta-group {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+}
+
+.large-cta {
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+    transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.secondary-cta {
+    background: transparent;
+    border: 1px solid var(--primary-color);
+    color: var(--primary-color);
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+    border-radius: 0.5rem; /* Explicit */
+}
+
+.secondary-cta:hover {
+    background: rgba(96, 165, 250, 0.1);
+    color: var(--primary-light);
+}
+
+.trust-badge {
+    opacity: 0.7;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* =========================================
+   3. Social Proof Ticker
+   ========================================= */
+
+.logo-ticker {
+    padding: 2rem 0;
+    background: var(--background-secondary);
+    border-top: 1px solid var(--card-border);
+    border-bottom: 1px solid var(--card-border);
+    margin-bottom: 4rem;
+}
+
+.ticker-content {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    color: var(--text-secondary);
+    font-weight: 600;
+    opacity: 0.6;
+    letter-spacing: 1px;
+    flex-wrap: wrap;
+}
+
+/* =========================================
+   4. Comparison Section (Reality Check)
+   ========================================= */
+
+.comparison-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    padding: 3rem;
+    gap: 2rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.col-left, .col-right {
+    flex: 1;
+    text-align: left;
+}
+
+.divider-vertical {
+    width: 1px;
+    background: var(--card-border);
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.vs-badge {
+    background: var(--background-color);
     border: 1px solid var(--card-border);
+    padding: 0.5rem;
+    border-radius: 50%;
+    color: var(--text-secondary);
+    font-weight: bold;
+    z-index: 2;
+}
+
+.status-indicator {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.25rem 0.75rem;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+.status-indicator.success {
+    background: rgba(16, 185, 129, 0.1);
+    color: #10b981;
+}
+
+.status-indicator.warning {
+    background: rgba(245, 158, 11, 0.1);
+    color: #f59e0b;
+}
+
+.dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: currentColor;
+}
+
+/* =========================================
+   5. Interactive Audit Widget
+   ========================================= */
+
+.audit-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.audit-option {
     background: var(--card-background);
-}
-
-.feature-card:hover, .benefit-card:hover, .step:hover, .question:hover, .testimonial-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4),
-                0 4px 8px rgba(0, 0, 0, 0.3);
-    border-color: var(--primary-color);
-}
-
-/* Enhanced Button Styles */
-.cta-button {
-    position: relative;
-    overflow: hidden;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 6px rgba(96, 165, 250, 0.3);
-}
-
-.cta-button::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 5px;
-    height: 5px;
-    background: rgba(255, 255, 255, 0.5);
-    opacity: 0;
-    border-radius: 100%;
-    transform: scale(1, 1) translate(-50%, -50%);
-    transform-origin: 50% 50%;
-}
-
-.cta-button:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 6px 15px rgba(96, 165, 250, 0.4);
-}
-
-.cta-button:active::after {
-    animation: ripple 0.6s ease-out;
-}
-
-@keyframes ripple {
-    0% {
-        transform: scale(0, 0);
-        opacity: 0.5;
-    }
-    100% {
-        transform: scale(20, 20);
-        opacity: 0;
-    }
-}
-
-/* FAQ Accordion Styles */
-.question {
+    border: 1px solid var(--card-border);
+    padding: 2rem;
+    border-radius: 1rem;
+    text-align: center;
     cursor: pointer;
     transition: all 0.3s ease;
+    color: var(--text-color);
 }
 
-.question .translation {
-    max-height: 0;
-    overflow: hidden;
-    opacity: 0;
-    transition: max-height 0.3s ease, opacity 0.3s ease;
-}
-
-.question.active {
-    background: linear-gradient(to bottom, var(--card-background), var(--background-secondary));
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+.audit-option:hover {
     border-color: var(--primary-color);
+    background: rgba(96, 165, 250, 0.05);
+    transform: translateY(-5px);
 }
 
-/* Progress Indicator */
-.progress-bar {
+.icon-emoji {
+    font-size: 3rem;
+    display: block;
+    margin-bottom: 1rem;
+}
+
+.audit-result-panel {
+    max-width: 800px;
+    margin: 2rem auto 0;
+    padding: 2rem;
+    background: linear-gradient(135deg, rgba(30, 41, 59, 0.9), rgba(15, 23, 42, 0.9));
+    border: 1px solid var(--accent-color);
+    border-radius: 1rem;
+    display: none; /* JS toggles this */
+    animation: fadeIn 0.5s ease;
+}
+
+.audit-result-panel.active {
+    display: block;
+}
+
+.result-card h3 {
+    color: var(--accent-color);
+    margin-bottom: 1rem;
+}
+
+.result-card p {
+    color: #e2e8f0;
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+}
+
+.result-action {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    border-left: 4px solid var(--primary-color);
+}
+
+.result-action strong {
+    color: var(--primary-light);
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+/* =========================================
+   6. Bento Grid (Service Section)
+   ========================================= */
+
+.bento-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.bento-card {
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    position: relative;
+    overflow: hidden;
+}
+
+.bento-card.large {
+    grid-column: span 2;
+    background: linear-gradient(135deg, rgba(30,41,59,0.8), rgba(96,165,250,0.1));
+}
+
+.bento-card.medium {
+    grid-column: span 1;
+}
+
+.bento-card.small {
+    grid-column: span 1;
+}
+
+.card-badges {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+}
+
+.badge {
+    background: var(--accent-color);
+    color: var(--background-color);
+    padding: 0.25rem 0.75rem;
+    border-radius: 1rem;
+    font-size: 0.75rem;
+    font-weight: bold;
+}
+
+/* =========================================
+   7. Final CTA & Urgency
+   ========================================= */
+
+.contact-card.pulse-border {
+    border: 1px solid var(--primary-color);
+    box-shadow: 0 0 0 rgba(96, 165, 250, 0.4);
+    animation: borderPulse 2s infinite;
+}
+
+@keyframes borderPulse {
+    0% { box-shadow: 0 0 0 0 rgba(96, 165, 250, 0.4); }
+    70% { box-shadow: 0 0 0 10px rgba(96, 165, 250, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(96, 165, 250, 0); }
+}
+
+.limited-spots {
+    display: inline-block;
+    background: rgba(239, 68, 68, 0.1);
+    color: #ef4444;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    font-weight: bold;
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+}
+
+.cta-xl {
+    padding: 1.25rem 2.5rem;
+    font-size: 1.3rem;
+    font-weight: 800;
+}
+
+/* =========================================
+   8. Glassmorphism Utilities
+   ========================================= */
+
+.glass-panel {
+    background: rgba(30, 41, 59, 0.7);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    border-radius: 1rem;
+}
+
+.contact-card {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 3rem;
+}
+
+/* Card Image Header Utilities */
+.card-image-header {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+    border-radius: 0.5rem;
+}
+
+.img-cover {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* =========================================
+   8b. Anti-Persona Grid
+   ========================================= */
+
+.anti-persona-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    padding: 3rem 2rem;
+    margin-bottom: 4rem;
+}
+
+@media (max-width: 768px) {
+    .anti-persona-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.anti-card {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    text-align: left;
+    opacity: 0.9;
+    transition: all 0.3s ease;
+    padding: 1.5rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    height: 100%;
+}
+
+.anti-card:hover {
+    opacity: 1;
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(239, 68, 68, 0.2);
+    transform: translateY(-2px);
+}
+
+.anti-card .icon-x-circle {
+    font-size: 2rem;
+    margin-right: 1rem;
+    margin-bottom: 0;
+    text-align: center;
+    min-width: 2rem;
+    color: var(--tech-error);
+}
+
+.anti-card p {
+    font-size: 1rem;
+    margin: 0;
+    line-height: 1.4;
+    color: var(--text-secondary);
+}
+
+/* =========================================
+   9. Mobile Responsiveness
+   ========================================= */
+
+/* Sticky Mobile CTA */
+.sticky-mobile-cta {
     position: fixed;
-    top: 0;
+    bottom: 0;
     left: 0;
-    height: 3px;
-    background-color: var(--primary-color);
-    z-index: 1001;
-    width: 0%;
-    transition: width 0.1s ease;
+    right: 0;
+    padding: 1rem;
+    z-index: 9999;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.5);
+    animation: slideUp 0.5s ease-out 2s forwards; /* Delay appearance */
+    transform: translateY(100%); /* Start hidden */
 }
 
-/* Animation Classes */
+@keyframes slideUp {
+    to { transform: translateY(0); }
+}
+
+@media (max-width: 900px) {
+    .bento-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .bento-card.large, .bento-card.medium, .bento-card.small {
+        grid-column: span 1;
+    }
+    
+    .comparison-container {
+        flex-direction: column;
+        gap: 2rem;
+    }
+    
+    .divider-vertical {
+        height: 1px;
+        width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    .cta-group {
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    .large-cta, .secondary-cta {
+        width: 100%;
+        text-align: center;
+    }
+    
+    h1 {
+        font-size: 2.5rem;
+    }
+    
+    .ticker-content {
+        gap: 1rem;
+        font-size: 0.9rem;
+    }
+}
+
+/* =========================================
+   10. Interactive Elements & Animations
+   ========================================= */
+
+/* Pulse Gradient Animation for Primary CTA */
+.gradient-pulse {
+    background-size: 200% auto;
+    background-image: linear-gradient(45deg, var(--primary-color) 0%, var(--accent-color)  51%, var(--primary-color)  100%);
+    color: white;
+    transition: 0.5s;
+    border: none;
+    box-shadow: 0 0 20px rgba(96, 165, 250, 0.5);
+}
+
+.gradient-pulse:hover {
+    background-position: right center; /* change the direction of the change here */
+    color: #fff;
+    text-decoration: none;
+    box-shadow: 0 0 30px rgba(34, 211, 238, 0.7);
+    transform: scale(1.02);
+}
+
+/* Personalized Link Flash */
+.personalized {
+    animation: flashHighlight 0.5s ease;
+}
+
+@keyframes flashHighlight {
+    0% { background-color: var(--primary-color); }
+    100% { background-color: initial; }
+}
+
+/* Fade In Animation */
 .animate-on-scroll {
     opacity: 0;
     transform: translateY(20px);
     transition: opacity 0.6s ease, transform 0.6s ease;
 }
 
-.animate-on-scroll.animate {
+.animate-on-scroll.visible {
     opacity: 1;
     transform: translateY(0);
 }
 
-.fade-in {
-    animation: fadeIn 0.5s ease forwards;
-}
-
-.fade-up {
-    animation: fadeUp 0.5s ease forwards;
-}
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
-}
-
-@keyframes fadeUp {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* Testimonials Styles */
-.testimonials-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.testimonial-card {
-    padding: 2rem;
-    border-radius: 12px;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    background: var(--card-background);
-    border: 1px solid var(--card-border);
-}
-
-.testimonial-content {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-}
-
-.testimonial-content p {
-    color: var(--text-secondary);
-}
-
-.testimonial-icon {
-    font-size: 2rem;
-    color: var(--primary-color);
-    opacity: 0.3;
-    margin-bottom: 1rem;
-}
-
-.testimonial-author {
-    margin-top: auto;
-    display: flex;
-    flex-direction: column;
-    gap: 0.25rem;
-}
-
-.testimonial-author strong {
-    color: var(--secondary-color);
-}
-
-.testimonial-author span {
-    font-size: 0.9rem;
-    opacity: 0.8;
-    color: var(--text-secondary);
-}
-
-/* Typing Effect Styles */
-.hero h1 {
-    position: relative;
-}
-
-.hero h1::after {
-    content: '|';
-    position: absolute;
-    right: -0.1em;
-    animation: blink 1s step-end infinite;
-    color: var(--primary-color);
-}
-
-.hero h1.typing-complete::after {
+.hidden {
     display: none;
-}
-
-@keyframes blink {
-    from, to { opacity: 1; }
-    50% { opacity: 0; }
-}
-
-/* Enhanced Focus Styles for Accessibility */
-:focus-visible {
-    outline: 3px solid var(--primary-color);
-    outline-offset: 2px;
-}
-
-/* Fluid Typography */
-h1 {
-    font-size: clamp(2rem, 5vw + 1rem, 3.5rem);
-    line-height: 1.2;
-}
-
-h2 {
-    font-size: clamp(1.5rem, 3vw + 0.5rem, 2.5rem);
-    line-height: 1.3;
-}
-
-h3 {
-    font-size: clamp(1.2rem, 2vw + 0.5rem, 1.8rem);
-    line-height: 1.4;
-}
-
-p {
-    font-size: clamp(1rem, 1vw + 0.5rem, 1.2rem);
-    line-height: 1.6;
-}
-
-/* Enhanced Image Styles */
-.benefit-image, .hero-img {
-    transition: transform 0.5s ease, box-shadow 0.5s ease;
-    will-change: transform;
-}
-
-.benefit-card:hover .benefit-image {
-    transform: scale(1.05);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
-}
-
-.hero-img:hover {
-    transform: scale(1.03);
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
-}
-
-/* Responsive Adjustments */
-@media (max-width: 768px) {
-    /* Removed floating button styles */
-}
-
-@media (max-width: 480px) {
-    /* Removed floating button styles */
 }

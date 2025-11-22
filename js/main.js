@@ -13,7 +13,105 @@ document.addEventListener('DOMContentLoaded', () => {
     initProgressIndicator();
     initPerformanceOptimizations();
     initCopyrightYear();
+    
+    // Expose audit function globally
+    window.showAuditResult = showAuditResult;
 });
+
+/**
+ * Handle the Interactive Audit Widget
+ * Zero-cookie, local logic only.
+ */
+function showAuditResult(type) {
+    const resultPanel = document.getElementById('audit-result');
+    if (!resultPanel) return;
+
+    let content = '';
+    
+    switch(type) {
+        case 'anxiety':
+            content = `
+                <div class="result-card">
+                    <h3>🩺 Diagnosi: "Imposter Syndrome"</h3>
+                    <p>Non è un problema di inglese, è un problema di <strong>fiducia</strong>. Sai le regole, ma la paura ti blocca.</p>
+                    <div class="result-action">
+                        <strong>La Soluzione Weekend English:</strong>
+                        <p>Simulazioni "High-Stakes" in ambiente protetto. Ti abituiamo alla pressione finché non diventa noia.</p>
+                        <a href="#contact" class="cta-button secondary-cta mt-2">Prenota la Simulazione</a>
+                    </div>
+                </div>
+            `;
+            break;
+        case 'vocab':
+            content = `
+                <div class="result-card">
+                    <h3>🩺 Diagnosi: "Passive Vocabulary Gap"</h3>
+                    <p>Conosci migliaia di parole (le leggi), ma ne usi solo 200 (le parli). Il tuo "Active Vocabulary" è arrugginito.</p>
+                    <div class="result-action">
+                        <strong>La Soluzione Weekend English:</strong>
+                        <p>Esercizi di "Active Recall" immediato. Ti forziamo a usare sinonimi professionali finché non diventano automatici.</p>
+                        <a href="#contact" class="cta-button secondary-cta mt-2">Sblocca il Vocabolario</a>
+                    </div>
+                </div>
+            `;
+            break;
+        case 'speed':
+            content = `
+                <div class="result-card">
+                    <h3>🩺 Diagnosi: "The Translation Trap"</h3>
+                    <p>Pensi in italiano e traduci in inglese. Questo crea quel ritardo di 2 secondi che uccide la tua naturalezza.</p>
+                    <div class="result-action">
+                        <strong>La Soluzione Weekend English:</strong>
+                        <p>Training per "Pensare in Inglese". Eliminiamo il passaggio intermedio italiano. Parli alla velocità del pensiero.</p>
+                        <a href="#contact" class="cta-button secondary-cta mt-2">Velocizza il Pensiero</a>
+                    </div>
+                </div>
+            `;
+            break;
+    }
+
+    // Inject and show
+    resultPanel.innerHTML = content;
+    resultPanel.classList.remove('hidden');
+    resultPanel.classList.add('active');
+
+    // Dynamic CTA Update: Update the global "Book" link to be context-aware
+    updateGlobalCTA(type);
+}
+
+/**
+ * Updates the main contact buttons to include the user's specific context
+ * @param {string} context - The diagnosed problem (anxiety, vocab, speed)
+ */
+function updateGlobalCTA(context) {
+    const mailtoLinks = document.querySelectorAll('a[href^="mailto:"]');
+    
+    const subjects = {
+        'anxiety': 'Richiesta%20Coaching%3A%20Superare%20l%27Ansia',
+        'vocab': 'Richiesta%20Coaching%3A%20Migliorare%20il%20Vocabolario',
+        'speed': 'Richiesta%20Coaching%3A%20Fluency%20Training'
+    };
+
+    const bodies = {
+        'anxiety': 'Ciao%20Cameron%2C%0A%0AHo%20fatto%20il%20test%20sul%20sito%20e%20il%20mio%20problema%20principale%20%C3%A8%20l%27ansia%20da%20prestazione.%20Vorrei%20sapere%20come%20possiamo%20lavorarci.%0A%0AGrazie.',
+        'vocab': 'Ciao%20Cameron%2C%0A%0AHo%20fatto%20il%20test%20e%20vorrei%20trasformare%20il%20mio%20vocabolario%20passivo%20in%20attivo.%20Parliamone.%0A%0AGrazie.',
+        'speed': 'Ciao%20Cameron%2C%0A%0AIl%20mio%20blocco%20principale%20%C3%A8%20la%20traduzione%20mentale.%20Voglio%20imparare%20a%20pensare%20in%20inglese.%0A%0AAttendo%20info.'
+    };
+
+    if (subjects[context]) {
+        mailtoLinks.forEach(link => {
+            // Update the href with the specific subject and body
+            // Preserving the base email address
+            const currentHref = link.getAttribute('href');
+            const baseEmail = currentHref.split('?')[0];
+            link.setAttribute('href', `${baseEmail}?subject=${subjects[context]}&body=${bodies[context]}`);
+            
+            // Add a visual cue that the link has been personalized
+            link.classList.add('personalized');
+            setTimeout(() => link.classList.remove('personalized'), 500);
+        });
+    }
+}
 
 /**
  * Initialize scroll-triggered animations using Intersection Observer
@@ -56,28 +154,6 @@ function initAnimations() {
     document.querySelectorAll('.animate-on-scroll').forEach(element => {
         elementObserver.observe(element);
     });
-
-    // Add typing effect to the hero headline - modified to preserve HTML structure
-    const heroHeadline = document.querySelector('.hero h1');
-    if (heroHeadline) {
-        const originalHTML = heroHeadline.innerHTML;
-        const textContent = heroHeadline.textContent;
-        heroHeadline.innerHTML = '<span></span>';
-        const typingSpan = heroHeadline.querySelector('span');
-
-        let i = 0;
-        const typeWriter = () => {
-            if (i < textContent.length) {
-                typingSpan.textContent += textContent.charAt(i);
-                i++;
-                setTimeout(typeWriter, 50);
-            } else {
-                heroHeadline.innerHTML = originalHTML;
-                heroHeadline.classList.add('typing-complete');
-            }
-        };
-        setTimeout(typeWriter, 500);
-    }
 }
 
 /**

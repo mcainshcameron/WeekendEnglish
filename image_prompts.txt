@@ -1,0 +1,23 @@
+Here are the prompts to generate 4 high-impact images for your website. Use these in Midjourney (v6 recommended), DALL-E 3, or similar tools.
+
+---
+
+### 1. HERO IMAGE (Main Background or Side Visual)
+**Goal:** Show the "Success State" - Confidence, Leadership, Connection. Not a generic stock photo.
+**Prompt:**
+> Cinematic shot of a charismatic male professional in his 30s, wearing a modern smart-casual blazer, speaking confidently in a high-end glass meeting room. Shallow depth of field. Warm lighting. He is gesturing naturally, smiling slightly, engaging with an unseen audience. The vibe is "Tech Executive" or "Modern Consultant". High resolution, photorealistic, 8k, architectural digest style lighting. --ar 16:9
+
+### 2. THE "WAR ROOM" (Methodology Section)
+**Goal:** Show the "Safe Intensity" of your simulation sessions. Focus and concentration.
+**Prompt:**
+> A split-screen or over-the-shoulder shot of a video call on a laptop screen in a modern home office. On the screen, a professional coach is giving feedback. The user (seen from behind) is taking notes and looks focused but empowered. Screen content is blurry but suggests a professional video interface. Moody, modern lighting, dark blue and platinum tones. --ar 3:2
+
+### 3. THE "ANTI-PERSONA" (Frustration/Problem)
+**Goal:** Visually represent the frustration of the "Translation Trap" without being cheesy.
+**Prompt:**
+> Close-up conceptual shot of a professional looking at a laptop screen, expression is one of hesitation and mental processing. Subtle visual effect of "buffering" or "glitch" around them to symbolize the language barrier. Dark atmosphere, neon cyan rim light. High contrast. --ar 4:3
+
+### 4. ABSTRACT BACKGROUND (Optional, for replacement of patterns)
+**Goal:** A clean, premium abstract texture to use instead of gradients if needed.
+**Prompt:**
+> Abstract 3D flowing waves of liquid obsidian and platinum. Smooth, matte finish with glossy highlights. Dark navy blue and silver color palette. Minimalist, executive, premium feel. No text, no objects. --ar 16:9 --tile
