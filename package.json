@@ -1,0 +1,12 @@
+{
+  "name": "weekendenglish-website",
+  "version": "1.0.0",
+  "description": "Weekend English website optimization",
+  "private": true,
+  "scripts": {
+    "optimize-images": "node optimize-images.js"
+  },
+  "devDependencies": {
+    "sharp": "^0.33.0"
+  }
+}
