@@ -73,3 +73,7 @@ tmp/
 # Uncomment if you want to ignore lock files:
 # package-lock.json
 # yarn.lock
+
+# Watermarked source images: kept locally as input for optimize-images.js.
+# Never published — GitHub Pages serves the working tree.
+images/_originals/

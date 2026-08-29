@@ -1,187 +1,834 @@
-/* Features Grid */
-.features-grid {
+/* ==========================================================================
+   Weekend English — Sections
+   Page-specific composition. Everything here leans on the tokens and the
+   section rhythm defined in base.css / layout.css.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Hero
+   -------------------------------------------------------------------------- */
+
+.hero {
+    padding-block: clamp(3rem, 7vw, 5.5rem) clamp(3.5rem, 8vw, 6rem);
+}
+
+.hero__grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-/* Benefits Grid */
-.benefits-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.benefit-card {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-}
-
-.benefit-card h3,
-.benefit-card p {
-    flex-shrink: 0;
-}
-
-.benefit-card .benefit-image {
-    margin-top: auto;
-    height: 200px;
-    width: 100%;
-    object-fit: cover;
-}
-
-/* Process Steps Grid */
-.steps {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 2rem;
-    max-width: 1200px;
-    margin: 0 auto;
-    list-style: none;
-    padding: 0;
-}
-
-/* FAQ Questions Grid */
-.questions {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-/* About Section */
-.about {
-    max-width: 1200px;
-    margin: 4rem auto;
-    display: flex;
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+    gap: clamp(2.5rem, 6vw, 5rem);
     align-items: center;
-    gap: 2rem;
-    padding: 3rem;
-    background-color: var(--card-background);
-    border-radius: 16px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-    border: 1px solid var(--card-border);
 }
 
-.about-content {
-    flex: 2;
-    padding: 0;
+.hero__kicker {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+    margin-bottom: var(--space-5);
 }
 
-.about-content p {
-    font-size: 1.1rem;
-    line-height: 1.7;
-    margin: 0;
-    color: var(--text-secondary);
+.hero__kicker::before {
+    content: '';
+    width: 1.75rem;
+    height: 1px;
+    background: var(--blue);
 }
 
-.about-image {
-    width: 300px;
-    height: 300px;
-    border-radius: 50%;
-    object-fit: cover;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.4);
-    border: 4px solid var(--card-border);
-    flex-shrink: 0;
+.hero h1 {
+    margin-bottom: var(--space-5);
 }
 
-/* Booking Section */
-.booking {
-    background-color: var(--card-background);
-    padding: 3rem 1rem;
-    border-radius: 12px;
-    margin-top: 4rem;
-    border: 1px solid var(--card-border);
+/* The accent rule beneath the headline. */
+.hero__rule {
+    width: 4.5rem;
+    height: 2px;
+    background: var(--blue);
+    margin-bottom: var(--space-5);
 }
 
-.booking h2 {
-    color: var(--secondary-color);
+.hero .lede {
+    margin-bottom: var(--space-6);
 }
 
-.booking p {
-    color: var(--text-secondary);
+.hero__trust {
+    margin-top: var(--space-6);
+    padding-top: var(--space-5);
+    border-top: 1px solid var(--rule);
+    font-size: 0.85rem;
+    color: var(--ink-mute);
+    max-width: var(--measure);
 }
 
-/* Contact Info */
-.contact-info {
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 2rem;
-    background: var(--background-secondary);
-    border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-    border: 1px solid var(--card-border);
-}
-
-.contact-info .cta-button {
-    font-size: 1.1rem;
-    padding: 1rem 2rem;
-}
-
-/* Section Spacing */
-section {
-    padding: 4rem 1rem;
-    margin-bottom: 2rem;
-}
-
-.intro {
-    max-width: 800px;
-    margin: 0 auto;
-    text-align: center;
-}
-
-.intro p {
-    color: var(--text-secondary);
-}
-
-.lead {
-    font-size: 1.2rem;
-    color: var(--text-primary);
+.hero__trust strong {
+    color: var(--ink-body);
     font-weight: 500;
 }
 
-/* Responsive Grids */
-@media (max-width: 768px) {
-    .features-grid,
-    .benefits-grid,
-    .steps,
-    .questions {
+/* The hero photograph sits in a plate — offset hairline, no shadow. */
+.plate {
+    position: relative;
+}
+
+.plate::before {
+    content: '';
+    position: absolute;
+    inset: -0.75rem -0.75rem 0.75rem 0.75rem;
+    border: 1px solid var(--rule);
+    border-radius: var(--radius);
+    pointer-events: none;
+}
+
+.plate img {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: var(--radius);
+}
+
+@media (max-width: 900px) {
+    .hero__grid {
         grid-template-columns: 1fr;
-        max-width: 500px;
-        margin: 0 auto;
+        gap: var(--space-7);
     }
 
-    .about {
-        flex-direction: column;
-        text-align: center;
-        padding: 2rem;
-        gap: 2rem;
-        margin: 2rem auto;
-    }
-
-    .about-content {
-        padding: 0;
-    }
-
-    .about-image {
-        width: 250px;
-        height: 250px;
-        margin: 0 auto;
-    }
-
-    section {
-        padding: 2rem 1rem;
+    .plate::before {
+        inset: -0.5rem -0.5rem 0.5rem 0.5rem;
     }
 }
 
-/* Print Styles */
-@media print {
-    section {
-        page-break-inside: avoid;
+/* --------------------------------------------------------------------------
+   2. Client roster
+   -------------------------------------------------------------------------- */
+
+.roster {
+    padding-block: var(--space-6);
+}
+
+.roster__label {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+    margin-bottom: var(--space-4);
+}
+
+.roster__list {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0 var(--space-6);
+    list-style: none;
+}
+
+.roster__list li {
+    font-size: 0.95rem;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    color: var(--ink-body);
+    padding-block: 0.35rem;
+    position: relative;
+}
+
+.roster__list li + li::before {
+    content: '';
+    position: absolute;
+    left: calc(var(--space-6) / -2);
+    top: 50%;
+    width: 1px;
+    height: 0.9rem;
+    transform: translateY(-50%);
+    background: var(--rule-strong);
+}
+
+/* --------------------------------------------------------------------------
+   3. The paradox — two columns divided by a hairline
+   -------------------------------------------------------------------------- */
+
+.paradox__cols {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    border: 1px solid var(--rule);
+    border-radius: var(--radius);
+    background: var(--paper-raised);
+    overflow: hidden;
+}
+
+.paradox__col {
+    padding: clamp(1.75rem, 3.5vw, 2.75rem);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+}
+
+.paradox__col + .paradox__col {
+    border-left: 1px solid var(--rule);
+}
+
+.paradox__col h3 {
+    font-style: italic;
+}
+
+.paradox__col p {
+    color: var(--ink-body);
+}
+
+.paradox__plate {
+    margin-top: clamp(1.5rem, 3vw, 2.5rem);
+}
+
+.paradox__plate img {
+    display: block;
+    width: 100%;
+    height: auto;          /* beat the width/height attributes' aspect hint */
+    aspect-ratio: 21 / 8;
+    object-fit: cover;
+    object-position: 50% 25%;
+    border-radius: var(--radius);
+}
+
+.paradox__plate figcaption {
+    margin-top: var(--space-3);
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+}
+
+@media (max-width: 700px) {
+    .paradox__cols {
+        grid-template-columns: 1fr;
+    }
+
+    .paradox__col + .paradox__col {
+        border-left: 0;
+        border-top: 1px solid var(--rule);
+    }
+}
+
+/* --------------------------------------------------------------------------
+   4. Who this is not for — a ruled list, not cards
+   -------------------------------------------------------------------------- */
+
+.exclusions {
+    list-style: none;
+    max-width: 52rem;
+}
+
+.exclusions li {
+    display: flex;
+    align-items: baseline;
+    gap: var(--space-4);
+    padding-block: 1.15rem;
+    border-bottom: 1px solid var(--rule);
+    color: var(--ink-body);
+}
+
+.exclusions li:first-child {
+    border-top: 1px solid var(--rule);
+}
+
+.exclusions li::before {
+    content: '\2715';           /* multiplication x */
+    color: var(--signal);
+    font-size: 0.8rem;
+    flex-shrink: 0;
+    line-height: 1.6;
+}
+
+/* --------------------------------------------------------------------------
+   5. Audit widget
+   -------------------------------------------------------------------------- */
+
+.audit__options {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-4);
+}
+
+@media (max-width: 800px) {
+    .audit__options {
+        grid-template-columns: 1fr;
+    }
+}
+
+.audit__option {
+    font-family: inherit;
+    text-align: left;
+    background: var(--paper-raised);
+    border: 1px solid var(--rule);
+    border-radius: var(--radius);
+    padding: clamp(1.35rem, 2.5vw, 1.85rem);
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    transition: border-color var(--fast), background-color var(--fast),
+                transform var(--fast);
+}
+
+.audit__option:hover {
+    border-color: var(--rule-strong);
+    transform: translateY(-2px);
+}
+
+.audit__option[aria-pressed='true'] {
+    border-color: var(--blue);
+    background: var(--blue-wash);
+}
+
+.audit__option .marker {
+    margin-bottom: var(--space-2);
+}
+
+.audit__option h3 {
+    font-size: 1.25rem;
+}
+
+.audit__option p {
+    font-size: 0.9rem;
+    color: var(--ink-mute);
+    margin: 0;
+}
+
+/* Result panel */
+.audit__result {
+    margin-top: var(--space-5);
+    border: 1px solid var(--ink);
+    border-radius: var(--radius);
+    background: var(--ink);
+    color: var(--paper);
+    padding: clamp(1.75rem, 4vw, 2.75rem);
+}
+
+.audit__result[hidden] {
+    display: none;
+}
+
+.audit__result .meta {
+    color: color-mix(in srgb, var(--paper) 62%, transparent);
+    margin-bottom: var(--space-4);
+}
+
+.audit__result h3 {
+    color: var(--paper);
+    font-style: italic;
+    margin-bottom: var(--space-4);
+    max-width: 24ch;
+}
+
+.audit__result > p {
+    color: color-mix(in srgb, var(--paper) 82%, transparent);
+    max-width: var(--measure);
+}
+
+.audit__result strong {
+    color: #fff;
+}
+
+.audit__remedy {
+    margin-top: var(--space-6);
+    padding-top: var(--space-5);
+    border-top: 1px solid color-mix(in srgb, var(--paper) 22%, transparent);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: var(--space-5);
+}
+
+.audit__remedy p {
+    color: color-mix(in srgb, var(--paper) 82%, transparent);
+    max-width: 40ch;
+    margin-top: var(--space-2);
+}
+
+.audit__remedy .meta {
+    color: color-mix(in srgb, var(--paper) 62%, transparent);
+    margin: 0;
+}
+
+.audit__result .btn {
+    background: var(--paper);
+    border-color: var(--paper);
+    color: var(--ink);
+    flex-shrink: 0;
+}
+
+.audit__result .btn:hover {
+    background: var(--blue);
+    border-color: var(--blue);
+    color: #fff;
+}
+
+/* --------------------------------------------------------------------------
+   6. Method / service
+   -------------------------------------------------------------------------- */
+
+.lead-feature {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: clamp(2rem, 5vw, 4rem);
+    align-items: center;
+    margin-bottom: clamp(2.5rem, 5vw, 4rem);
+}
+
+.lead-feature img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: var(--radius);
+}
+
+.lead-feature h3 {
+    font-size: clamp(1.5rem, 2.8vw, 2rem);
+    margin-block: var(--space-4) var(--space-4);
+}
+
+.lead-feature p {
+    max-width: var(--measure);
+}
+
+@media (max-width: 850px) {
+    .lead-feature {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* The remaining capabilities, as ruled columns rather than floating cards. */
+.feature-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    border-top: 1px solid var(--rule);
+}
+
+.feature-row > div {
+    padding: var(--space-6) var(--space-5);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+}
+
+.feature-row > div + div {
+    border-left: 1px solid var(--rule);
+}
+
+.feature-row h4 {
+    color: var(--ink);
+}
+
+.feature-row p {
+    font-size: 0.9rem;
+    color: var(--ink-mute);
+}
+
+.feature-row > div:first-child {
+    padding-left: 0;
+}
+
+.feature-row > div:last-child {
+    padding-right: 0;
+}
+
+@media (max-width: 950px) {
+    .feature-row {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .feature-row > div:nth-child(odd) {
+        border-left: 0;
+        padding-left: 0;
+    }
+
+    .feature-row > div:nth-child(n + 3) {
+        border-top: 1px solid var(--rule);
+    }
+}
+
+@media (max-width: 560px) {
+    .feature-row {
+        grid-template-columns: 1fr;
+    }
+
+    .feature-row > div {
+        border-left: 0 !important;
+        padding-inline: 0;
+    }
+
+    .feature-row > div + div {
+        border-top: 1px solid var(--rule);
+    }
+}
+
+/* --------------------------------------------------------------------------
+   7. About
+   -------------------------------------------------------------------------- */
+
+.about__grid {
+    display: grid;
+    grid-template-columns: minmax(0, 20rem) minmax(0, 1fr);
+    gap: clamp(2rem, 5vw, 4.5rem);
+    align-items: start;
+}
+
+.about__portrait img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: var(--radius);
+    filter: grayscale(1) contrast(1.04);
+    transition: filter 400ms var(--ease);
+}
+
+.about__portrait:hover img {
+    filter: grayscale(0) contrast(1);
+}
+
+.about__portrait figcaption {
+    margin-top: var(--space-4);
+    padding-top: var(--space-3);
+    border-top: 1px solid var(--rule);
+}
+
+.about__portrait figcaption strong {
+    display: block;
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    font-weight: 400;
+    color: var(--ink);
+    margin-bottom: 0.15rem;
+}
+
+.about__portrait figcaption span {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+}
+
+.about__body > * + * {
+    margin-top: var(--space-5);
+}
+
+.about__body p {
+    max-width: 44rem;
+}
+
+/* An opening line set larger, the way a magazine sets a standfirst. */
+.about__body p:first-of-type {
+    font-family: var(--font-display);
+    font-size: clamp(1.2rem, 2vw, 1.5rem);
+    line-height: 1.4;
+    color: var(--ink);
+}
+
+@media (max-width: 800px) {
+    .about__grid {
+        grid-template-columns: 1fr;
+    }
+
+    .about__portrait {
+        max-width: 16rem;
+    }
+}
+
+/* --------------------------------------------------------------------------
+   8. Testimonials
+   -------------------------------------------------------------------------- */
+
+.quotes {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    border-top: 1px solid var(--rule);
+}
+
+.quotes > figure {
+    padding: var(--space-6) var(--space-5);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+}
+
+.quotes > figure + figure {
+    border-left: 1px solid var(--rule);
+}
+
+.quotes > figure:first-child {
+    padding-left: 0;
+}
+
+.quotes > figure:last-child {
+    padding-right: 0;
+}
+
+.quotes blockquote {
+    font-family: var(--font-display);
+    font-size: clamp(1.05rem, 1.7vw, 1.2rem);
+    line-height: 1.45;
+    color: var(--ink);
+}
+
+.quotes blockquote::before {
+    content: '\201C';
+    display: block;
+    font-family: var(--font-display);
+    font-size: 3rem;
+    line-height: 0.6;
+    color: var(--blue);
+    margin-bottom: var(--space-4);
+}
+
+.quotes figcaption {
+    margin-top: auto;
+    padding-top: var(--space-4);
+    border-top: 1px solid var(--rule);
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+}
+
+.quotes figcaption strong {
+    color: var(--ink);
+    font-weight: 500;
+}
+
+@media (max-width: 850px) {
+    .quotes {
+        grid-template-columns: 1fr;
+    }
+
+    .quotes > figure {
+        padding-inline: 0;
+    }
+
+    .quotes > figure + figure {
+        border-left: 0;
+        border-top: 1px solid var(--rule);
+    }
+}
+
+/* --------------------------------------------------------------------------
+   9. Process
+   -------------------------------------------------------------------------- */
+
+.process {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-6);
+    list-style: none;
+    counter-reset: step;
+}
+
+.process > li {
+    border-top: 2px solid var(--ink);
+    padding-top: var(--space-4);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+}
+
+.process > li::before {
+    counter-increment: step;
+    content: counter(step, decimal-leading-zero);
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    color: var(--blue);
+}
+
+.process h3 {
+    font-size: 1.2rem;
+}
+
+.process p {
+    font-size: 0.9rem;
+    color: var(--ink-body);
+}
+
+@media (max-width: 900px) {
+    .process {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 520px) {
+    .process {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* --------------------------------------------------------------------------
+   10. FAQ
+   -------------------------------------------------------------------------- */
+
+.faq__grid {
+    display: grid;
+    grid-template-columns: minmax(0, 18rem) minmax(0, 1fr);
+    gap: clamp(2rem, 5vw, 4rem);
+    align-items: start;
+}
+
+@media (max-width: 800px) {
+    .faq__grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* --------------------------------------------------------------------------
+   11. Closing call to action
+   -------------------------------------------------------------------------- */
+
+.closing {
+    background: var(--ink);
+    color: var(--paper);
+    border-radius: var(--radius-lg);
+    padding: clamp(2.5rem, 6vw, 5rem);
+    margin-block: clamp(3rem, 7vw, 5rem);
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+    gap: clamp(2rem, 5vw, 4rem);
+    align-items: center;
+}
+
+.closing h2 {
+    color: var(--paper);
+    max-width: 16ch;
+}
+
+.closing .eyebrow {
+    color: color-mix(in srgb, var(--paper) 62%, transparent);
+    margin-bottom: var(--space-5);
+}
+
+.closing .eyebrow::after {
+    background: color-mix(in srgb, var(--paper) 25%, transparent);
+}
+
+.closing .eyebrow-num {
+    color: #8f7dff;
+}
+
+.closing p {
+    color: color-mix(in srgb, var(--paper) 82%, transparent);
+    max-width: 38ch;
+}
+
+.closing__lede {
+    margin-top: var(--space-5);
+    font-size: 1.05rem;
+}
+
+.closing__panel {
+    border: 1px solid color-mix(in srgb, var(--paper) 22%, transparent);
+    border-radius: var(--radius);
+    padding: clamp(1.5rem, 3vw, 2.25rem);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+}
+
+.closing__panel h3 {
+    color: var(--paper);
+    font-size: 1.35rem;
+}
+
+.closing__panel .btn {
+    background: var(--paper);
+    border-color: var(--paper);
+    color: var(--ink);
+    margin-top: var(--space-2);
+}
+
+.closing__panel .btn:hover {
+    background: #8f7dff;
+    border-color: #8f7dff;
+    color: var(--ink);
+}
+
+.closing__note {
+    font-size: 0.8125rem;
+    color: color-mix(in srgb, var(--paper) 58%, transparent) !important;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+}
+
+.closing__note svg {
+    width: 0.9rem;
+    height: 0.9rem;
+    flex-shrink: 0;
+    margin-top: 0.22rem;
+}
+
+.closing__availability {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    align-self: flex-start;
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #f0b49a;
+}
+
+.closing__availability::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: currentColor;
+}
+
+@media (max-width: 850px) {
+    .closing {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* --------------------------------------------------------------------------
+   12. Mobile action bar
+   -------------------------------------------------------------------------- */
+
+.action-bar {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 90;
+    padding: 0.75rem var(--gutter) calc(0.75rem + env(safe-area-inset-bottom));
+    background: color-mix(in srgb, var(--paper) 94%, transparent);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-top: 1px solid var(--rule);
+    transform: translateY(100%);
+    transition: transform 320ms var(--ease);
+}
+
+.action-bar.is-visible {
+    transform: translateY(0);
+}
+
+.action-bar .btn {
+    width: 100%;
+}
+
+@media (min-width: 901px) {
+    .action-bar {
+        display: none;
     }
 }

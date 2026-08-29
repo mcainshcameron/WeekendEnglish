@@ -1,164 +1,301 @@
+/* ==========================================================================
+   Weekend English — Foundations
+   --------------------------------------------------------------------------
+   The palette is derived from the brand mark itself: the logo's ultramarine
+   (#1f09ff, sampled from the source PNG) sitting on warm paper stock. Serif
+   for display, Inter for everything that has to be read at small sizes, a
+   mono for section numbering. No gradients, no glass, no drop shadows beyond
+   a single soft lift.
+   ========================================================================== */
+
 :root {
-    /* Dark Theme Color Scheme */
-    --primary-color: #60a5fa; /* Light blue for dark backgrounds */
-    --primary-dark: #3b82f6; /* Darker blue for hover states */
-    --primary-light: #93c5fd; /* Lighter blue for accents */
-    --secondary-color: #f3f4f6; /* Light gray for text on dark */
-    --background-color: #0f172a; /* Dark navy background */
-    --background-secondary: #1e293b; /* Slightly lighter dark */
-    --text-color: #e2e8f0; /* Light gray text */
-    --text-secondary: #cbd5e1; /* Secondary light gray text */
-    --accent-color: #22d3ee; /* Cyan accent */
-    --accent-light: #334155; /* Dark gray for subtle accents */
-    --card-background: #1e293b; /* Card background */
-    --card-border: #334155; /* Card border */
-    --spacing-unit: clamp(1rem, 2vw, 2rem);
-    --transition-speed: 0.3s;
+    /* --- Paper & ink ---------------------------------------------------- */
+    --paper:          #f4f0e8;  /* page stock */
+    --paper-raised:   #fbf9f4;  /* cards sitting on the page */
+    --paper-deep:     #e8e2d5;  /* recessed bands */
+    --ink:            #14120f;  /* headings, hard type */
+    --ink-body:       #3f3931;  /* running copy */
+    --ink-mute:       #7b7365;  /* captions, meta, eyebrows */
+    --rule:           #d9d1c1;  /* hairlines */
+    --rule-strong:    #b6ab94;  /* emphasis rules */
+
+    /* --- Brand ----------------------------------------------------------- */
+    --blue:           #1f09ff;
+    --blue-deep:      #1607bd;
+    --blue-wash:      #ebe9ff;
+
+    /* --- Editorial signals (rationed: two uses per page, no more) --------- */
+    --signal:         #b5401f;  /* terracotta — the "reality" column */
+    --signal-wash:    #f7e9e3;
+    --moss:           #4a6247;  /* the "on paper you're fine" column */
+    --moss-wash:      #e7ece5;
+
+    /* --- Type ------------------------------------------------------------ */
+    --font-display: 'Iowan Old Style', 'Palatino Linotype', Palatino,
+                    'Book Antiqua', Georgia, 'Times New Roman', serif;
+    --font-sans:    'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI',
+                    Roboto, 'Helvetica Neue', Arial, sans-serif;
+    --font-mono:    ui-monospace, 'Cascadia Mono', 'Segoe UI Mono', 'SF Mono',
+                    Menlo, Consolas, monospace;
+
+    /* --- Measure & rhythm ------------------------------------------------ */
+    --maxw:      74rem;   /* outer content width */
+    --measure:   36rem;   /* comfortable reading column */
+    --gutter:    clamp(1.25rem, 5vw, 4rem);
+    --header-h:  4.5rem;
+
+    --space-1: 0.25rem;
+    --space-2: 0.5rem;
+    --space-3: 0.75rem;
+    --space-4: 1rem;
+    --space-5: 1.5rem;
+    --space-6: 2rem;
+    --space-7: 3rem;
+    --space-8: 4rem;
+    --space-9: 6rem;
+
+    /* --- Surface detail --------------------------------------------------- */
+    --radius:      4px;
+    --radius-lg:   8px;
+    --lift:        0 1px 2px rgba(20, 18, 15, 0.04),
+                   0 8px 24px -12px rgba(20, 18, 15, 0.18);
+    --ease:        cubic-bezier(0.2, 0.6, 0.25, 1);
+    --fast:        140ms var(--ease);
 }
 
-/* Base Styles with Performance Optimizations */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+}
+
+/* <picture> is inline by default, which leaves a descender gap under the img
+   and complicates percentage widths. */
+picture {
+    display: block;
 }
 
 html {
+    color-scheme: light;
     scroll-behavior: smooth;
-    scroll-padding-top: 80px;
+    scroll-padding-top: calc(var(--header-h) + 1.5rem);
+    -webkit-text-size-adjust: 100%;
+
+    /* `clip`, not `hidden`, and on <html> rather than <body>. `overflow-x:
+       hidden` on the body forces its overflow-y to `auto`, which makes the
+       body its own scroll container: position:sticky and IntersectionObserver
+       then measure against that box instead of the viewport, and every
+       scroll-triggered effect silently stops firing. `clip` never creates a
+       scroll container, so it cannot cause that. */
+    overflow-x: clip;
 }
 
 body {
-    font-family: 'Inter', system-ui, -apple-system, sans-serif;
-    line-height: 1.6;
-    color: var(--text-color);
-    background: var(--background-color);
-    background-image: 
-        radial-gradient(circle at 20% 50%, rgba(96, 165, 250, 0.1) 0%, transparent 50%),
-        radial-gradient(circle at 80% 80%, rgba(34, 211, 238, 0.1) 0%, transparent 50%);
-    overflow-x: hidden;
-    min-height: 100vh;
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    line-height: 1.65;
+    color: var(--ink-body);
+    background-color: var(--paper);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-feature-settings: 'kern' 1, 'liga' 1, 'calt' 1;
+
+    /* A barely-there paper grain — felt rather than seen. Tiled straight onto
+       the body background rather than layered in a fixed ::after overlay: a
+       full-viewport fixed layer forces its own compositing layer and makes
+       scrolling repaint work far harder than a 140px repeating tile does. */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
 }
 
-/* Enhanced Typography */
-h1, h2, h3 {
-    font-family: 'Inter', sans-serif;
-    color: var(--secondary-color);
+/* --------------------------------------------------------------------------
+   Typography
+   -------------------------------------------------------------------------- */
+
+h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    color: var(--ink);
+    font-weight: 400;          /* the serif carries weight on its own */
+    line-height: 1.08;
+    letter-spacing: -0.015em;
+    text-wrap: balance;
 }
 
 h1 {
-    font-size: clamp(2.5rem, 5vw, 3.5rem);
-    margin-bottom: 1rem;
-    line-height: 1.2;
-    font-weight: 700;
+    font-size: clamp(2.6rem, 6.2vw, 4.75rem);
+    line-height: 1.02;
+    letter-spacing: -0.028em;
 }
 
 h2 {
-    font-size: clamp(2rem, 4vw, 2.5rem);
-    margin-bottom: 3rem;
-    text-align: center;
-    font-weight: 600;
+    font-size: clamp(1.9rem, 4vw, 3rem);
+    letter-spacing: -0.022em;
 }
 
 h3 {
-    font-weight: 600;
-    font-size: clamp(1.25rem, 2vw, 1.5rem);
+    font-size: clamp(1.3rem, 2.2vw, 1.65rem);
+    line-height: 1.2;
+}
+
+h4 {
+    font-size: 1.15rem;
+    line-height: 1.25;
 }
 
 p {
-    color: var(--text-secondary);
-    line-height: 1.7;
+    text-wrap: pretty;
 }
 
-.highlight {
-    color: var(--primary-color);
-    position: relative;
-    display: inline-block;
+strong, b {
+    font-weight: 600;
+    color: var(--ink);
 }
 
-.highlight::after {
+em {
+    font-style: italic;
+}
+
+/* Italic in the display serif, used for the emphasised phrase in headlines. */
+.accent-italic {
+    font-style: italic;
+    color: var(--blue);
+}
+
+/* Small caps eyebrow — the mono label that opens every section. */
+.eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+}
+
+.eyebrow::after {
     content: '';
-    position: absolute;
-    bottom: -2px;
-    left: 0;
-    width: 100%;
-    height: 2px;
-    background-color: var(--primary-color);
-    transform: scaleX(0);
-    transition: transform var(--transition-speed) ease;
+    flex: 1;
+    height: 1px;
+    background: var(--rule);
 }
 
-.highlight:hover::after {
-    transform: scaleX(1);
+.eyebrow-num {
+    color: var(--blue);
+    font-variant-numeric: tabular-nums;
 }
 
-.subtitle {
-    font-size: clamp(1rem, 3vw, 1.2rem);
-    margin-bottom: 2rem;
-    opacity: 0.9;
-    color: var(--text-secondary);
+.lede {
+    font-size: clamp(1.05rem, 1.6vw, 1.25rem);
+    line-height: 1.55;
+    color: var(--ink-body);
+    max-width: var(--measure);
 }
 
-/* Links */
+.measure {
+    max-width: var(--measure);
+}
+
+.meta {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+}
+
+/* --------------------------------------------------------------------------
+   Links
+   -------------------------------------------------------------------------- */
+
 a {
-    color: var(--primary-color);
+    color: var(--blue);
     text-decoration: none;
-    transition: color var(--transition-speed) ease;
 }
 
-a:hover {
-    color: var(--primary-light);
+/* Inline prose links get a hairline underline that thickens on hover, rather
+   than a colour change. */
+.prose a,
+a.inline-link {
+    color: var(--ink);
+    background-image: linear-gradient(var(--blue), var(--blue));
+    background-repeat: no-repeat;
+    background-position: 0 100%;
+    background-size: 100% 1px;
+    padding-bottom: 1px;
+    transition: background-size var(--fast), color var(--fast);
 }
 
-/* Selection */
+.prose a:hover,
+a.inline-link:hover {
+    color: var(--blue);
+    background-size: 100% 2px;
+}
+
+/* --------------------------------------------------------------------------
+   Selection, focus, scrollbar
+   -------------------------------------------------------------------------- */
+
 ::selection {
-    background-color: var(--primary-color);
-    color: var(--background-color);
+    background-color: var(--blue);
+    color: #fff;
 }
 
-::-moz-selection {
-    background-color: var(--primary-color);
-    color: var(--background-color);
+:focus-visible {
+    outline: 2px solid var(--blue);
+    outline-offset: 3px;
+    border-radius: 2px;
 }
 
-/* Scrollbar */
-::-webkit-scrollbar {
-    width: 12px;
+/* --------------------------------------------------------------------------
+   Accessibility helpers
+   -------------------------------------------------------------------------- */
+
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+    border: 0;
 }
 
-::-webkit-scrollbar-track {
-    background: var(--background-secondary);
+.skip-link {
+    position: absolute;
+    left: 1rem;
+    top: -4rem;
+    z-index: 200;
+    padding: 0.75rem 1.25rem;
+    background: var(--ink);
+    color: var(--paper);
+    font-size: 0.9rem;
+    font-weight: 500;
+    border-radius: var(--radius);
+    transition: top var(--fast);
 }
 
-::-webkit-scrollbar-thumb {
-    background: var(--accent-light);
-    border-radius: 6px;
+.skip-link:focus {
+    top: 1rem;
 }
 
-::-webkit-scrollbar-thumb:hover {
-    background: var(--primary-dark);
-}
-
-/* Focus styles */
-:focus {
-    outline: 2px solid var(--primary-color);
-    outline-offset: 2px;
-}
-
-:focus:not(:focus-visible) {
-    outline: none;
-}
-
-/* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
     *,
     *::before,
     *::after {
         animation-duration: 0.01ms !important;
         animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;
-        scroll-behavior: auto !important;
     }
 }

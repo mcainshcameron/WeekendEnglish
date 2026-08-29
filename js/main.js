@@ -1,321 +1,194 @@
 /**
- * WeekendEnglish.it - Enhanced JavaScript
- * Modern, dynamic features with zero cookies and zero data collection
+ * WeekendEnglish.it
+ * No cookies, no analytics, no network calls. Everything below runs locally.
  */
 
-// Wait for DOM to be fully loaded
-document.addEventListener('DOMContentLoaded', () => {
-    // Initialize all components
-    initAnimations();
-    initFaqAccordion();
-    initScrollEffects();
-    // initFloatingButton(); // Removed back to top button
-    initProgressIndicator();
-    initPerformanceOptimizations();
-    initCopyrightYear();
-    
-    // Expose audit function globally
-    window.showAuditResult = showAuditResult;
-});
+(function () {
+    'use strict';
 
-/**
- * Handle the Interactive Audit Widget
- * Zero-cookie, local logic only.
- */
-function showAuditResult(type) {
-    const resultPanel = document.getElementById('audit-result');
-    if (!resultPanel) return;
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    let content = '';
-    
-    switch(type) {
-        case 'anxiety':
-            content = `
-                <div class="result-card">
-                    <h3>🩺 Diagnosi: "Imposter Syndrome"</h3>
-                    <p>Non è un problema di inglese, è un problema di <strong>fiducia</strong>. Sai le regole, ma la paura ti blocca.</p>
-                    <div class="result-action">
-                        <strong>La Soluzione Weekend English:</strong>
-                        <p>Simulazioni "High-Stakes" in ambiente protetto. Ti abituiamo alla pressione finché non diventa noia.</p>
-                        <a href="#contact" class="cta-button secondary-cta mt-2">Prenota la Simulazione</a>
-                    </div>
-                </div>
-            `;
-            break;
-        case 'vocab':
-            content = `
-                <div class="result-card">
-                    <h3>🩺 Diagnosi: "Passive Vocabulary Gap"</h3>
-                    <p>Conosci migliaia di parole (le leggi), ma ne usi solo 200 (le parli). Il tuo "Active Vocabulary" è arrugginito.</p>
-                    <div class="result-action">
-                        <strong>La Soluzione Weekend English:</strong>
-                        <p>Esercizi di "Active Recall" immediato. Ti forziamo a usare sinonimi professionali finché non diventano automatici.</p>
-                        <a href="#contact" class="cta-button secondary-cta mt-2">Sblocca il Vocabolario</a>
-                    </div>
-                </div>
-            `;
-            break;
-        case 'speed':
-            content = `
-                <div class="result-card">
-                    <h3>🩺 Diagnosi: "The Translation Trap"</h3>
-                    <p>Pensi in italiano e traduci in inglese. Questo crea quel ritardo di 2 secondi che uccide la tua naturalezza.</p>
-                    <div class="result-action">
-                        <strong>La Soluzione Weekend English:</strong>
-                        <p>Training per "Pensare in Inglese". Eliminiamo il passaggio intermedio italiano. Parli alla velocità del pensiero.</p>
-                        <a href="#contact" class="cta-button secondary-cta mt-2">Velocizza il Pensiero</a>
-                    </div>
-                </div>
-            `;
-            break;
-    }
+    /* ---------------------------------------------------------------------
+       Diagnosi widget
+       --------------------------------------------------------------------- */
 
-    // Inject and show
-    resultPanel.innerHTML = content;
-    resultPanel.classList.remove('hidden');
-    resultPanel.classList.add('active');
-
-    // Dynamic CTA Update: Update the global "Book" link to be context-aware
-    updateGlobalCTA(type);
-}
-
-/**
- * Updates the main contact buttons to include the user's specific context
- * @param {string} context - The diagnosed problem (anxiety, vocab, speed)
- */
-function updateGlobalCTA(context) {
-    const mailtoLinks = document.querySelectorAll('a[href^="mailto:"]');
-    
-    const subjects = {
-        'anxiety': 'Richiesta%20Coaching%3A%20Superare%20l%27Ansia',
-        'vocab': 'Richiesta%20Coaching%3A%20Migliorare%20il%20Vocabolario',
-        'speed': 'Richiesta%20Coaching%3A%20Fluency%20Training'
+    const DIAGNOSES = {
+        anxiety: {
+            label: 'Diagnosi A',
+            title: 'Imposter syndrome',
+            body: 'Non è un problema di inglese, è un problema di <strong>fiducia</strong>. Sai le regole, ma la paura di sbagliare ti blocca proprio nel momento in cui dovresti prendere la parola.',
+            remedyTitle: 'Il rimedio',
+            remedy: 'Simulazioni high-stakes in ambiente protetto. Ti abituiamo alla pressione finché non diventa noia.',
+            cta: 'Prenota la simulazione',
+            subject: 'Richiesta Coaching: Superare l\'Ansia',
+            mailBody: 'Ciao Cameron,\n\nHo fatto il test sul sito e il mio problema principale è l\'ansia da prestazione. Vorrei sapere come possiamo lavorarci.\n\nGrazie.'
+        },
+        vocab: {
+            label: 'Diagnosi B',
+            title: 'Passive vocabulary gap',
+            body: 'Conosci migliaia di parole — le leggi senza sforzo — ma ne usi solo un paio di centinaia quando parli. Il tuo <strong>vocabolario attivo</strong> è arrugginito.',
+            remedyTitle: 'Il rimedio',
+            remedy: 'Esercizi di active recall immediato. Ti forziamo a usare sinonimi professionali finché non diventano automatici.',
+            cta: 'Sblocca il vocabolario',
+            subject: 'Richiesta Coaching: Migliorare il Vocabolario',
+            mailBody: 'Ciao Cameron,\n\nHo fatto il test e vorrei trasformare il mio vocabolario passivo in attivo. Parliamone.\n\nGrazie.'
+        },
+        speed: {
+            label: 'Diagnosi C',
+            title: 'The translation trap',
+            body: 'Pensi in italiano e traduci in inglese. È questo a creare il <strong>ritardo di due secondi</strong> che uccide la tua naturalezza e ti fa sembrare meno sicuro di quanto sei.',
+            remedyTitle: 'Il rimedio',
+            remedy: 'Training per pensare direttamente in inglese. Eliminiamo il passaggio intermedio: parli alla velocità del pensiero.',
+            cta: 'Velocizza il pensiero',
+            subject: 'Richiesta Coaching: Fluency Training',
+            mailBody: 'Ciao Cameron,\n\nIl mio blocco principale è la traduzione mentale. Voglio imparare a pensare in inglese.\n\nAttendo info.'
+        }
     };
 
-    const bodies = {
-        'anxiety': 'Ciao%20Cameron%2C%0A%0AHo%20fatto%20il%20test%20sul%20sito%20e%20il%20mio%20problema%20principale%20%C3%A8%20l%27ansia%20da%20prestazione.%20Vorrei%20sapere%20come%20possiamo%20lavorarci.%0A%0AGrazie.',
-        'vocab': 'Ciao%20Cameron%2C%0A%0AHo%20fatto%20il%20test%20e%20vorrei%20trasformare%20il%20mio%20vocabolario%20passivo%20in%20attivo.%20Parliamone.%0A%0AGrazie.',
-        'speed': 'Ciao%20Cameron%2C%0A%0AIl%20mio%20blocco%20principale%20%C3%A8%20la%20traduzione%20mentale.%20Voglio%20imparare%20a%20pensare%20in%20inglese.%0A%0AAttendo%20info.'
+    const BASE_MAILTO = {
+        subject: 'Richiesta Audit Weekend English',
+        body: 'Ciao Cameron,\n\nVorrei candidarmi per un audit del mio inglese professionale.\n\nIl mio ruolo è: ...\n\nGrazie!'
     };
 
-    if (subjects[context]) {
-        mailtoLinks.forEach(link => {
-            // Update the href with the specific subject and body
-            // Preserving the base email address
-            const currentHref = link.getAttribute('href');
-            const baseEmail = currentHref.split('?')[0];
-            link.setAttribute('href', `${baseEmail}?subject=${subjects[context]}&body=${bodies[context]}`);
-            
-            // Add a visual cue that the link has been personalized
-            link.classList.add('personalized');
-            setTimeout(() => link.classList.remove('personalized'), 500);
-        });
+    function mailtoHref(subject, body) {
+        return 'mailto:info@weekendenglish.it?subject=' +
+            encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
     }
-}
 
-/**
- * Initialize scroll-triggered animations using Intersection Observer
- */
-function initAnimations() {
-    // Create an observer for sections
-    const sectionObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-                // Unobserve after animation is triggered
-                sectionObserver.unobserve(entry.target);
-            }
-        });
-    }, {
-        threshold: 0.1, // Trigger when 10% of the element is visible
-        rootMargin: '0px 0px -50px 0px' // Adjust based on when you want the animation to trigger
-    });
+    function initDiagnosis() {
+        const options = Array.from(document.querySelectorAll('.audit__option'));
+        const panel = document.getElementById('audit-result');
+        if (!options.length || !panel) return;
 
-    // Observe all sections
-    document.querySelectorAll('section').forEach(section => {
-        sectionObserver.observe(section);
-    });
+        options.forEach(function (option) {
+            option.addEventListener('click', function () {
+                const key = option.dataset.audit;
+                const data = DIAGNOSES[key];
+                if (!data) return;
 
-    // Create an observer for individual elements with animation classes
-    const elementObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-                // Unobserve after animation is triggered
-                elementObserver.unobserve(entry.target);
-            }
-        });
-    }, {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-    });
-
-    // Observe elements with animation classes
-    document.querySelectorAll('.animate-on-scroll').forEach(element => {
-        elementObserver.observe(element);
-    });
-}
-
-/**
- * Initialize FAQ accordion functionality
- */
-function initFaqAccordion() {
-    const questions = document.querySelectorAll('.question');
-    
-    questions.forEach(question => {
-        // Add click event to each question
-        question.addEventListener('click', () => {
-            // Toggle active class
-            question.classList.toggle('active');
-            
-            // Get the translation element
-            const translation = question.querySelector('.translation');
-            
-            // Toggle visibility with animation
-            if (translation) {
-                if (question.classList.contains('active')) {
-                    translation.style.maxHeight = translation.scrollHeight + 'px';
-                    translation.style.opacity = '1';
-                } else {
-                    translation.style.maxHeight = '0';
-                    translation.style.opacity = '0';
-                }
-            }
-        });
-    });
-}
-
-/**
- * Initialize scroll effects (parallax, etc.)
- */
-function initScrollEffects() {
-    // Parallax effect for hero section
-    const heroImage = document.querySelector('.hero-image img');
-    
-    if (heroImage) {
-        window.addEventListener('scroll', () => {
-            const scrollPosition = window.pageYOffset;
-            // Move the image slightly as user scrolls
-            heroImage.style.transform = `translateY(${scrollPosition * 0.1}px)`;
-        });
-    }
-    
-    // Smooth scroll for anchor links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-            e.preventDefault();
-            
-            const targetId = this.getAttribute('href');
-            const targetElement = document.querySelector(targetId);
-            
-            if (targetElement) {
-                window.scrollTo({
-                    top: targetElement.offsetTop - 80, // Adjust for fixed header
-                    behavior: 'smooth'
+                options.forEach(function (other) {
+                    other.setAttribute('aria-pressed', String(other === option));
                 });
-            }
-        });
-    });
-}
 
-/**
- * Initialize floating action button for navigation
- * Function removed as per request to remove back to top button
- */
-// function initFloatingButton() {
-//     // Create floating button element
-//     const floatingButton = document.createElement('button');
-//     floatingButton.className = 'floating-button';
-//     floatingButton.setAttribute('aria-label', 'Torna all\'inizio');
-//     floatingButton.innerHTML = '<i class="fas fa-arrow-up" aria-hidden="true"></i>';
-//     
-//     // Add to the DOM
-//     document.body.appendChild(floatingButton);
-//     
-//     // Show/hide based on scroll position
-//     window.addEventListener('scroll', () => {
-//         if (window.pageYOffset > 300) {
-//             floatingButton.classList.add('visible');
-//         } else {
-//             floatingButton.classList.remove('visible');
-//         }
-//     });
-//     
-//     // Scroll to top on click
-//     floatingButton.addEventListener('click', () => {
-//         window.scrollTo({
-//             top: 0,
-//             behavior: 'smooth'
-//         });
-//     });
-// }
+                panel.innerHTML =
+                    '<p class="meta">' + data.label + '</p>' +
+                    '<h3>' + data.title + '</h3>' +
+                    '<p>' + data.body + '</p>' +
+                    '<div class="audit__remedy">' +
+                        '<div>' +
+                            '<p class="meta">' + data.remedyTitle + '</p>' +
+                            '<p>' + data.remedy + '</p>' +
+                        '</div>' +
+                        '<a class="btn" href="' + mailtoHref(data.subject, data.mailBody) + '">' +
+                            data.cta +
+                        '</a>' +
+                    '</div>';
 
-/**
- * Initialize progress indicator for long-form content
- */
-function initProgressIndicator() {
-    // Create progress bar element
-    const progressBar = document.createElement('div');
-    progressBar.className = 'progress-bar';
-    
-    // Add to the DOM
-    document.body.appendChild(progressBar);
-    
-    // Update progress bar width based on scroll position
-    window.addEventListener('scroll', () => {
-        const windowHeight = window.innerHeight;
-        const documentHeight = document.documentElement.scrollHeight;
-        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-        
-        const scrollPercent = (scrollTop / (documentHeight - windowHeight)) * 100;
-        progressBar.style.width = scrollPercent + '%';
-    });
-}
+                panel.hidden = false;
 
-/**
- * Initialize performance optimizations
- */
-function initPerformanceOptimizations() {
-    // Hide loading indicator
-    const loadingElement = document.getElementById('loading');
-    if (loadingElement) {
-        loadingElement.classList.add('hidden');
-    }
-    
-    // Lazy load images that are not already using loading="lazy"
-    if ('IntersectionObserver' in window) {
-        const imageObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const img = entry.target;
-                    const src = img.getAttribute('data-src');
-                    
-                    if (src) {
-                        img.src = src;
-                        img.removeAttribute('data-src');
-                    }
-                    
-                    imageObserver.unobserve(img);
+                // Carry the diagnosis into the main application email, so the
+                // message Cameron receives already says what to work on.
+                const applyCta = document.getElementById('apply-cta');
+                if (applyCta) {
+                    applyCta.href = mailtoHref(data.subject, data.mailBody);
                 }
             });
         });
-        
-        // Observe images with data-src attribute
-        document.querySelectorAll('img[data-src]').forEach(img => {
-            imageObserver.observe(img);
+    }
+
+    /* ---------------------------------------------------------------------
+       Scroll-driven chrome: masthead rule, mobile action bar, reveals
+       --------------------------------------------------------------------- */
+
+    function initScrollChrome() {
+        const masthead = document.getElementById('masthead');
+        const actionBar = document.getElementById('action-bar');
+        let ticking = false;
+
+        function update() {
+            const y = window.scrollY;
+            if (masthead) masthead.classList.toggle('is-stuck', y > 8);
+            if (actionBar) actionBar.classList.toggle('is-visible', y > window.innerHeight * 0.6);
+            ticking = false;
+        }
+
+        window.addEventListener('scroll', function () {
+            if (!ticking) {
+                ticking = true;
+                window.requestAnimationFrame(update);
+            }
+        }, { passive: true });
+
+        update();
+    }
+
+    function initReveals() {
+        const targets = Array.from(document.querySelectorAll('.reveal'));
+        if (!targets.length) return;
+
+        if (prefersReducedMotion || !('IntersectionObserver' in window)) {
+            targets.forEach(function (el) { el.classList.add('is-visible'); });
+            return;
+        }
+
+        const observer = new IntersectionObserver(function (entries) {
+            entries.forEach(function (entry) {
+                if (!entry.isIntersecting) return;
+                entry.target.classList.add('is-visible');
+                observer.unobserve(entry.target);
+            });
+        }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+
+        targets.forEach(function (el) { observer.observe(el); });
+
+        // Safety net. The reveal styles hide content until the observer runs,
+        // and a browser suspends its rendering lifecycle (rAF, scroll events,
+        // IntersectionObserver delivery) while the page is hidden — so a page
+        // opened in a background tab can finish loading with nothing revealed.
+        // Once everything else has loaded, reveal anything already on screen
+        // rather than trusting the observer to have fired.
+        window.addEventListener('load', function () {
+            targets.forEach(function (el) {
+                if (el.classList.contains('is-visible')) return;
+                const rect = el.getBoundingClientRect();
+                if (rect.top < window.innerHeight && rect.bottom > 0) {
+                    el.classList.add('is-visible');
+                    observer.unobserve(el);
+                }
+            });
         });
     }
-    
-}
 
-/**
- * Set the current year in the footer
- */
-function initCopyrightYear() {
-    const yearElement = document.getElementById('current-year');
-    if (yearElement) {
-        const currentYear = new Date().getFullYear();
-        yearElement.textContent = currentYear;
-        yearElement.setAttribute('datetime', currentYear);
+    /* ---------------------------------------------------------------------
+       Housekeeping
+       --------------------------------------------------------------------- */
+
+    function initYear() {
+        const el = document.getElementById('current-year');
+        if (!el) return;
+        const year = String(new Date().getFullYear());
+        el.textContent = year;
+        el.setAttribute('datetime', year);
     }
-}
+
+    function initBaseMailto() {
+        // Built here rather than hand-encoded in the markup, so the copy above
+        // stays readable and the encoding can't drift.
+        const applyCta = document.getElementById('apply-cta');
+        if (applyCta) applyCta.href = mailtoHref(BASE_MAILTO.subject, BASE_MAILTO.body);
+    }
+
+    function init() {
+        initBaseMailto();
+        initDiagnosis();
+        initScrollChrome();
+        initReveals();
+        initYear();
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+    } else {
+        init();
+    }
+})();
