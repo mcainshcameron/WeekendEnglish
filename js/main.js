@@ -15,39 +15,39 @@
     const DIAGNOSES = {
         anxiety: {
             label: 'Diagnosi A',
-            title: 'Imposter syndrome',
-            body: 'Non è un problema di inglese, è un problema di <strong>fiducia</strong>. Sai le regole, ma la paura di sbagliare ti blocca proprio nel momento in cui dovresti prendere la parola.',
+            title: 'Ti blocca la paura di sbagliare',
+            body: 'Le regole le sai. Quello che si inceppa è il momento in cui devi prendere la parola davanti a colleghi che ti stanno valutando.',
             remedyTitle: 'Il rimedio',
-            remedy: 'Simulazioni high-stakes in ambiente protetto. Ti abituiamo alla pressione finché non diventa noia.',
-            cta: 'Prenota la simulazione',
-            subject: 'Richiesta Coaching: Superare l\'Ansia',
-            mailBody: 'Ciao Cameron,\n\nHo fatto il test sul sito e il mio problema principale è l\'ansia da prestazione. Vorrei sapere come possiamo lavorarci.\n\nGrazie.'
+            remedy: 'Ripetiamo la situazione che temi finché smette di sembrarti un esame.',
+            cta: 'Prova una sessione',
+            subject: 'Weekend English: mi blocco quando devo parlare',
+            mailBody: 'Ciao Cameron,\n\nHo fatto il test sul sito. Mi blocco nel momento in cui devo prendere la parola.\n\nIl mio ruolo è: ...\nQuello che devo affrontare a breve è: ...\n\nGrazie.'
         },
         vocab: {
             label: 'Diagnosi B',
-            title: 'Passive vocabulary gap',
-            body: 'Conosci migliaia di parole — le leggi senza sforzo — ma ne usi solo un paio di centinaia quando parli. Il tuo <strong>vocabolario attivo</strong> è arrugginito.',
+            title: 'Vocabolario passivo',
+            body: 'Leggendo capisci tutto. Parlando torni sempre sulle stesse parole, perché sono le uniche che ti arrivano in tempo.',
             remedyTitle: 'Il rimedio',
-            remedy: 'Esercizi di active recall immediato. Ti forziamo a usare sinonimi professionali finché non diventano automatici.',
-            cta: 'Sblocca il vocabolario',
-            subject: 'Richiesta Coaching: Migliorare il Vocabolario',
-            mailBody: 'Ciao Cameron,\n\nHo fatto il test e vorrei trasformare il mio vocabolario passivo in attivo. Parliamone.\n\nGrazie.'
+            remedy: 'Ti fermo quando ripieghi sulla parola facile e ti faccio cercare quella precisa, finché non arriva da sola.',
+            cta: 'Prova una sessione',
+            subject: 'Weekend English: uso sempre le stesse parole',
+            mailBody: 'Ciao Cameron,\n\nHo fatto il test sul sito. Capisco molto più di quello che riesco a usare quando parlo.\n\nIl mio ruolo è: ...\nQuello che devo affrontare a breve è: ...\n\nGrazie.'
         },
         speed: {
             label: 'Diagnosi C',
-            title: 'The translation trap',
-            body: 'Pensi in italiano e traduci in inglese. È questo a creare il <strong>ritardo di due secondi</strong> che uccide la tua naturalezza e ti fa sembrare meno sicuro di quanto sei.',
+            title: 'Traduci invece di parlare',
+            body: 'Componi la frase in italiano e poi la traduci. Il ritardo si sente, e chi ascolta lo legge come insicurezza.',
             remedyTitle: 'Il rimedio',
-            remedy: 'Training per pensare direttamente in inglese. Eliminiamo il passaggio intermedio: parli alla velocità del pensiero.',
-            cta: 'Velocizza il pensiero',
-            subject: 'Richiesta Coaching: Fluency Training',
-            mailBody: 'Ciao Cameron,\n\nIl mio blocco principale è la traduzione mentale. Voglio imparare a pensare in inglese.\n\nAttendo info.'
+            remedy: 'Lavoriamo sulle formule pronte per le situazioni che ripeti ogni settimana, così parti già in inglese.',
+            cta: 'Prova una sessione',
+            subject: 'Weekend English: traduco mentre parlo',
+            mailBody: 'Ciao Cameron,\n\nHo fatto il test sul sito. Traduco dall\'italiano mentre parlo e questo mi rallenta.\n\nIl mio ruolo è: ...\nQuello che devo affrontare a breve è: ...\n\nGrazie.'
         }
     };
 
     const BASE_MAILTO = {
-        subject: 'Richiesta Audit Weekend English',
-        body: 'Ciao Cameron,\n\nVorrei candidarmi per un audit del mio inglese professionale.\n\nIl mio ruolo è: ...\n\nGrazie!'
+        subject: 'Weekend English: prima chiamata',
+        body: 'Ciao Cameron,\n\nVorrei fare una prima chiamata.\n\nIl mio ruolo è: ...\nQuello che devo affrontare a breve è: ...\n\nGrazie.'
     };
 
     function mailtoHref(subject, body) {
