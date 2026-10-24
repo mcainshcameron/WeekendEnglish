@@ -9,12 +9,7 @@
       <image:image>
          <image:loc>https://weekendenglish.it/images/og-cover.jpg</image:loc>
          <image:title>Weekend English</image:title>
-         <image:caption>Piattaforma gratuita di inglese costruita intorno alle conversazioni con Cameron</image:caption>
-      </image:image>
-      <image:image>
-         <image:loc>https://weekendenglish.it/Cameron.jpeg</image:loc>
-         <image:title>Cameron McAinsh</image:title>
-         <image:caption>Cameron McAinsh, madrelingua inglese, fondatore di Weekend English</image:caption>
+         <image:caption>Lezioni di conversazione in inglese, ed esercizi che nascono dalla lezione</image:caption>
       </image:image>
    </url>
 </urlset>

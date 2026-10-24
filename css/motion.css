@@ -9,28 +9,10 @@
    2. Scroll-driven animations (animation-timeline: scroll() / view()) for
       effects that should track the scroll position itself. All of them sit
       inside @supports, so a browser without them just gets the end state.
-   3. View transitions for state changes inside the demo (tabs, booking).
+   3. A view transition when the theme changes.
 
    prefers-reduced-motion switches all three off at the bottom of the file.
    ========================================================================== */
-
-@property --w {
-    syntax: '<number>';
-    inherits: true;
-    initial-value: 0;
-}
-
-@property --draw {
-    syntax: '<number>';
-    inherits: true;
-    initial-value: 1;
-}
-
-@property --fan {
-    syntax: '<number>';
-    inherits: true;
-    initial-value: 1;
-}
 
 /* --------------------------------------------------------------------------
    Reveal on enter
@@ -52,56 +34,61 @@
     transform: none;
 }
 
-/* Things that start "empty" and fill once their block is on screen. */
-.retention__rows i {
-    transition: --w 1400ms var(--ease-out);
+/* How it works: the three steps arrive one after another, then the mini
+   illustrations start moving. */
+.js .loop__step {
+    transition: opacity 600ms var(--ease), translate 800ms var(--spring);
 }
 
-.retention__rows li:nth-child(2) i { transition-delay: 150ms; }
-.retention__rows li:nth-child(3) i { transition-delay: 300ms; }
-
-.js .data-grid:not(.is-visible) .retention__rows i {
-    --w: 0 !important;
-}
-
-.js .plan:not(.is-visible) .cstrand__nodes {
-    --draw: 0;
-}
-
-.js .plan .cnode {
-    transition: transform 500ms var(--spring), opacity 300ms var(--ease);
-    transition-delay: calc(var(--i, 0) * 90ms + 300ms);
-}
-
-.js .plan:not(.is-visible) .cnode {
-    transform: scale(0.3);
+.js .loop:not(.is-visible) .loop__step {
     opacity: 0;
+    translate: 0 1.25rem;
 }
 
-.accept__list li:nth-child(1) { --i: 1; }
-.accept__list li:nth-child(2) { --i: 2; }
-.accept__list li:nth-child(3) { --i: 3; }
-.accept__list li:nth-child(4) { --i: 4; }
-.accept__list li:nth-child(5) { --i: 5; }
-.accept__list li:nth-child(6) { --i: 6; }
-.accept__list li:nth-child(7) { --i: 7; }
+.loop__step:nth-child(2) { transition-delay: 150ms; }
+.loop__step:nth-child(3) { transition-delay: 300ms; }
 
-.js .obs__item {
-    transition: opacity 500ms var(--ease), translate 700ms var(--spring),
-                border-color var(--fast), transform 300ms var(--spring), box-shadow var(--fast);
+.loop.is-visible .mini__wave i {
+    animation: wave 1s ease-in-out infinite;
 }
 
-.js .evidence:not(.is-visible) .obs__item {
+.mini__wave i:nth-child(2) { animation-delay: -0.2s; }
+.mini__wave i:nth-child(3) { animation-delay: -0.5s; }
+.mini__wave i:nth-child(4) { animation-delay: -0.1s; }
+.mini__wave i:nth-child(5) { animation-delay: -0.7s; }
+.mini__wave i:nth-child(6) { animation-delay: -0.35s; }
+.mini__wave i:nth-child(7) { animation-delay: -0.6s; }
+
+@keyframes wave {
+    50% { transform: scaleY(1); }
+}
+
+.loop.is-visible .mini__opts .is-ok {
+    animation: ok-pop 700ms var(--spring) 900ms both;
+}
+
+@keyframes ok-pop {
+    from {
+        border-color: var(--rule-strong);
+        background: transparent;
+        color: var(--ink);
+        transform: scale(0.9);
+    }
+}
+
+/* For you: benefits rise in sequence, the phone floats up. */
+.js .benefits li {
+    transition: opacity 600ms var(--ease), translate 800ms var(--spring);
+}
+
+.js .benefits:not(.is-visible) li {
     opacity: 0;
-    translate: 1.5rem 0;
+    translate: 0 1rem;
 }
 
-.obs__item:nth-child(2) { transition-delay: 60ms; }
-.obs__item:nth-child(3) { transition-delay: 120ms; }
-.obs__item:nth-child(4) { transition-delay: 180ms; }
-.obs__item:nth-child(5) { transition-delay: 240ms; }
-.obs__item:nth-child(6) { transition-delay: 300ms; }
-.obs__item:nth-child(7) { transition-delay: 360ms; }
+.benefits li:nth-child(2) { transition-delay: 100ms; }
+.benefits li:nth-child(3) { transition-delay: 200ms; }
+.benefits li:nth-child(4) { transition-delay: 300ms; }
 
 /* --------------------------------------------------------------------------
    Kinetic headline: each word rises out of a blur on load.
@@ -179,60 +166,20 @@
         to   { scale: 1;    translate: 0 0; }
     }
 
-    /* Lesson blueprint: the layers start piled up and fan out into place as
-       the stack crosses the viewport. */
-    .blueprint__stack {
-        animation: fan-out linear both;
+    /* The phone in "Per te" drifts against the scroll, a light parallax. */
+    .benefits__device .phone {
+        animation: drift linear both;
         animation-timeline: view();
-        animation-range: entry 15% cover 45%;
+        animation-range: cover 0% cover 100%;
     }
 
-    @keyframes fan-out {
-        from { --fan: 0; }
-        to   { --fan: 1; }
-    }
-
-    .bp-layer {
-        position: relative;
-        z-index: calc(10 - var(--l));
-        translate: 0 calc(var(--l) * -4.2rem * (1 - var(--fan)));
-        scale: calc(1 - var(--l) * 0.035 * (1 - var(--fan)));
-        rotate: x calc(18deg * (1 - var(--fan)));
-    }
-
-    /* The journey rail: a progress line beside the steps that fills as the
-       list scrolls past. */
-    @media (min-width: 901px) {
-        .journey__steps {
-            view-timeline-name: --steps;
-        }
-
-        .journey__steps::after {
-            content: '';
-            position: absolute;
-            left: -1px;
-            top: 0;
-            width: 1px;
-            height: 100%;
-            background: var(--blue-line);
-            transform-origin: top;
-            animation: grow-y linear both;
-            animation-timeline: --steps;
-            animation-range: contain 0% contain 100%;
-        }
-
-        .journey__steps {
-            position: relative;
-        }
-
-        @keyframes grow-y {
-            from { transform: scaleY(0); }
-            to   { transform: scaleY(1); }
-        }
+    @keyframes drift {
+        from { translate: 0 2.5rem; rotate: -1.5deg; }
+        to   { translate: 0 -2.5rem; rotate: 1.5deg; }
     }
 
     /* Section numbers slide along their rule as each section enters. */
-    .section__head .eyebrow-num {
+    .eyebrow-num {
         animation: num-in linear both;
         animation-timeline: view();
         animation-range: entry 0% entry 80%;
@@ -241,35 +188,6 @@
     @keyframes num-in {
         from { opacity: 0; translate: -0.75rem 0; }
     }
-}
-
-/* --------------------------------------------------------------------------
-   View transitions for in-demo state changes (js calls
-   document.startViewTransition where available).
-   -------------------------------------------------------------------------- */
-
-::view-transition-old(app-panel) {
-    animation: vt-out 200ms var(--ease) both;
-}
-
-::view-transition-new(app-panel) {
-    animation: vt-in 420ms var(--ease-out) both;
-}
-
-::view-transition-old(booking-confirm) {
-    animation: vt-out 160ms var(--ease) both;
-}
-
-::view-transition-new(booking-confirm) {
-    animation: vt-in 460ms var(--spring) both;
-}
-
-@keyframes vt-out {
-    to { opacity: 0; transform: translateY(-6px); }
-}
-
-@keyframes vt-in {
-    from { opacity: 0; transform: translateY(12px) scale(0.985); }
 }
 
 /* --------------------------------------------------------------------------
@@ -284,25 +202,13 @@
     .spec-strip,
     .read-progress,
     .film__frame,
-    .blueprint__stack,
-    .journey__steps::after,
-    .section__head .eyebrow-num,
-    .arch__link,
-    .arch__fan::before,
-    .arch__fan i,
-    .inject__arrow,
-    .flow__steps li,
-    .cstrand__nodes .cnode.is-pick,
-    .state--wait::before,
-    [data-state='active'] > .pnode,
-    [data-state='warn'] > .pnode {
+    .benefits__device .phone,
+    .eyebrow-num,
+    .loop__return path,
+    .mini__wave i,
+    .mini__opts .is-ok,
+    .fex__caret {
         animation: none !important;
-    }
-
-    .bp-layer {
-        translate: none !important;
-        scale: none !important;
-        rotate: none !important;
     }
 
     .read-progress {

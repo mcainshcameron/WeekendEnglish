@@ -1,7 +1,7 @@
 /**
  * WeekendEnglish.it — the hero film
  *
- * Motion in code: the whole 24-second explainer is one function, seek(t),
+ * Motion in code: the whole 16-second explainer is one function, seek(t),
  * that turns a time in seconds into the exact state of every element on the
  * stage. Nothing is tweened against the clock and nothing remembers the
  * previous frame, so playing, pausing and dragging the scrubber all go
@@ -20,21 +20,21 @@
     const stage = document.getElementById('film-stage');
     if (!stage) return;
 
-    const DURATION = 24;
+    const DURATION = 16;
     const SCENE = 4;
     const HOLD_MS = 1600;
     const FPS = 60;
 
     const CAPTIONS = [
-        'Marta e Cameron parlano per 28 minuti. La trascrizione è dichiarata e attiva.',
-        'A call finita arriva la trascrizione. Le frasi di Cameron restano fuori dall\'analisi.',
-        'Ogni difficoltà rimanda alle righe da cui viene, con un grado di certezza.',
-        'Il curriculum decide l\'ordine. Gli interessi di Marta danno il contesto.',
-        'Ogni esercizio passa i controlli. Se ne fallisce uno, si rigenera.',
-        'Sequenza pubblicata e avviso inviato. Cameron non ha toccato niente.'
+        'Marta fa lezione con l\'insegnante, con la trascrizione attiva e dichiarata.',
+        'Finita la lezione, il sistema legge le frasi di Marta e segna cosa ripassare.',
+        'Da quelle frasi nascono gli esercizi, con gli argomenti di cui Marta ha parlato.',
+        'Gli esercizi arrivano sul telefono di Marta. L\'insegnante non ha preparato niente.'
     ];
 
-    const CHAPTERS = ['La call', 'La trascrizione', 'Le prove', 'Il piano', 'La verifica', 'Pubblicato'];
+    const CHAPTERS = ['La lezione', 'Le sue frasi', 'Gli esercizi', 'Sul telefono'];
+
+    const TYPED = 'I suggest leaving at 8.';
 
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -82,6 +82,11 @@
     const caption = document.getElementById('film-subtitle');
     const timerEl = stage.querySelector('[data-film-timer]');
     const zeroEl = stage.querySelector('[data-film-zero]');
+    const typedEl = stage.querySelector('[data-film-typed]');
+    const tokens = ['t0', 't1', 't2', 't3'].map(function (k) { return stage.querySelector('[data-k="' + k + '"]'); });
+    // On screen the tokens read waiting · I · suggest · until March; the
+    // answer is I · suggest · waiting · until March.
+    const TOKEN_TARGET = [1, 2, 0, 3];
     const waves = {
         c: Array.from(stage.querySelectorAll('[data-wave="c"] i')),
         m: Array.from(stage.querySelectorAll('[data-wave="m"] i'))
@@ -105,6 +110,7 @@
     let H = 0;
     let rects = [];
     let radii = [];
+    let tokenShift = [0, 0, 0, 0];   // px each token travels to reach its slot
 
     // Opacity plus a transform built from offsets in --u, a scale and an
     // optional rotation. The unit keeps motion proportional at every size.
@@ -146,6 +152,16 @@
         radii = scenes.map(function (s) {
             return parseFloat(getComputedStyle(s).borderTopLeftRadius) || 12;
         });
+        if (tokens.every(Boolean)) {
+            const gap = parseFloat(getComputedStyle(tokens[0].parentElement).columnGap) || 0;
+            let x = tokens[0].offsetLeft;
+            const target = [];
+            TOKEN_TARGET.forEach(function (i) {
+                target[i] = x;
+                x += tokens[i].offsetWidth + gap;
+            });
+            tokenShift = tokens.map(function (tk, i) { return target[i] - tk.offsetLeft; });
+        }
         return true;
     }
 
@@ -258,9 +274,9 @@
         const dim = easeInOut(prog(lt, 2.0, 0.45));
         for (let i = 0; i < 5; i++) {
             const el = els['l' + i];
-            const isCameron = el && el.dataset.who === 'c';
+            const isTeacher = el && el.dataset.who === 'c';
             const e = spring(prog(lt, 0.45 + i * 0.3, 0.7));
-            const a = clamp01((lt - 0.45 - i * 0.3) / 0.2) * (isCameron ? lerp(1, 0.32, dim) : 1);
+            const a = clamp01((lt - 0.45 - i * 0.3) / 0.2) * (isTeacher ? lerp(1, 0.32, dim) : 1);
             put(el, a, 0, 1.2 * (1 - e), 1);
         }
         ['m1', 'm2', 'm3'].forEach(function (k, i) {
@@ -269,62 +285,32 @@
         enter(els.txnote, lt, 2.45, { y: 0.8 });
     }
 
-    const BAR_BASE = [0.3, 0.62, 0.25, 0.4];
-    const BAR_GAIN = [0.12, 0.12, 0.06, 0.1];
-
-    function sceneEvidence(lt) {
+    // The learner's sentences turn into three exercises: a gap fill from line
+    // 2, a word-ordering task from line 4, and a written task built on the
+    // topic of the conversation.
+    function sceneExercises(lt) {
         for (let i = 0; i < 3; i++) {
-            const absorb = bump(prog(lt, 1.55 + i * 0.2, 0.45));
-            const e = spring(prog(lt, 0.3 + i * 0.2, 0.75));
-            const a = clamp01((lt - 0.3 - i * 0.2) / 0.2);
-            put(els['c' + i], a, -3 * (1 - e) + absorb * 0.8, 0, 1 + absorb * 0.035);
-        }
-        enter(els.profile, lt, 0.5, { x: 3, y: 0 });
-        for (let i = 0; i < 4; i++) {
-            const grow = easeOut(prog(lt, 0.7 + i * 0.08, 0.6)) * BAR_BASE[i];
-            const gain = spring(prog(lt, 1.6 + i * 0.18, 0.9)) * BAR_GAIN[i];
-            write(els['b' + i], 'transform', 'scaleX(' + (grow + gain).toFixed(4) + ')');
-        }
-    }
-
-    function scenePlan(lt) {
-        for (let i = 0; i < 6; i++) {
-            enter(els['s' + i], lt, 0.3 + i * 0.09, { x: -1.5, y: 0 });
-        }
-        for (let i = 0; i < 3; i++) {
-            write(els['d' + i], '--ring', spring(prog(lt, 1.15 + i * 0.25, 0.8), 0.45).toFixed(3));
-        }
-        for (let i = 0; i < 4; i++) {
-            enter(els['p' + i], lt, 1.35 + i * 0.25, { x: 2, y: 0 });
-        }
-    }
-
-    function sceneGenerate(lt) {
-        for (let i = 0; i < 3; i++) {
-            const card = els['g' + i];
-            let extra = '';
-            if (i === 1) {
-                const flip = easeInOut(prog(lt, 2.35, 0.7));
-                extra = ' rotateY(' + (flip * 360).toFixed(1) + 'deg)';
-                card.classList.toggle('is-bad', lt >= 1.75 && flip < 0.5);
-            }
-            enter(card, lt, 0.25 + i * 0.14, { y: 2, s: 0.94, extra: extra });
-            ['a', 'b'].forEach(function (k, j) {
-                const p = easeOut(prog(lt, 0.6 + i * 0.14 + j * 0.15, 0.5));
-                write(els['g' + i + k], 'transform', 'scaleX(' + p.toFixed(3) + ')');
-            });
+            enter(els['e' + i], lt, 0.3 + i * 0.18, { y: 2, s: 0.94 });
+            const pop = spring(prog(lt, 0.75 + i * 0.18, 0.6), 0.45);
+            put(els['e' + i + 's'], clamp01((lt - 0.75 - i * 0.18) / 0.12), 0, 0, lerp(0.4, 1, pop));
         }
 
-        const okAt = [1.5, 3.0, 1.9];
-        for (let i = 0; i < 3; i++) {
-            const s = spring(prog(lt, okAt[i], 0.6), 0.45);
-            put(els['g' + i + 's'], clamp01((lt - okAt[i]) / 0.1), 0, 0, s);
-        }
-        const bad = spring(prog(lt, 1.75, 0.6), 0.45) * (1 - clamp01((lt - 2.55) / 0.15));
-        put(els.g1x, clamp01((lt - 1.75) / 0.1) * (lt < 2.7 ? 1 : 0), 0, 0, bad);
+        // Gap fill: the right option lights up, then drops into the gap.
+        write(els.e0o, '--on', easeOut(prog(lt, 1.15, 0.3)).toFixed(3));
+        const fill = spring(prog(lt, 1.45, 0.6), 0.5);
+        put(els.e0a, clamp01((lt - 1.45) / 0.12), 0, -1.2 * (1 - fill), lerp(0.6, 1, fill));
 
-        for (let i = 0; i < 6; i++) {
-            enter(els['k' + i], lt, 0.95 + i * 0.2, { x: -1, y: 0 });
+        // Ordering: each token slides to its slot in the right sentence.
+        const order = spring(prog(lt, 1.35, 0.9), 0.62);
+        tokens.forEach(function (tk, i) {
+            put(tk, 1, (tokenShift[i] / U) * order, 0, 1);
+        });
+
+        // Writing: the answer types itself out.
+        if (typedEl) {
+            const n = Math.round(prog(lt, 1.9, 1.3) * TYPED.length);
+            const text = TYPED.slice(0, n);
+            if (typedEl.textContent !== text) typedEl.textContent = text;
         }
     }
 
@@ -341,7 +327,7 @@
         }
     }
 
-    const SCENES = [sceneCall, sceneTranscript, sceneEvidence, scenePlan, sceneGenerate, scenePublish];
+    const SCENES = [sceneCall, sceneTranscript, sceneExercises, scenePublish];
 
     /* ---------------------------------------------------------------------
        Subtitles: rebuilt when the scene changes, then each word lifts in.
@@ -426,7 +412,7 @@
     const playBtn = document.getElementById('film-play');
     const film = document.getElementById('film');
 
-    let t = prefersReducedMotion ? 22.8 : 0;
+    let t = prefersReducedMotion ? DURATION - 1.2 : 0;
     let playing = false;
     let wantsPlay = !prefersReducedMotion;   // the reader's intent
     let inView = false;

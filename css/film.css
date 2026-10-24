@@ -1,7 +1,7 @@
 /* ==========================================================================
    Weekend English — The hero film
    --------------------------------------------------------------------------
-   A 24-second explainer drawn by code. CSS owns the layout of every scene;
+   A 16-second explainer drawn by code. CSS owns the layout of every scene;
    js/film.js owns time. seek(t) only ever writes transforms, opacity, a few
    custom properties and the sheet's clip-path, so the same frame comes out
    whether you play, pause or drag the scrubber.
@@ -54,7 +54,17 @@
 
 .film__chapter {
     flex: 1;
+    min-width: 0;
     color: var(--ink);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+@media (max-width: 480px) {
+    .film__frameno {
+        display: none;
+    }
 }
 
 .film__frameno {
@@ -133,17 +143,13 @@
 
 .scene--call { left: 19%; right: 19%; top: 8%;  bottom: 21%; }
 .scene--tx   { left: 21%; right: 21%; top: 6%;  bottom: 19%; }
-.scene--ev,
-.scene--plan,
-.scene--gen  { left: 8%;  right: 8%;  top: 8%;  bottom: 21%; }
+.scene--ex   { left: 7%;  right: 7%;  top: 8%;  bottom: 21%; }
 .scene--pub  { left: 31%; width: 22%; top: 5%;  bottom: 5%; border-radius: calc(3.4 * var(--u)); }
 
 @media (max-width: 760px) {
     .scene--call { left: 6%; right: 6%; top: 7%; bottom: 24%; }
     .scene--tx   { left: 6%; right: 6%; top: 5%; bottom: 20%; }
-    .scene--ev,
-    .scene--plan,
-    .scene--gen  { left: 6%; right: 6%; top: 5%; bottom: 20%; }
+    .scene--ex   { left: 6%; right: 6%; top: 5%; bottom: 20%; }
     .scene--pub  { left: 20%; width: 60%; top: 4%; }
 }
 
@@ -153,7 +159,7 @@
 }
 
 /* --------------------------------------------------------------------------
-   Scene 1 · the call
+   Scene 1 · the lesson
    -------------------------------------------------------------------------- */
 
 .fcall {
@@ -376,392 +382,168 @@
 }
 
 /* --------------------------------------------------------------------------
-   Scene 3 · evidence and the learner record
+   Scene 3 · the exercises written from the learner's sentences
    -------------------------------------------------------------------------- */
 
-.fev {
+.fex {
     position: absolute;
     inset: 0;
     padding: calc(2.2 * var(--u));
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: calc(2.4 * var(--u));
+    grid-template-columns: repeat(3, 1fr);
+    gap: calc(1.6 * var(--u));
     align-items: center;
 }
 
-.fev__chips {
-    list-style: none;
+.fex__card {
+    position: relative;
     display: flex;
     flex-direction: column;
     gap: calc(1 * var(--u));
-}
-
-.fchip {
-    display: flex;
-    flex-direction: column;
-    gap: calc(0.2 * var(--u));
-    padding: calc(0.9 * var(--u)) calc(1.2 * var(--u));
-    border-radius: calc(0.6 * var(--u));
+    min-height: calc(22 * var(--u));
+    padding: calc(1.8 * var(--u)) calc(1.6 * var(--u));
+    border-radius: calc(0.9 * var(--u));
     border: 1px solid var(--rule);
-    border-left: calc(0.45 * var(--u)) solid var(--chip, var(--rule-strong));
     background: var(--paper-raised);
-    box-shadow: 0 calc(0.4 * var(--u)) calc(1.2 * var(--u)) light-dark(rgba(20, 18, 15, 0.08), rgba(0, 0, 0, 0.4));
+    box-shadow: 0 calc(0.5 * var(--u)) calc(1.6 * var(--u)) light-dark(rgba(20, 18, 15, 0.08), rgba(0, 0, 0, 0.4));
 }
 
-.fchip b {
-    font-weight: 500;
-    font-size: calc(1.35 * var(--u));
-}
-
-.fchip span {
-    font-family: var(--font-mono);
-    font-size: calc(1 * var(--u));
-    color: var(--ink-mute);
-}
-
-.fchip--bad   { --chip: var(--signal); }
-.fchip--maybe { --chip: var(--amber); }
-.fchip--good  { --chip: var(--moss); }
-
-.fev__profile {
-    display: flex;
-    flex-direction: column;
-    gap: calc(1 * var(--u));
-    padding: calc(1.6 * var(--u));
-    border-radius: calc(0.8 * var(--u));
-    background: var(--paper-sunk);
-    border: 1px solid var(--rule);
-}
-
-.fev__title {
-    font-family: var(--font-display);
-    font-size: calc(1.7 * var(--u));
-    color: var(--ink);
-}
-
-.fbar {
-    display: grid;
-    gap: calc(0.35 * var(--u));
-    font-size: calc(1.1 * var(--u));
-}
-
-.fbar i {
-    display: block;
-    height: calc(0.7 * var(--u));
+.fex__src {
+    align-self: flex-start;
+    padding: 0.25em 0.75em;
     border-radius: 99px;
-    background: var(--rule);
-    overflow: hidden;
-}
-
-.fbar b {
-    display: block;
-    height: 100%;
-    border-radius: inherit;
-    background: var(--series-measured);
-    transform-origin: left;
-    transform: scaleX(0);
-}
-
-.fbar:nth-of-type(odd) b {
-    background: linear-gradient(90deg, var(--series-measured) 70%, var(--series-inferred) 70%);
-}
-
-.fev__legend {
-    display: flex;
-    align-items: center;
-    gap: calc(0.6 * var(--u));
+    background: var(--blue-wash);
+    color: var(--blue);
     font-family: var(--font-mono);
     font-size: calc(0.95 * var(--u));
+    letter-spacing: 0.04em;
+}
+
+.fex__kind {
+    font-family: var(--font-mono);
+    font-size: calc(1 * var(--u));
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
     color: var(--ink-mute);
 }
 
-.fsw {
-    width: calc(0.9 * var(--u));
-    height: calc(0.9 * var(--u));
-    border-radius: 2px;
-}
-
-.fsw--m { background: var(--series-measured); }
-.fsw--i { background: var(--series-inferred); margin-left: calc(0.6 * var(--u)); }
-
-@media (max-width: 760px) {
-    .fev {
-        grid-template-columns: 1fr;
-        align-content: center;
-        gap: calc(1.4 * var(--u));
-    }
-}
-
-/* --------------------------------------------------------------------------
-   Scene 4 · plan against the curriculum
-   -------------------------------------------------------------------------- */
-
-.fplan {
-    position: absolute;
-    inset: 0;
-    padding: calc(2.2 * var(--u));
-    display: grid;
-    grid-template-columns: 1.1fr 1fr;
-    gap: calc(2.4 * var(--u));
-    align-items: center;
-}
-
-.fplan__map {
-    display: grid;
-    gap: calc(0.9 * var(--u));
-}
-
-.fstrand {
-    display: grid;
-    grid-template-columns: calc(11 * var(--u)) repeat(5, 1fr);
-    align-items: center;
-    gap: calc(0.6 * var(--u));
-    position: relative;
-    font-size: calc(1.15 * var(--u));
-}
-
-.fstrand::before {
-    /* the strand line behind the dots */
-    content: '';
-    position: absolute;
-    left: calc(11.6 * var(--u));
-    right: calc(0.8 * var(--u));
-    top: 50%;
-    height: 1px;
-    background: var(--rule-strong);
-}
-
-.fstrand span {
+.fex__q,
+.fex__prompt {
+    font-size: calc(1.3 * var(--u));
     color: var(--ink-body);
 }
 
-.fstrand i {
-    position: relative;
-    justify-self: center;
-    width: calc(1.5 * var(--u));
-    height: calc(1.5 * var(--u));
-    border-radius: 50%;
-    border: 1px solid var(--rule-strong);
-    background: var(--paper-raised);
-}
-
-.fstrand i.on   { background: var(--ink); border-color: var(--ink); }
-.fstrand i.half { background: linear-gradient(90deg, var(--ink) 50%, var(--paper-raised) 50%); border-color: var(--ink); }
-
-.fstrand i.sel::after {
-    content: '';
-    position: absolute;
-    inset: calc(-0.55 * var(--u));
-    border-radius: 50%;
-    border: calc(0.22 * var(--u)) solid var(--blue);
-    transform: scale(var(--ring, 0));
-}
-
-.fplan__picks {
-    list-style: none;
-    display: grid;
-    gap: calc(0.9 * var(--u));
-    counter-reset: pick;
-}
-
-.fplan__picks li {
-    counter-increment: pick;
-    display: grid;
-    grid-template-columns: calc(2.4 * var(--u)) 1fr;
-    column-gap: calc(0.8 * var(--u));
-    align-items: baseline;
-    padding: calc(0.8 * var(--u)) calc(1 * var(--u));
-    border-radius: calc(0.6 * var(--u));
-    border: 1px solid var(--rule);
-    background: var(--paper-raised);
-    font-size: calc(1.3 * var(--u));
+.fex__q {
+    font-family: var(--font-display);
+    font-size: calc(1.6 * var(--u));
+    line-height: 1.45;
     color: var(--ink);
 }
 
-.fplan__picks li::before {
-    content: counter(pick);
-    grid-row: span 2;
-    display: grid;
-    place-items: center;
-    width: calc(2.2 * var(--u));
-    height: calc(2.2 * var(--u));
-    border-radius: 50%;
-    background: var(--blue);
-    color: var(--on-blue);
-    font-family: var(--font-mono);
-    font-size: calc(1.05 * var(--u));
-}
-
-.fplan__picks em {
-    font-style: normal;
-    font-family: var(--font-mono);
-    font-size: calc(0.95 * var(--u));
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
+.fex__gap {
+    display: inline-block;
+    min-width: calc(5.5 * var(--u));
+    border-bottom: calc(0.2 * var(--u)) solid var(--blue);
+    text-align: center;
     color: var(--blue);
 }
 
-.fplan__picks .fplan__ctx {
-    display: block;
-    border-style: dashed;
-    background: transparent;
-    font-family: var(--font-mono);
-    font-size: calc(1.05 * var(--u));
-    color: var(--ink-mute);
+.fex__gap span {
+    display: inline-block;
 }
 
-.fplan__picks .fplan__ctx::before {
-    display: none;
+.fex__opts {
+    display: flex;
+    gap: calc(0.6 * var(--u));
+    margin-top: auto;
+}
+
+.fex__opts i,
+.fex__tokens i {
+    font-style: normal;
+    font-family: var(--font-display);
+    padding: 0.3em 0.6em;
+    border: 1px solid var(--rule-strong);
+    border-radius: calc(0.5 * var(--u));
+    background: var(--paper-raised);
+    white-space: nowrap;
+}
+
+.fex__opts i {
+    font-size: calc(1.25 * var(--u));
+}
+
+.fex__opts i[data-k] {
+    --on: 0;
+    border-color: color-mix(in srgb, var(--moss) calc(var(--on) * 100%), var(--rule-strong));
+    background: color-mix(in srgb, var(--moss-wash) calc(var(--on) * 100%), var(--paper-raised));
+    color: color-mix(in srgb, var(--moss) calc(var(--on) * 100%), var(--ink));
+}
+
+.fex__tokens {
+    display: flex;
+    flex-wrap: nowrap;
+    column-gap: calc(0.5 * var(--u));
+    margin-top: auto;
+}
+
+.fex__tokens i {
+    font-size: calc(1.15 * var(--u));
+    color: var(--ink);
+    box-shadow: 0 calc(0.2 * var(--u)) 0 var(--rule);
+}
+
+.fex__typed {
+    margin-top: auto;
+    min-height: calc(2.8 * var(--u));
+    padding: calc(0.6 * var(--u)) calc(0.8 * var(--u));
+    border: 1px solid var(--rule-strong);
+    border-radius: calc(0.5 * var(--u));
+    background: var(--paper);
+    font-family: var(--font-display);
+    font-size: calc(1.4 * var(--u));
+    color: var(--ink);
+}
+
+.fex__caret {
+    display: inline-block;
+    width: 1px;
+    height: 1.1em;
+    margin-left: 1px;
+    vertical-align: text-bottom;
+    background: var(--blue);
+    animation: caret 1s steps(1) infinite;
+}
+
+@keyframes caret {
+    50% { opacity: 0; }
 }
 
 @media (max-width: 760px) {
-    .fplan {
+    .fex {
         grid-template-columns: 1fr;
         align-content: center;
-        gap: calc(1.6 * var(--u));
+        gap: calc(0.9 * var(--u));
+        padding: calc(1.6 * var(--u));
     }
 
-    .fplan__picks .fplan__ctx {
+    .fex__card {
+        min-height: 0;
+        gap: calc(0.6 * var(--u));
+        padding: calc(1.1 * var(--u)) calc(1.3 * var(--u));
+    }
+
+    .fex__q {
+        font-size: calc(1.45 * var(--u));
+    }
+
+    .fex__prompt {
         display: none;
     }
 }
 
 /* --------------------------------------------------------------------------
-   Scene 5 · generate and validate
-   -------------------------------------------------------------------------- */
-
-.fgen {
-    position: absolute;
-    inset: 0;
-    padding: calc(2.2 * var(--u));
-    display: grid;
-    grid-template-rows: auto auto;
-    align-content: center;
-    gap: calc(2.2 * var(--u));
-}
-
-.fgen__cards {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: calc(1.4 * var(--u));
-    perspective: calc(80 * var(--u));
-}
-
-.fgen__card {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    gap: calc(0.8 * var(--u));
-    padding: calc(1.6 * var(--u));
-    min-height: calc(14 * var(--u));
-    border-radius: calc(0.8 * var(--u));
-    border: 1px solid var(--rule);
-    background: var(--paper-raised);
-    transition: none;
-}
-
-.fgen__card.is-bad {
-    border-color: var(--signal);
-    background: var(--signal-wash);
-}
-
-.fgen__kind {
-    font-family: var(--font-mono);
-    font-size: calc(1.15 * var(--u));
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--ink-mute);
-}
-
-.fgen__card > i {
-    display: block;
-    height: calc(1.1 * var(--u));
-    border-radius: 99px;
-    background: var(--rule);
-    transform-origin: left;
-}
-
-.fgen__card > i + i {
-    width: 70%;
-}
-
-.fgen__ok,
-.fgen__bad {
-    position: absolute;
-    right: calc(1 * var(--u));
-    top: calc(1 * var(--u));
-    display: grid;
-    place-items: center;
-    font-weight: 600;
-}
-
-.fgen__ok {
-    width: calc(2.2 * var(--u));
-    height: calc(2.2 * var(--u));
-    border-radius: 50%;
-    background: var(--moss);
-    color: #fff;
-    font-size: calc(1.2 * var(--u));
-}
-
-.fgen__bad {
-    padding: 0.2em 0.6em;
-    border-radius: 99px;
-    background: var(--signal);
-    color: #fff;
-    font-family: var(--font-mono);
-    font-size: calc(0.9 * var(--u));
-    font-weight: 500;
-    white-space: nowrap;
-}
-
-.fgen__checks {
-    list-style: none;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: calc(0.8 * var(--u)) calc(1.6 * var(--u));
-}
-
-.fgen__checks li {
-    display: flex;
-    align-items: center;
-    gap: calc(0.7 * var(--u));
-    font-size: calc(1.45 * var(--u));
-}
-
-.fgen__checks li::before {
-    content: '✓';
-    display: grid;
-    place-items: center;
-    flex-shrink: 0;
-    width: calc(1.7 * var(--u));
-    height: calc(1.7 * var(--u));
-    border-radius: 50%;
-    background: var(--moss-wash);
-    color: var(--moss);
-    font-size: calc(0.95 * var(--u));
-    font-weight: 700;
-}
-
-@media (max-width: 760px) {
-    .fgen__cards {
-        grid-template-columns: 1fr;
-        gap: calc(0.8 * var(--u));
-    }
-
-    .fgen__card {
-        min-height: 0;
-        padding: calc(1 * var(--u)) calc(1.2 * var(--u));
-        gap: calc(0.5 * var(--u));
-    }
-
-    .fgen__checks {
-        grid-template-columns: 1fr 1fr;
-    }
-}
-
-/* --------------------------------------------------------------------------
-   Scene 6 · published to the phone
+   Scene 4 · on the learner's phone
    -------------------------------------------------------------------------- */
 
 .fpub {
@@ -1010,7 +792,7 @@ html:not(.js) .scene--pub {
     height: 3px;
     border-radius: 99px;
     background:
-        repeating-linear-gradient(90deg, transparent 0 calc(100% / 6 - 2px), var(--paper) calc(100% / 6 - 2px) calc(100% / 6)),
+        repeating-linear-gradient(90deg, transparent 0 calc(100% / 4 - 2px), var(--paper) calc(100% / 4 - 2px) calc(100% / 4)),
         var(--rule);
 }
 
@@ -1084,7 +866,7 @@ html:not(.js) .scene--pub {
 .film__chapters {
     list-style: none;
     display: grid;
-    grid-template-columns: repeat(6, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 0;
     margin-top: var(--space-3);
     border-top: 1px solid var(--rule);
@@ -1146,7 +928,7 @@ html:not(.js) .scene--pub {
 
 @media (max-width: 760px) {
     .film__chapters {
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(2, 1fr);
         max-width: 30rem;
         margin-inline: auto;
     }
