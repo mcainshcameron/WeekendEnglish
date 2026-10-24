@@ -4,31 +4,54 @@
    The palette is derived from the brand mark itself: the logo's ultramarine
    (#1f09ff, sampled from the source PNG) sitting on warm paper stock. Serif
    for display, Inter for everything that has to be read at small sizes, a
-   mono for section numbering. No gradients, no glass, no drop shadows beyond
-   a single soft lift.
+   mono for section numbering and for the product's own interface labels.
+
+   Every colour is a light-dark() pair, so the page follows the reader's
+   system theme and the masthead toggle can force either one by setting
+   color-scheme on <html>. Dark mode is its own set of steps, not an
+   inversion: the ultramarine is lifted to a lavender that holds contrast on
+   near-black, and the paper keeps a warm cast.
    ========================================================================== */
 
 :root {
+    color-scheme: light dark;
+
     /* --- Paper & ink ---------------------------------------------------- */
-    --paper:          #f4f0e8;  /* page stock */
-    --paper-raised:   #fbf9f4;  /* cards sitting on the page */
-    --paper-deep:     #e8e2d5;  /* recessed bands */
-    --ink:            #14120f;  /* headings, hard type */
-    --ink-body:       #3f3931;  /* running copy */
-    --ink-mute:       #7b7365;  /* captions, meta, eyebrows */
-    --rule:           #d9d1c1;  /* hairlines */
-    --rule-strong:    #b6ab94;  /* emphasis rules */
+    --paper:          light-dark(#f4f0e8, #141311);  /* page stock */
+    --paper-raised:   light-dark(#fbf9f4, #1c1a17);  /* sheets on the page */
+    --paper-deep:     light-dark(#e8e2d5, #0e0d0b);  /* recessed bands */
+    --paper-sunk:     light-dark(#efeadf, #181613);  /* wells inside sheets */
+    --ink:            light-dark(#14120f, #f2ede4);  /* headings, hard type */
+    --ink-body:       light-dark(#3f3931, #cbc4b7);  /* running copy */
+    --ink-mute:       light-dark(#716a5d, #968d7e);  /* captions, meta */
+    --rule:           light-dark(#d9d1c1, #2c2924);  /* hairlines */
+    --rule-strong:    light-dark(#b6ab94, #4a443b);  /* emphasis rules */
 
     /* --- Brand ----------------------------------------------------------- */
-    --blue:           #1f09ff;
-    --blue-deep:      #1607bd;
-    --blue-wash:      #ebe9ff;
+    --blue:           light-dark(#1f09ff, #9b8cff);
+    --blue-deep:      light-dark(#1607bd, #c0b7ff);
+    --blue-wash:      light-dark(#ebe9ff, #1e1a3c);
+    --blue-line:      light-dark(#c9c3ff, #3b3470);
+    --on-blue:        light-dark(#ffffff, #0d0a24);
 
-    /* --- Editorial signals (rationed: two uses per page, no more) --------- */
-    --signal:         #b5401f;  /* terracotta — the "reality" column */
-    --signal-wash:    #f7e9e3;
-    --moss:           #4a6247;  /* the "on paper you're fine" column */
-    --moss-wash:      #e7ece5;
+    /* --- Editorial signals ---------------------------------------------- */
+    --signal:         light-dark(#b5401f, #e8906f);  /* difficulty, failure */
+    --signal-wash:    light-dark(#f7e9e3, #2c1b14);
+    --moss:           light-dark(#3f6a3a, #9cc795);  /* strength, success */
+    --moss-wash:      light-dark(#e5ede2, #16231a);
+    --amber:          light-dark(#8a5a00, #e2b765);  /* pending, uncertain */
+    --amber-wash:     light-dark(#f6ecd6, #2a2112);
+
+    /* --- Inverse panels (closing, result cards) --------------------------- */
+    --inverse:        light-dark(#14120f, #23201c);
+    --on-inverse:     light-dark(#f4f0e8, #f2ede4);
+    --inverse-mute:   light-dark(#a39c8f, #a39c8f);
+    --inverse-rule:   light-dark(#3a3630, #3d3933);
+    --inverse-accent: #a99cff;
+
+    /* --- Chart series (validated: scripts/validate_palette.js) ------------ */
+    --series-measured: light-dark(#1f09ff, #7f6dff);
+    --series-inferred: light-dark(#b5401f, #d9744f);
 
     /* --- Type ------------------------------------------------------------ */
     --font-display: 'Iowan Old Style', 'Palatino Linotype', Palatino,
@@ -39,9 +62,9 @@
                     Menlo, Consolas, monospace;
 
     /* --- Measure & rhythm ------------------------------------------------ */
-    --maxw:      74rem;   /* outer content width */
+    --maxw:      76rem;   /* outer content width */
     --measure:   36rem;   /* comfortable reading column */
-    --gutter:    clamp(1.25rem, 5vw, 4rem);
+    --gutter:    clamp(1rem, 5vw, 4rem);
     --header-h:  4.5rem;
 
     --space-1: 0.25rem;
@@ -56,12 +79,30 @@
 
     /* --- Surface detail --------------------------------------------------- */
     --radius:      4px;
-    --radius-lg:   8px;
-    --lift:        0 1px 2px rgba(20, 18, 15, 0.04),
-                   0 8px 24px -12px rgba(20, 18, 15, 0.18);
+    --radius-lg:   10px;
+    --radius-xl:   22px;
+    --lift:        0 1px 2px light-dark(rgba(20, 18, 15, 0.05), rgba(0, 0, 0, 0.4)),
+                   0 10px 30px -14px light-dark(rgba(20, 18, 15, 0.22), rgba(0, 0, 0, 0.7));
+    --lift-lg:     0 2px 4px light-dark(rgba(20, 18, 15, 0.04), rgba(0, 0, 0, 0.4)),
+                   0 30px 60px -24px light-dark(rgba(20, 18, 15, 0.3), rgba(0, 0, 0, 0.8));
+
+    /* --- Motion ----------------------------------------------------------
+       One house curve for UI, plus a spring written as linear() so CSS can
+       overshoot and settle the way the hero film's closed-form spring does. */
     --ease:        cubic-bezier(0.2, 0.6, 0.25, 1);
+    --ease-out:    cubic-bezier(0.16, 1, 0.3, 1);
+    --spring:      linear(0, 0.009, 0.035 2.1%, 0.141 4.4%, 0.723 12.9%, 0.938 16.7%,
+                          1.017 19.4%, 1.067, 1.099 24.3%, 1.105 25.8%, 1.098 28.1%,
+                          1.035 34.4%, 1.006 38.6%, 0.991 42.5%, 0.987 46.9%,
+                          1.001 61.5%, 1.004 71.6%, 1);
     --fast:        140ms var(--ease);
+    --med:         320ms var(--ease-out);
 }
+
+/* The masthead toggle writes data-theme; color-scheme does the rest, because
+   every token above resolves through light-dark(). */
+:root[data-theme='light'] { color-scheme: light; }
+:root[data-theme='dark']  { color-scheme: dark; }
 
 *,
 *::before,
@@ -81,10 +122,10 @@ picture {
 }
 
 html {
-    color-scheme: light;
     scroll-behavior: smooth;
     scroll-padding-top: calc(var(--header-h) + 1.5rem);
     -webkit-text-size-adjust: 100%;
+    background-color: var(--paper);
 
     /* `clip`, not `hidden`, and on <html> rather than <body>. `overflow-x:
        hidden` on the body forces its overflow-y to `auto`, which makes the
@@ -104,12 +145,32 @@ body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     font-feature-settings: 'kern' 1, 'liga' 1, 'calt' 1;
+    transition: background-color var(--med), color var(--med);
 
-    /* A barely-there paper grain — felt rather than seen. Tiled straight onto
+    /* A barely-there paper grain, felt rather than seen. Tiled straight onto
        the body background rather than layered in a fixed ::after overlay: a
        full-viewport fixed layer forces its own compositing layer and makes
        scrolling repaint work far harder than a 140px repeating tile does. */
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
+}
+
+img,
+svg {
+    display: block;
+    max-width: 100%;
+}
+
+/* Components set display: grid/flex freely; `hidden` must still win. */
+[hidden] {
+    display: none !important;
+}
+
+button,
+input,
+textarea,
+select {
+    font: inherit;
+    color: inherit;
 }
 
 /* --------------------------------------------------------------------------
@@ -126,14 +187,14 @@ h1, h2, h3, h4 {
 }
 
 h1 {
-    font-size: clamp(2.6rem, 6.2vw, 4.75rem);
-    line-height: 1.02;
-    letter-spacing: -0.028em;
+    font-size: clamp(2.6rem, 7vw, 5.6rem);
+    line-height: 0.98;
+    letter-spacing: -0.032em;
 }
 
 h2 {
-    font-size: clamp(1.9rem, 4vw, 3rem);
-    letter-spacing: -0.022em;
+    font-size: clamp(1.9rem, 4.4vw, 3.4rem);
+    letter-spacing: -0.024em;
 }
 
 h3 {
@@ -165,7 +226,7 @@ em {
     color: var(--blue);
 }
 
-/* Small caps eyebrow — the mono label that opens every section. */
+/* Small caps eyebrow: the mono label that opens every section. */
 .eyebrow {
     display: flex;
     align-items: center;
@@ -209,6 +270,19 @@ em {
     color: var(--ink-mute);
 }
 
+.mono {
+    font-family: var(--font-mono);
+    font-variant-numeric: tabular-nums;
+}
+
+/* English sample language inside Italian copy: set in the serif italic so a
+   reader can see at a glance which words are the language being learned. */
+.en {
+    font-family: var(--font-display);
+    font-style: italic;
+    color: var(--ink);
+}
+
 /* --------------------------------------------------------------------------
    Links
    -------------------------------------------------------------------------- */
@@ -238,12 +312,12 @@ a.inline-link:hover {
 }
 
 /* --------------------------------------------------------------------------
-   Selection, focus, scrollbar
+   Selection, focus
    -------------------------------------------------------------------------- */
 
 ::selection {
     background-color: var(--blue);
-    color: #fff;
+    color: var(--on-blue);
 }
 
 :focus-visible {
@@ -297,5 +371,6 @@ a.inline-link:hover {
         animation-duration: 0.01ms !important;
         animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
     }
 }
